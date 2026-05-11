@@ -1,0 +1,7 @@
+node_modules/
+_site/
+src/assets/css/tailwind.css
+
+.DS_Store
+.env
+*.log

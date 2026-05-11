@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if env == 'development' %}
+  <meta name="robots" content="noindex, nofollow">
+  {% endif %}
+  <title>{{ title | default(site.name) }}</title>
+  <meta name="description" content="{{ description | default(site.description) }}">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+</head>
+<body x-data class="bg-white text-gray-900 antialiased">
+
+  {{ content | safe }}
+
+  <script src="/assets/vendor/gsap.min.js"></script>
+  <script defer src="/assets/vendor/alpine.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

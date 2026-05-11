@@ -1,0 +1,35 @@
+<section
+  id="hero"
+  class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-white px-6"
+>
+  <div class="max-w-3xl mx-auto text-center">
+    <h1
+      id="hero-headline"
+      class="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+    >
+      Launch faster.<br>Sell smarter.
+    </h1>
+
+    <p
+      id="hero-sub"
+      class="mt-6 text-xl text-gray-600 leading-relaxed"
+    >
+      {{ site.description }}
+    </p>
+
+    <div id="hero-cta" class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="#"
+        class="inline-block rounded-xl bg-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-md hover:bg-indigo-500 transition-colors"
+      >
+        Get started free
+      </a>
+      <a
+        href="#"
+        class="inline-block rounded-xl border border-gray-300 px-8 py-4 text-base font-semibold text-gray-700 hover:border-gray-400 transition-colors"
+        x-data="{ label: 'See the demo' }"
+        x-text="label"
+      ></a>
+    </div>
+  </div>
+</section>

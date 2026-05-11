@@ -1,0 +1,17 @@
+services:
+  stella-web-dev:
+    build: .
+    container_name: stella-web-dev
+    restart: unless-stopped
+    networks:
+      - hosting
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stella-web-dev.rule=Host(`dev-web.stella-commerce.com`)"
+      - "traefik.http.routers.stella-web-dev.entrypoints=websecure"
+      - "traefik.http.routers.stella-web-dev.tls.certresolver=letsencrypt"
+      - "traefik.http.services.stella-web-dev.loadbalancer.server.port=80"
+
+networks:
+  hosting:
+    external: true
