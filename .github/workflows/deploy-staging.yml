@@ -73,10 +73,16 @@ jobs:
 
       - name: Verify Health
         run: |
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://${{ vars.STAGING_DOMAIN }}")
-          if [ "$HTTP_CODE" = "200" ]; then
-            echo "Staging health check passed (HTTP $HTTP_CODE)"
-          else
-            echo "Staging health check failed (HTTP $HTTP_CODE)"
-            exit 1
-          fi
+          echo "Waiting for Traefik to register the new container..."
+          sleep 15
+          for i in $(seq 1 6); do
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://${{ vars.STAGING_DOMAIN }}")
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "Staging health check passed (HTTP $HTTP_CODE)"
+              exit 0
+            fi
+            echo "Attempt $i/6: got HTTP $HTTP_CODE, retrying in 10s..."
+            sleep 10
+          done
+          echo "Staging health check failed after retries"
+          exit 1
