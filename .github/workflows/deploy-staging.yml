@@ -1,0 +1,82 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [stage]
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    name: Pre-deploy Checks
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+  deploy:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: checks
+    environment: staging
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            REPO="${{ github.event.repository.name }}"
+            DIR="/home/zunkireelabs/devprojects/websiteprojects/${REPO}-web-stage"
+
+            if [ ! -d "$DIR" ]; then
+              echo "First deployment — bootstrapping $DIR"
+              mkdir -p "$DIR"
+              git clone -b stage git@github.com:${{ github.repository }}.git "$DIR"
+            fi
+
+            cd "$DIR"
+            git fetch origin
+            git checkout stage
+            git pull origin stage
+
+            docker compose -f docker-compose.dev.yml up -d --build
+
+            echo "Waiting for container to be healthy..."
+            sleep 10
+            CONTAINER="${REPO}-web-stage"
+            for i in $(seq 1 12); do
+              STATUS=$(docker inspect --format='{{.State.Health.Status}}' "$CONTAINER" 2>/dev/null || echo "unknown")
+              if [ "$STATUS" = "healthy" ]; then
+                echo "Container is healthy!"
+                exit 0
+              fi
+              echo "Attempt $i/12: Status is $STATUS, waiting..."
+              sleep 10
+            done
+            echo "Container did not become healthy within 2 minutes"
+            docker logs "$CONTAINER" --tail 50
+            exit 1
+
+      - name: Verify Health
+        run: |
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://${{ vars.STAGING_DOMAIN }}")
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "Staging health check passed (HTTP $HTTP_CODE)"
+          else
+            echo "Staging health check failed (HTTP $HTTP_CODE)"
+            exit 1
+          fi

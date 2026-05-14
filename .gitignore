@@ -4,4 +4,6 @@ src/assets/css/tailwind.css
 
 .DS_Store
 .env
+.env.*
+!.env.example
 *.log

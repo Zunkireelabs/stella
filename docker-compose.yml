@@ -1,0 +1,43 @@
+services:
+  app:
+    container_name: stella-web-prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - hosting
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=hosting"
+      # HTTPS router — apex domain
+      - "traefik.http.routers.stella-web-prod.rule=Host(`stella-commerce.com`)"
+      - "traefik.http.routers.stella-web-prod.entrypoints=websecure"
+      - "traefik.http.routers.stella-web-prod.tls=true"
+      - "traefik.http.routers.stella-web-prod.tls.certresolver=letsencrypt"
+      # HTTP → HTTPS redirect (apex)
+      - "traefik.http.routers.stella-web-prod-http.rule=Host(`stella-commerce.com`)"
+      - "traefik.http.routers.stella-web-prod-http.entrypoints=web"
+      - "traefik.http.routers.stella-web-prod-http.middlewares=stella-web-prod-redirect"
+      - "traefik.http.middlewares.stella-web-prod-redirect.redirectscheme.scheme=https"
+      # Service port
+      - "traefik.http.services.stella-web-prod.loadbalancer.server.port=80"
+      # www domain — HTTPS
+      - "traefik.http.routers.stella-web-prod-www.rule=Host(`www.stella-commerce.com`)"
+      - "traefik.http.routers.stella-web-prod-www.entrypoints=websecure"
+      - "traefik.http.routers.stella-web-prod-www.tls=true"
+      - "traefik.http.routers.stella-web-prod-www.tls.certresolver=letsencrypt"
+      # www domain — HTTP → HTTPS redirect (reuses same middleware)
+      - "traefik.http.routers.stella-web-prod-www-http.rule=Host(`www.stella-commerce.com`)"
+      - "traefik.http.routers.stella-web-prod-www-http.entrypoints=web"
+      - "traefik.http.routers.stella-web-prod-www-http.middlewares=stella-web-prod-redirect"
+
+networks:
+  hosting:
+    external: true
