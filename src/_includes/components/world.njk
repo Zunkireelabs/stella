@@ -1,0 +1,214 @@
+<section id="stella-world" class="sticky bottom-0 z-0 will-change-transform relative overflow-hidden border-t border-stella-border" role="img" aria-label="Illustrated Stella e-commerce world scene">
+
+  <div class="text-center pt-10 pb-4 px-6">
+    <p class="text-xs tracking-widest uppercase text-stella-muted mb-1">The Stella World</p>
+    <p class="text-sm text-stella-muted">Hover to explore</p>
+  </div>
+
+  <!-- Scene wrapper: SVG background + HTML animated overlays -->
+  <div class="relative w-full select-none" style="padding-top: calc(320 / 1400 * 100%);">
+
+    <!-- Static SVG background: buildings, trees, lamp, ground, clouds -->
+    <svg
+      class="absolute inset-0 w-full h-full"
+      viewBox="0 0 1400 320"
+      preserveAspectRatio="xMidYMax meet"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Sky gradient -->
+      <defs>
+        <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f0fdf4" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#FAFAF7" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="1400" height="260" fill="url(#sky-grad)"/>
+
+      <!-- Ground -->
+      <line x1="0" y1="260" x2="1400" y2="260" stroke="#E5E5E0" stroke-width="2"/>
+      <rect x="0" y="260" width="1400" height="60" fill="#FAFAF7"/>
+
+      <!-- Clouds (CSS animated, drift slowly) -->
+      <g style="animation: cloud-drift 45s linear infinite; will-change: transform;" transform="translate(-300, 0)">
+        <ellipse cx="180" cy="55" rx="38" ry="22" fill="white" opacity="0.9"/>
+        <ellipse cx="215" cy="44" rx="28" ry="18" fill="white" opacity="0.9"/>
+        <ellipse cx="248" cy="55" rx="32" ry="20" fill="white" opacity="0.9"/>
+      </g>
+      <g style="animation: cloud-drift 62s linear infinite; animation-delay: -20s; will-change: transform;" transform="translate(-500, 0)">
+        <ellipse cx="720" cy="40" rx="32" ry="18" fill="white" opacity="0.8"/>
+        <ellipse cx="752" cy="32" rx="24" ry="15" fill="white" opacity="0.8"/>
+        <ellipse cx="778" cy="40" rx="28" ry="17" fill="white" opacity="0.8"/>
+      </g>
+
+      <!-- Birds (tiny V shapes in sky) -->
+      <path d="M320 70 Q323 65 326 70" stroke="#5B6470" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M328 66 Q331 61 334 66" stroke="#5B6470" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M900 80 Q903 75 906 80" stroke="#5B6470" stroke-width="1.5" fill="none" opacity="0.4"/>
+
+      <!-- ─── LEFT SHOP ─── -->
+      <g id="shop-left" class="cursor-pointer" style="transform-origin: 125px 260px;">
+        <!-- Awning -->
+        <rect x="48" y="162" width="154" height="14" rx="3" fill="#D4F08A"/>
+        <!-- Building body -->
+        <rect x="58" y="176" width="134" height="84" rx="2" fill="#FAFAF7" stroke="#0F1216" stroke-width="1.5"/>
+        <!-- Roof -->
+        <polygon points="46,176 204,176 125,128" fill="#166534"/>
+        <polygon points="46,176 204,176 125,132" fill="#166534" opacity="0.6"/>
+        <!-- Windows -->
+        <rect x="66" y="192" width="32" height="26" rx="2" fill="#86EFAC" fill-opacity="0.35" stroke="#0F1216" stroke-width="1"/>
+        <line x1="82" y1="192" x2="82" y2="218" stroke="#0F1216" stroke-width="0.75" opacity="0.5"/>
+        <line x1="66" y1="205" x2="98" y2="205" stroke="#0F1216" stroke-width="0.75" opacity="0.5"/>
+        <rect x="148" y="192" width="32" height="26" rx="2" fill="#86EFAC" fill-opacity="0.35" stroke="#0F1216" stroke-width="1"/>
+        <line x1="164" y1="192" x2="164" y2="218" stroke="#0F1216" stroke-width="0.75" opacity="0.5"/>
+        <line x1="148" y1="205" x2="180" y2="205" stroke="#0F1216" stroke-width="0.75" opacity="0.5"/>
+        <!-- Door -->
+        <rect x="106" y="226" width="26" height="34" rx="3" fill="#166534"/>
+        <circle cx="126" cy="244" r="2.5" fill="#86EFAC"/>
+        <!-- Shop sign -->
+        <rect x="72" y="146" width="106" height="18" rx="3" fill="white" stroke="#E5E5E0" stroke-width="1"/>
+        <text x="125" y="159" text-anchor="middle" fill="#166534" font-size="9.5" font-weight="700" font-family="Inter, sans-serif" letter-spacing="0.05em">STELLA SHOP</text>
+
+        <!-- Chat bubble (hover reveal) -->
+        <g id="shop-chat-bubble" opacity="0" style="pointer-events: none;">
+          <rect x="148" y="94" width="118" height="32" rx="8" fill="white" stroke="#E5E5E0" stroke-width="1.5"/>
+          <path d="M160 126 L166 136 L172 126" fill="white" stroke="#E5E5E0" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M161 126 L166 134 L171 126" fill="white"/>
+          <text x="207" y="114" text-anchor="middle" fill="#5B6470" font-size="8.5" font-family="Inter, sans-serif">Looking for something?</text>
+        </g>
+      </g>
+
+      <!-- ─── TREE LEFT ─── -->
+      <g id="tree-left">
+        <rect x="356" y="222" width="8" height="38" fill="#5B6470" opacity="0.6" rx="2"/>
+        <ellipse cx="360" cy="208" rx="22" ry="20" fill="#86EFAC" opacity="0.75"/>
+        <ellipse cx="346" cy="218" rx="16" ry="14" fill="#86EFAC" opacity="0.55"/>
+        <ellipse cx="374" cy="218" rx="16" ry="14" fill="#86EFAC" opacity="0.55"/>
+      </g>
+
+      <!-- ─── STREET LAMP ─── -->
+      <g id="lamp-group">
+        <line x1="620" y1="260" x2="620" y2="152" stroke="#0F1216" stroke-width="3" stroke-linecap="round"/>
+        <path d="M620,152 Q630,142 648,148" stroke="#0F1216" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="648" cy="150" r="9" fill="#FEF08A" stroke="#0F1216" stroke-width="1.5"/>
+        <circle cx="648" cy="150" r="5" fill="#FEFCA8" opacity="0.8"/>
+        <!-- Base -->
+        <rect x="614" y="256" width="12" height="6" rx="2" fill="#0F1216" opacity="0.4"/>
+      </g>
+
+      <!-- ─── RISING CHAT BUBBLE (CSS float) ─── -->
+      <g style="animation: bubble-float 4s ease-in-out infinite; transform-origin: 690px 90px; transform-box: fill-box;">
+        <rect x="655" y="72" width="70" height="28" rx="7" fill="white" stroke="#E5E5E0" stroke-width="1.5"/>
+        <path d="M672 100 L676 108 L680 100" fill="white" stroke="#E5E5E0" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M673 100 L676 107 L679 100" fill="white"/>
+        <circle cx="671" cy="86" r="3" fill="#86EFAC"/>
+        <circle cx="680" cy="86" r="3" fill="#86EFAC"/>
+        <circle cx="689" cy="86" r="3" fill="#86EFAC"/>
+      </g>
+
+      <!-- ─── TREE RIGHT ─── -->
+      <g id="tree-right">
+        <rect x="876" y="216" width="8" height="44" fill="#5B6470" opacity="0.6" rx="2"/>
+        <ellipse cx="880" cy="202" rx="24" ry="22" fill="#86EFAC" opacity="0.7"/>
+        <ellipse cx="865" cy="212" rx="17" ry="15" fill="#86EFAC" opacity="0.5"/>
+        <ellipse cx="895" cy="212" rx="17" ry="15" fill="#86EFAC" opacity="0.5"/>
+      </g>
+
+      <!-- ─── FLOATING PAYMENT BADGE (CSS float) ─── -->
+      <g style="animation: badge-float 3.5s ease-in-out infinite; animation-delay: 0.8s; transform-origin: 1020px 80px; transform-box: fill-box;">
+        <rect x="970" y="62" width="100" height="34" rx="8" fill="#86EFAC" stroke="#166534" stroke-width="1.5"/>
+        <text x="1020" y="83" text-anchor="middle" fill="#166534" font-size="10" font-weight="700" font-family="Inter, sans-serif">✓ Paid · Khalti</text>
+      </g>
+
+      <!-- ─── RIGHT BUILDING ─── -->
+      <g id="building-right" class="cursor-pointer" style="transform-origin: 1305px 260px;">
+        <!-- Building body -->
+        <rect x="1228" y="108" width="154" height="152" rx="2" fill="#FAFAF7" stroke="#0F1216" stroke-width="1.5"/>
+        <!-- Flat roof -->
+        <rect x="1218" y="100" width="174" height="12" rx="2" fill="#166534"/>
+        <!-- Windows row 1 -->
+        <rect x="1244" y="128" width="26" height="22" rx="2" fill="#86EFAC" fill-opacity="0.3" stroke="#0F1216" stroke-width="1"/>
+        <rect x="1282" y="128" width="26" height="22" rx="2" fill="#86EFAC" fill-opacity="0.3" stroke="#0F1216" stroke-width="1"/>
+        <rect x="1320" y="128" width="26" height="22" rx="2" fill="#86EFAC" fill-opacity="0.3" stroke="#0F1216" stroke-width="1"/>
+        <!-- Windows row 2 -->
+        <rect x="1244" y="164" width="26" height="22" rx="2" fill="#86EFAC" fill-opacity="0.3" stroke="#0F1216" stroke-width="1"/>
+        <rect x="1282" y="164" width="26" height="22" rx="2" fill="#86EFAC" fill-opacity="0.3" stroke="#0F1216" stroke-width="1"/>
+        <!-- Agent window (hover reveal) -->
+        <g id="building-agent" opacity="0" style="pointer-events: none;">
+          <rect x="1320" y="164" width="26" height="22" rx="2" fill="#166534" stroke="#0F1216" stroke-width="1"/>
+          <circle cx="1333" cy="172" r="4" fill="#86EFAC"/>
+          <path d="M1327 184 Q1333 179 1339 184" stroke="#86EFAC" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </g>
+        <rect x="1320" y="164" width="26" height="22" rx="2" fill="#86EFAC" fill-opacity="0.3" stroke="#0F1216" stroke-width="1" style="pointer-events: none;" id="building-window-3-2"/>
+        <!-- Door -->
+        <rect x="1278" y="220" width="28" height="40" rx="3" fill="#166534"/>
+        <circle cx="1299" cy="241" r="2.5" fill="#86EFAC"/>
+        <!-- Stella sign -->
+        <rect x="1235" y="202" width="140" height="14" rx="2" fill="#166534" opacity="0.9"/>
+        <text x="1305" y="213" text-anchor="middle" fill="#86EFAC" font-size="9" font-weight="700" font-family="Inter, sans-serif" letter-spacing="0.1em">STELLA HQ</text>
+      </g>
+
+      <!-- Ground grass tufts -->
+      <g fill="none" stroke="#86EFAC" stroke-width="1.5" stroke-linecap="round" opacity="0.6">
+        <path d="M240,260 L242,254"/><path d="M244,260 L246,252"/><path d="M248,260 L250,255"/>
+        <path d="M500,260 L502,253"/><path d="M505,260 L507,255"/>
+        <path d="M780,260 L782,254"/><path d="M785,260 L787,252"/>
+        <path d="M1100,260 L1102,254"/><path d="M1105,260 L1107,256"/>
+      </g>
+
+    </svg>
+
+    <!-- ─── ANIMATED DELIVERY WALKER (HTML overlay) ─── -->
+    <div
+      id="world-walker"
+      class="absolute"
+      style="bottom: 18.75%; left: 0; animation: walk-right 22s linear infinite; animation-delay: -4s; will-change: transform;"
+      aria-hidden="true">
+      <svg width="32" height="52" viewBox="0 0 32 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Head -->
+        <circle cx="16" cy="10" r="8" fill="#FAFAF7" stroke="#0F1216" stroke-width="1.5"/>
+        <!-- Hair hint -->
+        <path d="M9 8 Q16 2 23 8" stroke="#0F1216" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Body -->
+        <rect x="11" y="19" width="10" height="16" rx="3" fill="#166534" stroke="#0F1216" stroke-width="1.5"/>
+        <!-- Package box (carried) -->
+        <rect x="0" y="21" width="16" height="12" rx="2" fill="#D4F08A" stroke="#0F1216" stroke-width="1.5"/>
+        <line x1="8" y1="21" x2="8" y2="33" stroke="#0F1216" stroke-width="0.75"/>
+        <line x1="0" y1="27" x2="16" y2="27" stroke="#0F1216" stroke-width="0.75"/>
+        <!-- Legs (slight stride) -->
+        <path d="M13 35 L10 52" stroke="#0F1216" stroke-width="2" stroke-linecap="round"/>
+        <path d="M19 35 L22 52" stroke="#0F1216" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ─── ANIMATED CYCLIST (HTML overlay, goes right to left) ─── -->
+    <div
+      id="world-cyclist"
+      class="absolute"
+      style="bottom: 18%; left: 0; animation: walk-left 18s linear infinite; animation-delay: -8s; will-change: transform;"
+      aria-hidden="true">
+      <svg width="62" height="54" viewBox="0 0 62 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wheels -->
+        <circle cx="12" cy="42" r="10" stroke="#0F1216" stroke-width="2" fill="none"/>
+        <circle cx="50" cy="42" r="10" stroke="#0F1216" stroke-width="2" fill="none"/>
+        <!-- Spokes -->
+        <line x1="12" y1="32" x2="12" y2="52" stroke="#0F1216" stroke-width="1" opacity="0.5"/>
+        <line x1="2" y1="42" x2="22" y2="42" stroke="#0F1216" stroke-width="1" opacity="0.5"/>
+        <line x1="40" y1="42" x2="60" y2="42" stroke="#0F1216" stroke-width="1" opacity="0.5"/>
+        <line x1="50" y1="32" x2="50" y2="52" stroke="#0F1216" stroke-width="1" opacity="0.5"/>
+        <!-- Frame -->
+        <path d="M12 42 L31 26 L50 42" stroke="#0F1216" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M31 26 L38 42" stroke="#0F1216" stroke-width="2" stroke-linecap="round"/>
+        <!-- Handlebars -->
+        <path d="M38 26 L44 22 L48 23" stroke="#0F1216" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Rider: body + head -->
+        <circle cx="36" cy="14" r="7" fill="#FAFAF7" stroke="#0F1216" stroke-width="1.5"/>
+        <rect x="31" y="22" width="10" height="10" rx="2" fill="#166534" stroke="#0F1216" stroke-width="1"/>
+        <!-- Basket with package -->
+        <rect x="6" y="30" width="14" height="10" rx="2" fill="#D4F08A" stroke="#0F1216" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+  </div>
+
+</section>

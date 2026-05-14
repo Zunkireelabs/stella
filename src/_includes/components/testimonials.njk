@@ -1,0 +1,106 @@
+<section id="testimonials-section" class="py-24">
+
+  <!-- Heading -->
+  <div class="max-w-7xl mx-auto px-6 mb-14 text-center">
+    <h2 class="text-3xl font-bold text-stella-text tracking-tight">Customer stories</h2>
+    <p class="mt-3 text-lg text-stella-muted">Real stores. Real results.</p>
+  </div>
+
+  <!-- Marquee track — bleeds edge to edge -->
+  <div class="relative overflow-hidden">
+
+    <!-- Fade masks -->
+    <div class="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none" style="background:linear-gradient(to right,#FAFAF7 30%,transparent)"></div>
+    <div class="absolute inset-y-0 right-0 w-32 z-10 pointer-events-none" style="background:linear-gradient(to left,#FAFAF7 30%,transparent)"></div>
+
+    <!-- Card track with Alpine hover state -->
+    <div id="testimonials-track" class="flex gap-5 px-16 w-max pb-4" x-data="{ active: null }">
+
+      <!-- Card 1 -->
+      <div class="bg-white rounded-2xl border border-stella-border p-8 w-[400px] shrink-0 flex flex-col transition-all duration-300 opacity-75 cursor-default"
+           @mouseenter="active = $el" @mouseleave="active = null"
+           :class="active ? (active === $el ? 'opacity-100 scale-[1.02] shadow-xl' : 'opacity-30') : 'opacity-75'">
+        <p class="text-lg text-stella-text leading-relaxed flex-1">"Stella increased my conversions in the first month. My store runs itself at night now — I wake up to orders I didn't have to close."</p>
+        <div class="flex items-center gap-4 mt-6 pt-6 border-t border-stella-border">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya S." class="w-14 h-14 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-semibold text-stella-text">Priya S.</p>
+            <p class="text-xs text-stella-muted">Fashion store · Kathmandu, Nepal</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white rounded-2xl border border-stella-border p-8 w-[400px] shrink-0 flex flex-col transition-all duration-300 opacity-75 cursor-default"
+           @mouseenter="active = $el" @mouseleave="active = null"
+           :class="active ? (active === $el ? 'opacity-100 scale-[1.02] shadow-xl' : 'opacity-30') : 'opacity-75'">
+        <p class="text-lg text-stella-text leading-relaxed flex-1">"We used to spend hours replying to the same questions. Stella handles all of that. Our team now focuses on growing the business."</p>
+        <div class="flex items-center gap-4 mt-6 pt-6 border-t border-stella-border">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Kasun R." class="w-14 h-14 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-semibold text-stella-text">Kasun R.</p>
+            <p class="text-xs text-stella-muted">Electronics store · Colombo, Sri Lanka</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-2xl border border-stella-border p-8 w-[400px] shrink-0 flex flex-col transition-all duration-300 opacity-75 cursor-default"
+           @mouseenter="active = $el" @mouseleave="active = null"
+           :class="active ? (active === $el ? 'opacity-100 scale-[1.02] shadow-xl' : 'opacity-30') : 'opacity-75'">
+        <p class="text-lg text-stella-text leading-relaxed flex-1">"From day one, Stella felt like having a full-time support agent. Our customers get instant answers even at 2am — it's changed everything."</p>
+        <div class="flex items-center gap-4 mt-6 pt-6 border-t border-stella-border">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Nadia H." class="w-14 h-14 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-semibold text-stella-text">Nadia H.</p>
+            <p class="text-xs text-stella-muted">Beauty store · Dhaka, Bangladesh</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white rounded-2xl border border-stella-border p-8 w-[400px] shrink-0 flex flex-col transition-all duration-300 opacity-75 cursor-default"
+           @mouseenter="active = $el" @mouseleave="active = null"
+           :class="active ? (active === $el ? 'opacity-100 scale-[1.02] shadow-xl' : 'opacity-30') : 'opacity-75'">
+        <p class="text-lg text-stella-text leading-relaxed flex-1">"I was skeptical at first. But after two weeks, our return rate dropped and repeat purchases went up. Stella just works."</p>
+        <div class="flex items-center gap-4 mt-6 pt-6 border-t border-stella-border">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Arjun M." class="w-14 h-14 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-semibold text-stella-text">Arjun M.</p>
+            <p class="text-xs text-stella-muted">Home goods · Mumbai, India</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="bg-white rounded-2xl border border-stella-border p-8 w-[400px] shrink-0 flex flex-col transition-all duration-300 opacity-75 cursor-default"
+           @mouseenter="active = $el" @mouseleave="active = null"
+           :class="active ? (active === $el ? 'opacity-100 scale-[1.02] shadow-xl' : 'opacity-30') : 'opacity-75'">
+        <p class="text-lg text-stella-text leading-relaxed flex-1">"Setup was 20 minutes. Results came in days. I don't know why I waited so long to try an AI agent for my store."</p>
+        <div class="flex items-center gap-4 mt-6 pt-6 border-t border-stella-border">
+          <img src="https://randomuser.me/api/portraits/women/90.jpg" alt="Siti A." class="w-14 h-14 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-semibold text-stella-text">Siti A.</p>
+            <p class="text-xs text-stella-muted">Clothing boutique · Jakarta, Indonesia</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="bg-white rounded-2xl border border-stella-border p-8 w-[400px] shrink-0 flex flex-col transition-all duration-300 opacity-75 cursor-default"
+           @mouseenter="active = $el" @mouseleave="active = null"
+           :class="active ? (active === $el ? 'opacity-100 scale-[1.02] shadow-xl' : 'opacity-30') : 'opacity-75'">
+        <p class="text-lg text-stella-text leading-relaxed flex-1">"The AI understands our products better than some of our staff did. Customers get the right answer every time, instantly."</p>
+        <div class="flex items-center gap-4 mt-6 pt-6 border-t border-stella-border">
+          <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Lena M." class="w-14 h-14 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-semibold text-stella-text">Lena M.</p>
+            <p class="text-xs text-stella-muted">Craft store · Kathmandu, Nepal</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>

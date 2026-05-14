@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,33 @@
   {% endif %}
   <title>{{ title | default(site.name) }}</title>
   <meta name="description" content="{{ description | default(site.description) }}">
+  <!-- Inter Variable — preconnect for faster load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <script type="importmap">{"imports":{"three":"/assets/vendor/three.module.js"}}</script>
 </head>
-<body x-data class="bg-white text-gray-900 antialiased">
+<body x-data class="bg-stella-bg text-stella-text font-sans antialiased">
 
-  {{ content | safe }}
+  <!-- Page loader -->
+  <div id="page-loader" class="fixed inset-0 z-[9997]" style="background:#FAFAF7"></div>
+  <div id="loader-logo-wrap" class="fixed z-[9999]" style="visibility:hidden">
+    <span id="loader-text" class="font-drawn" style="line-height:1;white-space:nowrap;color:#0F1216"></span>
+  </div>
+  <div id="loader-dot" class="fixed rounded-full z-[9999]" style="width:52px;height:52px;background:linear-gradient(135deg,#86EFAC 0%,#D4F08A 50%,#FEF08A 100%);visibility:hidden"></div>
+  <noscript><style>#page-loader,#loader-logo-wrap,#loader-dot{display:none!important}</style></noscript>
 
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <script src="/assets/vendor/lenis.min.js"></script>
   <script src="/assets/vendor/gsap.min.js"></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="/assets/vendor/SplitText.min.js"></script>
   <script defer src="/assets/vendor/alpine.min.js"></script>
   <script src="/assets/js/main.js"></script>
+  <script type="module" src="/assets/js/hero-scene.js"></script>
 </body>
 </html>
