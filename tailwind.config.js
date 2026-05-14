@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         drawn: ['Caveat', 'cursive'],
+        pacifico: ['Pacifico', 'cursive'],
       },
       fontSize: {
         'hero':    ['3.5rem',  { lineHeight: '1.1',  letterSpacing: '-0.03em' }],

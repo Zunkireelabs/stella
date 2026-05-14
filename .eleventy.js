@@ -1,5 +1,7 @@
 module.exports = function (eleventyConfig) {
 
+  eleventyConfig.setServerPassthroughCopyBehavior("copy");
+
   eleventyConfig.addPassthroughCopy({ "src/assets/css/tailwind.css": "assets/css/tailwind.css" });
   eleventyConfig.addPassthroughCopy("src/assets/js");
 

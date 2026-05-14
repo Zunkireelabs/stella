@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.overflow = 'hidden';
     gsap.set(siteNav, { autoAlpha: 0 });
 
-    // Wait for Caveat to load so getBoundingClientRect is accurate
+    // Wait for Pacifico to load so getBoundingClientRect is accurate
     const afterFonts = (cb) => {
       const fallback = setTimeout(() => requestAnimationFrame(cb), 500);
       document.fonts.ready.then(() => { clearTimeout(fallback); requestAnimationFrame(cb); });
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0);
 
         moveTl.to(loaderText, {
-          fontSize: '2.25rem',
+          fontSize: '1.875rem',
           duration: 0.75,
           ease:     'power3.inOut',
         }, 0);
