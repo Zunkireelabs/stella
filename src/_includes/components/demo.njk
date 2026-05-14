@@ -1,0 +1,190 @@
+<section id="stella-universe-section" class="relative overflow-hidden" style="height: 100vh;">
+
+  <!-- Ambient layer (fades out as clip expands) -->
+  <div id="stella-outside" class="absolute inset-0 flex flex-col pointer-events-none" style="background: var(--color-stella-bg, #FAFAF7); z-index: 1;">
+    <div class="pt-20 pb-8 text-center">
+      <p class="text-xs tracking-widest uppercase text-stella-muted mb-4">Live Demo</p>
+      <h2 class="text-3xl font-bold text-stella-text tracking-tight">Enter the Stella Universe</h2>
+      <p class="mt-3 text-lg text-stella-muted">Scroll to step inside</p>
+    </div>
+    <div class="mt-auto pb-12 text-center">
+      <p class="text-sm text-stella-muted">
+        Want this on your storefront?
+        <a href="#" class="text-stella-forest font-semibold hover:underline ml-1">Schedule Demo →</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Green ring indicator (sits above frame, fades out on expand) -->
+  <div id="universe-ring" class="absolute pointer-events-none rounded-[22px]"
+       style="z-index: 3; border: 1.5px solid #4ade80; box-shadow: 0 20px 48px rgba(0,0,0,0.13); width: 640px; height: 460px; left: 50%; top: 50%; transform: translate(-50%,-50%);"></div>
+
+  <!-- Window frame: full-size, clip-path reveals it as small centered window initially -->
+  <div id="stella-window-frame" class="absolute inset-0 bg-white overflow-hidden" style="z-index: 2;">
+
+    <!-- ── COMPACT PREVIEW — centered card matching the clip window ── -->
+    <div id="window-preview" class="absolute inset-0 flex items-center justify-center">
+      <div id="window-preview-card" class="flex flex-col overflow-hidden bg-white" style="width:640px;height:460px;border-radius:20px;">
+
+        <div class="bg-stella-gradient px-5 py-4 flex items-center gap-2 shrink-0">
+          <span class="w-2.5 h-2.5 rounded-full bg-stella-forest"></span>
+          <span class="font-bold text-stella-forest">Stella</span>
+          <span class="ml-auto text-xs text-stella-forest/70 font-medium">online</span>
+        </div>
+
+        <div class="flex-1 p-5 flex flex-col gap-4 overflow-hidden" style="background:var(--color-stella-bg,#FAFAF7);">
+
+          <div class="flex justify-start">
+            <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%] bg-white">
+              <p class="text-sm text-stella-text">Hi! What are you looking for today?</p>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <div class="bg-stella-lime/40 rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[75%]">
+              <p class="text-sm text-stella-text">Running shoes under ₹5,000</p>
+            </div>
+          </div>
+
+          <div class="flex justify-start">
+            <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 w-full bg-white">
+              <p class="text-sm text-stella-text mb-3">Found 3 great options in your budget:</p>
+              <div class="grid grid-cols-3 gap-2">
+                <div class="bg-white rounded-xl border border-stella-border p-2 text-center">
+                  <div class="bg-stella-border/40 rounded-lg aspect-square mb-2"></div>
+                  <p class="text-xs font-semibold text-stella-text leading-tight">Trail Runner X</p>
+                  <p class="text-xs text-stella-muted mt-0.5">Rs 3,200</p>
+                </div>
+                <div class="bg-white rounded-xl border border-stella-border p-2 text-center">
+                  <div class="bg-stella-border/40 rounded-lg aspect-square mb-2"></div>
+                  <p class="text-xs font-semibold text-stella-text leading-tight">Street Pace Pro</p>
+                  <p class="text-xs text-stella-muted mt-0.5">Rs 4,500</p>
+                </div>
+                <div class="bg-white rounded-xl border border-stella-border p-2 text-center">
+                  <div class="bg-stella-border/40 rounded-lg aspect-square mb-2"></div>
+                  <p class="text-xs font-semibold text-stella-text leading-tight">CloudWalk Lite</p>
+                  <p class="text-xs text-stella-muted mt-0.5">Rs 2,800</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="shrink-0 border-t border-stella-border px-5 py-3 text-center bg-white">
+          <p class="text-xs text-stella-muted">↓ Scroll to enter Stella Universe</p>
+        </div>
+
+      </div>
+    </div>
+    <!-- END compact preview -->
+
+    <!-- ── STELLA UNIVERSE (full layout, fades in after clip expands) ── -->
+    <div id="window-universe" class="absolute inset-0 flex flex-col" style="opacity: 0;">
+
+      <!-- Universe header -->
+      <div class="bg-stella-gradient px-6 py-3 flex items-center gap-2 shrink-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-stella-forest"></span>
+        <span class="font-bold text-stella-forest">Stella</span>
+        <span class="text-stella-forest/40 mx-1">·</span>
+        <span class="text-sm font-medium text-stella-forest/70">Stella Universe</span>
+        <span class="ml-auto flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-stella-forest animate-pulse"></span>
+          <span class="text-xs text-stella-forest/70 font-medium">online</span>
+        </span>
+      </div>
+
+      <!-- Two-panel body -->
+      <div class="flex flex-1 overflow-hidden min-h-0">
+
+        <!-- LEFT: Chat -->
+        <div class="w-[380px] shrink-0 border-r border-stella-border flex flex-col" style="background: var(--color-stella-bg, #FAFAF7);">
+
+          <div class="flex-1 overflow-y-auto p-5 flex flex-col gap-4">
+
+            <div class="flex justify-start">
+              <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] bg-white">
+                <p class="text-sm text-stella-text">Hi! I'm Stella. What are you looking for today?</p>
+              </div>
+            </div>
+
+            <div class="flex justify-end">
+              <div class="bg-stella-lime/40 rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[80%]">
+                <p class="text-sm text-stella-text">Running shoes under ₹5,000</p>
+              </div>
+            </div>
+
+            <div class="flex justify-start">
+              <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] bg-white">
+                <p class="text-sm text-stella-text">Found 3 great options! Pulled them up on the right →</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="shrink-0 border-t border-stella-border p-3 bg-white flex gap-2">
+            <input type="text" placeholder="Ask Stella anything..."
+              class="flex-1 rounded-xl border border-stella-border px-3 py-2 text-sm text-stella-text placeholder:text-stella-muted focus:outline-none focus:border-stella-green bg-white">
+            <button class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-4 py-2 text-sm shrink-0">Send</button>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Products + Cart -->
+        <div class="flex-1 flex flex-col overflow-hidden bg-white min-w-0">
+
+          <div class="flex-1 overflow-y-auto p-5">
+            <p class="text-xs tracking-widest uppercase text-stella-muted mb-4">Suggestions</p>
+            <div class="grid grid-cols-3 gap-4">
+
+              <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
+                <div class="bg-stella-border/30 aspect-square"></div>
+                <div class="p-3">
+                  <p class="text-sm font-semibold text-stella-text leading-tight">Trail Runner X</p>
+                  <p class="text-sm text-stella-muted mt-1">Rs 3,200</p>
+                  <button class="mt-3 w-full bg-stella-gradient text-stella-forest text-xs font-semibold rounded-xl py-2">Add to cart</button>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
+                <div class="bg-stella-border/30 aspect-square"></div>
+                <div class="p-3">
+                  <p class="text-sm font-semibold text-stella-text leading-tight">Street Pace Pro</p>
+                  <p class="text-sm text-stella-muted mt-1">Rs 4,500</p>
+                  <button class="mt-3 w-full bg-stella-gradient text-stella-forest text-xs font-semibold rounded-xl py-2">Add to cart</button>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
+                <div class="bg-stella-border/30 aspect-square"></div>
+                <div class="p-3">
+                  <p class="text-sm font-semibold text-stella-text leading-tight">CloudWalk Lite</p>
+                  <p class="text-sm text-stella-muted mt-1">Rs 2,800</p>
+                  <button class="mt-3 w-full bg-stella-gradient text-stella-forest text-xs font-semibold rounded-xl py-2">Add to cart</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="shrink-0 border-t border-stella-border px-5 py-4 flex items-center gap-4 bg-white">
+            <div class="flex-1">
+              <p class="text-xs text-stella-muted">Cart</p>
+              <p class="text-sm font-semibold text-stella-text mt-0.5">0 items · Rs 0</p>
+            </div>
+            <button class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-6 py-2.5 text-sm cta-pulse">
+              Checkout →
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- END Stella Universe -->
+
+  </div>
+  <!-- END window frame -->
+
+</section>

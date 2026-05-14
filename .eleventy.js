@@ -9,6 +9,21 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "node_modules/gsap/dist/gsap.min.js": "assets/vendor/gsap.min.js"
   });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/gsap/dist/ScrollTrigger.min.js": "assets/vendor/ScrollTrigger.min.js"
+  });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/gsap/dist/SplitText.min.js": "assets/vendor/SplitText.min.js"
+  });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/lenis/dist/lenis.min.js": "assets/vendor/lenis.min.js"
+  });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/three/build/three.module.js": "assets/vendor/three.module.js"
+  });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/three/build/three.core.js": "assets/vendor/three.core.js"
+  });
 
   eleventyConfig.addWatchTarget("src/assets/css/tailwind.css");
 

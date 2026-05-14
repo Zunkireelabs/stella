@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.float-icon { animation: float 3s ease-in-out infinite; }
+
+@keyframes walk-right {
+  from { transform: translateX(-10vw); }
+  to   { transform: translateX(110vw); }
+}
+@keyframes walk-left {
+  from { transform: translateX(110vw); }
+  to   { transform: translateX(-10vw); }
+}
+@keyframes bubble-float {
+  0%, 100% { transform: translateY(0px); opacity: 0.85; }
+  50%       { transform: translateY(-12px); opacity: 0.5; }
+}
+@keyframes cloud-drift {
+  from { transform: translateX(-300px); }
+  to   { transform: translateX(calc(100vw + 300px)); }
+}
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+
+@keyframes hero-bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-11px); }
+}
+.hero-float-card { animation: hero-bob 4s ease-in-out infinite; }
+
+@keyframes typing-pulse {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30%            { transform: translateY(-3px); opacity: 1; }
+}
+.typing-dot { animation: typing-pulse 1.2s ease-in-out infinite; }

@@ -1,0 +1,173 @@
+<style>
+  @keyframes fm-q-bad  { 0%,42%{opacity:1;transform:translateY(0)} 52%,100%{opacity:0;transform:translateY(-8px)} }
+  @keyframes fm-q-good { 0%,46%{opacity:0;transform:translateY(8px)} 58%,92%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-8px)} }
+  .fm-q-bad  { animation: fm-q-bad  4.8s ease-in-out infinite; }
+  .fm-q-good { animation: fm-q-good 4.8s ease-in-out infinite; position:absolute; inset:0; }
+
+  @keyframes fm-log { 0%{opacity:0;transform:translateX(-8px)} 12%,85%{opacity:1;transform:translateX(0)} 100%{opacity:0} }
+  .fm-log-1 { animation: fm-log 6s ease-out infinite; }
+  .fm-log-2 { animation: fm-log 6s ease-out 0.9s  infinite; }
+  .fm-log-3 { animation: fm-log 6s ease-out 1.8s  infinite; }
+  .fm-log-4 { animation: fm-log 6s ease-out 2.7s  infinite; }
+
+  @keyframes fm-perm { 0%,8%{opacity:0;transform:translateY(10px)} 22%,78%{opacity:1;transform:translateY(0)} 92%,100%{opacity:0;transform:translateY(-5px)} }
+  .fm-perm-new { animation: fm-perm 5.5s ease-in-out infinite; }
+
+  @keyframes fm-wave { 0%,100%{opacity:var(--base,.25)} 50%{opacity:1} }
+  @keyframes fm-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .fm-cursor { animation: fm-blink 0.9s step-end infinite; }
+
+  .fm-card-row { cursor: none; }
+  #fm-read-cursor {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    visibility: hidden;
+    display: flex; align-items: center; gap: 2px;
+    background: #0f1a10; color: #fff; border-radius: 999px;
+    padding: 7px 16px 7px 12px; font-size: 11px; font-weight: 600; font-family: inherit;
+    white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  }
+</style>
+
+<section id="five-moments" class="py-20">
+  <div class="pl-4 pr-6">
+
+    <!-- Subtle heading -->
+    <p class="text-center text-xs tracking-widest uppercase text-stella-muted mb-10">What agents actually do</p>
+
+    <!-- 4 cards in a row -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+      <!-- Card 1 · Discovery · green -->
+      <a href="/features/semantic-search/"
+         class="fm-card-row group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer h-[430px]"
+         style="will-change:transform">
+        <!-- Visual area: light → sharp green on hover -->
+        <div class="h-[255px] bg-[#e8fdf0] group-hover:bg-[#86EFAC] transition-colors duration-500 relative overflow-hidden flex flex-col items-stretch justify-center p-5">
+          <div class="relative h-[36px]">
+            <div class="fm-q-bad flex items-center gap-2 absolute inset-0">
+              <span class="font-mono text-[11px] text-stella-muted bg-white/70 rounded-lg px-2.5 py-1.5 flex-1 truncate">"womens runnng shoe"</span>
+              <span class="text-[11px] font-semibold text-red-500 bg-white/70 rounded-lg px-2 py-1.5 shrink-0">0</span>
+            </div>
+            <div class="fm-q-good flex items-center gap-2 absolute inset-0">
+              <span class="font-mono text-[11px] text-stella-text bg-white/70 rounded-lg px-2.5 py-1.5 flex-1 truncate">"morning jogs shoes"</span>
+              <span class="text-[11px] font-semibold text-stella-forest bg-white/70 rounded-lg px-2 py-1.5 shrink-0">3</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 my-2.5">
+            <div class="flex-1 h-px bg-black/10"></div>
+            <span class="text-[9px] font-mono text-black/35">understands both</span>
+            <div class="flex-1 h-px bg-black/10"></div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-[11px] text-stella-muted bg-white/70 rounded-lg px-2.5 py-1.5 flex-1 truncate">"gift for my sister"</span>
+            <span class="text-[11px] font-semibold text-stella-forest bg-white/70 rounded-lg px-2 py-1.5 shrink-0">5</span>
+          </div>
+        </div>
+        <!-- Text area -->
+        <div class="bg-white h-[170px] flex flex-col px-5 pt-4 pb-5">
+          <p class="text-[10px] font-semibold text-stella-forest uppercase tracking-widest">Discovery</p>
+          <h3 class="mt-1 text-base font-bold text-stella-text leading-snug">Discovery becomes<br>conversation</h3>
+        </div>
+      </a>
+
+      <!-- Card 2 · Checkout · dark -->
+      <a href="/features/autonomous-checkout/"
+         class="fm-card-row group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer h-[430px]"
+         style="will-change:transform">
+        <div class="h-[255px] bg-[#0d1117] relative overflow-hidden flex flex-col justify-center p-5 font-mono gap-2.5">
+          <div class="fm-log-1 flex items-center gap-2">
+            <span class="text-[#4b5563] text-[11px] shrink-0">12:34</span>
+            <span class="text-[#86efac] text-[11px] flex-1">Added Nike Air Max × 1</span>
+            <span class="text-[#22c55e] text-[11px]">✓</span>
+          </div>
+          <div class="fm-log-2 flex items-center gap-2">
+            <span class="text-[#4b5563] text-[11px] shrink-0">12:34</span>
+            <span class="text-[#86efac] text-[11px] flex-1">Applied WELCOME10</span>
+            <span class="text-[#22c55e] text-[11px]">✓</span>
+          </div>
+          <div class="fm-log-3 flex items-center gap-2">
+            <span class="text-[#4b5563] text-[11px] shrink-0">12:35</span>
+            <span class="text-[#86efac] text-[11px] flex-1">Sent checkout link</span>
+            <span class="text-[#22c55e] text-[11px]">✓</span>
+          </div>
+          <div class="fm-log-4 flex items-center gap-1.5 mt-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse shrink-0"></span>
+            <span class="text-[#4b5563] text-[11px]">customer approved</span>
+            <span class="fm-cursor text-[#86efac] text-[11px] ml-auto">▋</span>
+          </div>
+        </div>
+        <div class="bg-stella-text h-[170px] flex flex-col px-5 pt-4 pb-5">
+          <p class="text-[10px] font-semibold text-stella-green/60 uppercase tracking-widest">Checkout</p>
+          <h3 class="mt-1 text-base font-bold text-white leading-snug">Checkout in<br>the flow</h3>
+        </div>
+      </a>
+
+      <!-- Card 3 · Trust · lime -->
+      <a href="/features/agent-transparency/"
+         class="fm-card-row group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer h-[430px]"
+         style="will-change:transform">
+        <div class="h-[255px] bg-[#f0fdf4] group-hover:bg-[#D4F08A] transition-colors duration-500 relative overflow-hidden flex flex-col justify-center p-5 gap-2">
+          <p class="text-[9px] font-semibold text-stella-muted uppercase tracking-wider mb-0.5">Agent access</p>
+          <div class="flex items-center justify-between bg-white/70 rounded-xl px-3 py-2">
+            <span class="text-[11px] font-medium text-stella-text">View catalog</span>
+            <span class="flex items-center gap-1 text-[10px] font-semibold text-stella-forest">
+              <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald animate-pulse"></span>Active
+            </span>
+          </div>
+          <div class="flex items-center justify-between bg-white/70 rounded-xl px-3 py-2">
+            <span class="text-[11px] font-medium text-stella-text">Checkout handoff</span>
+            <span class="flex items-center gap-1 text-[10px] font-semibold text-stella-forest">
+              <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald animate-pulse"></span>Active
+            </span>
+          </div>
+          <div class="fm-perm-new flex items-center justify-between bg-white/70 rounded-xl px-3 py-2">
+            <span class="text-[11px] font-medium text-stella-forest">Apply discount</span>
+            <span class="flex items-center gap-1 text-[10px] font-semibold text-stella-forest">
+              <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald"></span>New
+            </span>
+          </div>
+        </div>
+        <div class="bg-white h-[170px] flex flex-col px-5 pt-4 pb-5">
+          <p class="text-[10px] font-semibold text-stella-forest uppercase tracking-widest">Trust</p>
+          <h3 class="mt-1 text-base font-bold text-stella-text leading-snug">Full audit trail,<br>always</h3>
+        </div>
+      </a>
+
+      <!-- Card 4 · Scale · yellow -->
+      <a href="/features/multi-channel-scale/"
+         class="fm-card-row group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer h-[430px]"
+         style="will-change:transform">
+        <div class="h-[255px] bg-[#fefce8] group-hover:bg-[#FEF08A] transition-colors duration-500 relative overflow-hidden flex flex-col justify-center p-5">
+          <p class="text-[9px] font-mono text-black/30 mb-2">activity · last 7 days</p>
+          <div class="flex flex-col gap-1">
+            {% set days = ["M","T","W","T","F","S","S"] %}
+            {% for day in days %}
+            {% set di = loop.index0 %}
+            <div class="flex items-center gap-1.5">
+              <span class="text-[8px] font-mono text-black/25 w-2 shrink-0">{{ day }}</span>
+              <div class="flex gap-0.5 flex-1">
+                {% for h in range(0, 18) %}
+                {% set ci = loop.index0 %}
+                <div class="flex-1 h-2 rounded-sm"
+                  style="background:{% if ci < 6 %}#86EFAC{% elif ci < 12 %}#10B981{% else %}#166534{% endif %};
+                         animation:fm-wave {{ 2.5 + (ci % 4) * 0.3 }}s ease-in-out {{ (ci * 0.04 + di * 0.02) }}s infinite;
+                         --base:{% if ci < 6 %}0.2{% elif ci < 12 %}0.5{% else %}0.85{% endif %}"></div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="flex items-center gap-1.5 mt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald animate-pulse shrink-0"></span>
+            <span class="text-[9px] font-mono text-stella-forest">24/7 · 0 downtime</span>
+          </div>
+        </div>
+        <div class="bg-white h-[170px] flex flex-col px-5 pt-4 pb-5">
+          <p class="text-[10px] font-semibold text-stella-forest uppercase tracking-widest">Scale</p>
+          <h3 class="mt-1 text-base font-bold text-stella-text leading-snug">24/7 across<br>every channel</h3>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
