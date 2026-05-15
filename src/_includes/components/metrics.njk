@@ -1,80 +1,26 @@
-<section class="py-20 section-reveal">
+<section class="pt-16 pb-12 section-reveal bg-white">
   <div class="max-w-5xl mx-auto px-6">
 
-    <p class="text-xs tracking-widest uppercase text-stella-muted mb-12">Results</p>
+    <p data-reveal="subhead" class="text-xs tracking-widest uppercase text-stella-forest font-medium mb-12">Results</p>
 
-    <!-- Row 1 -->
-    <div class="group relative cursor-default">
-      <!-- Divider with gradient hover -->
-      <div class="relative h-px w-full mb-0">
-        <div class="absolute inset-0 bg-stella-border"></div>
-        <div class="absolute inset-0 bg-stella-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-      <!-- Content -->
-      <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0 py-8 transition-colors duration-300 group-hover:bg-stella-green/[0.03] px-1">
-        <div class="sm:w-2/5 shrink-0">
-          <p class="text-[4.5rem] sm:text-[5.5rem] font-bold leading-none tracking-tight text-stella-text transition-all duration-300 group-hover:bg-stella-gradient group-hover:bg-clip-text group-hover:text-transparent"
-             data-count data-target="35" data-suffix="%">35%</p>
-        </div>
-        <div class="sm:w-3/5">
-          <p class="text-base sm:text-lg font-semibold text-stella-text mb-1">Higher conversion</p>
-          <p class="text-sm text-stella-muted leading-relaxed">Higher conversion rate vs. stores without Stella. Real orders, real revenue — not demo traffic.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 2 -->
+    {% for metric in metrics %}
     <div class="group relative cursor-default">
       <div class="relative h-px w-full mb-0">
         <div class="absolute inset-0 bg-stella-border"></div>
-        <div class="absolute inset-0 bg-stella-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="absolute inset-0 bg-stella-lime opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0 py-8 transition-colors duration-300 group-hover:bg-stella-green/[0.03] px-1">
         <div class="sm:w-2/5 shrink-0">
-          <p class="text-[4.5rem] sm:text-[5.5rem] font-bold leading-none tracking-tight text-stella-text transition-all duration-300 group-hover:bg-stella-gradient group-hover:bg-clip-text group-hover:text-transparent"
-             data-count data-target="60" data-suffix="%">60%</p>
+          <p class="text-[2.2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-bold leading-none tracking-tight text-stella-text transition-colors duration-300 bg-clip-text group-hover:bg-stella-lime group-hover:text-transparent"
+             {% if metric.count %}data-count data-target="{{ metric.target }}" data-suffix="{{ metric.suffix }}"{% endif %}>{{ metric.value }}</p>
         </div>
         <div class="sm:w-3/5">
-          <p class="text-base sm:text-lg font-semibold text-stella-text mb-1">Fewer support tickets</p>
-          <p class="text-sm text-stella-muted leading-relaxed">Support tickets handled autonomously. No scripts, no human intervention required.</p>
+          <p class="text-base sm:text-lg font-semibold text-stella-text mb-1">{{ metric.label }}</p>
+          <p class="text-sm text-stella-muted leading-relaxed">{{ metric.desc }}</p>
         </div>
       </div>
     </div>
-
-    <!-- Row 3 -->
-    <div class="group relative cursor-default">
-      <div class="relative h-px w-full mb-0">
-        <div class="absolute inset-0 bg-stella-border"></div>
-        <div class="absolute inset-0 bg-stella-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-      <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0 py-8 transition-colors duration-300 group-hover:bg-stella-green/[0.03] px-1">
-        <div class="sm:w-2/5 shrink-0">
-          <p class="text-[4.5rem] sm:text-[5.5rem] font-bold leading-none tracking-tight text-stella-text transition-all duration-300 group-hover:bg-stella-gradient group-hover:bg-clip-text group-hover:text-transparent">24/7</p>
-        </div>
-        <div class="sm:w-3/5">
-          <p class="text-base sm:text-lg font-semibold text-stella-text mb-1">Always available</p>
-          <p class="text-sm text-stella-muted leading-relaxed">Stella never goes offline, never misses a sale. Your store keeps selling while you sleep.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 4 -->
-    <div class="group relative cursor-default">
-      <div class="relative h-px w-full mb-0">
-        <div class="absolute inset-0 bg-stella-border"></div>
-        <div class="absolute inset-0 bg-stella-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-      <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0 py-8 transition-colors duration-300 group-hover:bg-stella-green/[0.03] px-1">
-        <div class="sm:w-2/5 shrink-0">
-          <p class="text-[4.5rem] sm:text-[5.5rem] font-bold leading-none tracking-tight text-stella-text transition-all duration-300 group-hover:bg-stella-gradient group-hover:bg-clip-text group-hover:text-transparent"
-             data-count data-target="3" data-suffix="×">3×</p>
-        </div>
-        <div class="sm:w-3/5">
-          <p class="text-base sm:text-lg font-semibold text-stella-text mb-1">Faster response</p>
-          <p class="text-sm text-stella-muted leading-relaxed">Faster response than any human support team, at any hour of the day.</p>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
 
     <!-- Final bottom divider -->
     <div class="h-px w-full bg-stella-border"></div>

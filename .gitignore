@@ -7,3 +7,7 @@ src/assets/css/tailwind.css
 .env.*
 !.env.example
 *.log
+
+docs/
+temp_ss/
+.claude/

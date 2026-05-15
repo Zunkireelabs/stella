@@ -1,0 +1,17 @@
+[
+  {
+    "num": "01",
+    "name": "Connect",
+    "desc": "Create your Storefront Access Token in the Stella dashboard and make your first API call. Any stack, any platform. Under 5 minutes."
+  },
+  {
+    "num": "02",
+    "name": "Configure",
+    "desc": "Sync your product catalog and configure your payment settings from the merchant dashboard."
+  },
+  {
+    "num": "03",
+    "name": "Sell",
+    "desc": "Customers chat, get personalized recommendations, and go straight to checkout — 24/7."
+  }
+]

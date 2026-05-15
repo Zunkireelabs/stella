@@ -1,39 +1,23 @@
-<section class="py-24 section-reveal">
+<section class="pt-20 pb-14 section-reveal bg-white">
   <div class="max-w-6xl mx-auto px-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
       <!-- Left: copy -->
       <div>
-        <p class="text-xs tracking-widest uppercase text-stella-muted mb-4">Landscape</p>
-        <h2 class="text-h2-sm lg:text-h2 font-bold text-stella-text mb-5 leading-tight">Where Stella<br>Stands</h2>
-        <p class="text-body-lg text-stella-muted mb-8 leading-relaxed">
+        <p class="text-xs tracking-widest uppercase text-stella-forest font-medium mb-4">Landscape</p>
+        <h2 data-reveal="headline" class="text-h2 font-light text-stella-text mb-5">Where Stella<br>Stands</h2>
+        <p data-reveal="subhead" class="text-body-lg text-stella-muted mb-8 leading-relaxed">
           Most commerce tools answer questions. Stella closes sales. No other platform combines full buying-journey autonomy with plug-in-simple setup for growing stores.
         </p>
 
-        <!-- Badges -->
-        <div class="flex flex-wrap gap-3 mb-8">
-          <div class="inline-flex items-center gap-2 border border-stella-border rounded-xl px-4 py-2.5 bg-white">
-            <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#FF492C"/>
-            </svg>
-            <span class="text-xs font-semibold text-stella-text leading-none">High Performer<br><span class="font-normal text-stella-muted">Spring 2025</span></span>
-          </div>
-          <div class="inline-flex items-center gap-2 border border-stella-border rounded-xl px-4 py-2.5 bg-white">
-            <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#FF492C"/>
-            </svg>
-            <span class="text-xs font-semibold text-stella-text leading-none">Easiest Setup<br><span class="font-normal text-stella-muted">Spring 2025</span></span>
-          </div>
-        </div>
-
-        <a href="#" class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-8 py-3.5 text-sm hover:opacity-90 transition-opacity shadow-sm inline-flex items-center justify-center">
-          Schedule Demo →
+<a href="#" class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-8 py-3.5 text-sm hover:opacity-90 transition-opacity shadow-sm inline-flex items-center justify-center">
+          {{ site.cta.primary }} →
         </a>
       </div>
 
       <!-- Right: quadrant chart -->
-      <div id="landscape-chart" class="relative w-full" style="height: 380px;">
-        <div class="absolute inset-0 bg-white rounded-3xl border border-stella-border overflow-hidden p-6">
+      <div id="landscape-chart" class="relative w-full" style="height: clamp(240px, 50vw, 380px);">
+        <div class="absolute inset-0 bg-white rounded-3xl shadow-stella overflow-hidden p-6">
 
           <!-- LEADERS tinted bg (top-right quadrant) -->
           <div class="absolute top-[10%] left-[50%] right-[4%] bottom-[50%] bg-stella-green/10 rounded-xl pointer-events-none"></div>
@@ -41,9 +25,9 @@
           <!-- Axis lines (start hidden, fade in via JS) -->
           <div id="landscape-axes" class="absolute inset-6 opacity-0">
             <!-- Vertical axis line -->
-            <div class="absolute left-1/2 top-0 bottom-0 w-px bg-stella-border"></div>
+            <div id="landscape-vline" class="absolute left-1/2 top-0 bottom-0 w-px bg-stella-border"></div>
             <!-- Horizontal axis line -->
-            <div class="absolute top-1/2 left-0 right-0 h-px bg-stella-border"></div>
+            <div id="landscape-hline" class="absolute top-1/2 left-0 right-0 h-px bg-stella-border"></div>
 
             <!-- Quadrant labels -->
             <span class="absolute top-1 left-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Enterprise</span>
@@ -60,53 +44,19 @@
 
           <!-- Dots (positioned absolutely within the card) -->
 
-          <!-- Gorgias — bottom-left -->
-          <div class="landscape-dot absolute" style="left:20%;top:72%;transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">Gorgias</span>
-          </div>
-
-          <!-- Swap Commerce — top-left -->
-          <div class="landscape-dot absolute" style="left:26%;top:20%;transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">Swap Commerce</span>
-          </div>
-
-          <!-- Alhena AI — top-left -->
-          <div class="landscape-dot absolute" style="left:36%;top:32%;transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">Alhena AI</span>
-          </div>
-
-          <!-- Tidio Lyro — bottom-right -->
-          <div class="landscape-dot absolute" style="left:72%;top:80%;transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">Tidio Lyro</span>
-          </div>
-
-          <!-- Manifest AI — bottom-right -->
-          <div class="landscape-dot absolute" style="left:62%;top:74%;transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">Manifest AI</span>
-          </div>
-
-          <!-- Rep AI — mid-right -->
-          <div class="landscape-dot absolute" style="left:62%;top:58%;transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">Rep AI</span>
-          </div>
-
-          <!-- Zipchat AI — bottom-right -->
-          <div class="landscape-dot absolute" style="left:76%;top:68%;transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">Zipchat AI</span>
-          </div>
-
-          <!-- Stella — top-right LEADERS -->
-          <div class="landscape-dot absolute" style="left:78%;top:16%;transform:translate(-50%,-50%)">
+          {% for comp in competitors %}
+          {% if comp.stella %}
+          <div class="landscape-dot absolute" style="left:{{ comp.left }};top:{{ comp.top }};transform:translate(-50%,-50%)">
             <div class="w-5 h-5 rounded-full bg-stella-green border-2 border-stella-forest shadow-[0_0_0_4px_rgba(134,239,172,0.25)]"></div>
-            <span class="absolute top-6 left-1/2 -translate-x-1/2 text-[10px] text-stella-forest font-bold whitespace-nowrap">Stella</span>
+            <span class="absolute top-6 left-1/2 -translate-x-1/2 text-[10px] text-stella-forest font-bold whitespace-nowrap">{{ comp.name }}</span>
           </div>
+          {% else %}
+          <div class="landscape-dot absolute" style="left:{{ comp.left }};top:{{ comp.top }};transform:translate(-50%,-50%)">
+            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
+            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">{{ comp.name }}</span>
+          </div>
+          {% endif %}
+          {% endfor %}
 
         </div>
       </div>

@@ -1,0 +1,19 @@
+{
+  "nav": [
+    { "label": "Overview",      "icon": "grid",   "active": true  },
+    { "label": "Conversations", "icon": "chat",   "active": false },
+    { "label": "Orders",        "icon": "bag",    "active": false },
+    { "label": "Customers",     "icon": "people", "active": false },
+    { "label": "Catalog",       "icon": "box",    "active": false }
+  ],
+  "admin": {
+    "initials": "MP",
+    "name": "Mero Pasal",
+    "role": "Pro Plan"
+  },
+  "channels": [
+    { "name": "WhatsApp",  "pct": 58, "icon": "whatsapp",  "barColor": "#25D366" },
+    { "name": "Facebook",  "pct": 27, "icon": "facebook",  "barColor": "#1877F2" },
+    { "name": "Instagram", "pct": 15, "icon": "instagram", "barColor": "#C13584" }
+  ]
+}

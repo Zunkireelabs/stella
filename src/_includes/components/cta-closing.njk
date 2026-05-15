@@ -1,16 +1,16 @@
-<section class="py-12 section-reveal">
+<section class="pt-12 pb-8 section-reveal bg-white">
   <div class="max-w-5xl mx-auto px-6">
-    <div class="bg-stella-gradient rounded-3xl px-8 sm:px-16 py-16 text-center">
+    <div class="bg-stella-lime rounded-3xl px-8 sm:px-16 py-16 text-center">
 
-      <h2 class="text-4xl font-bold text-stella-forest mb-4">Take the next step</h2>
-      <p class="text-lg text-stella-forest/80 mb-10 max-w-xl mx-auto">See how Stella can increase conversions and provide 24/7 sales support for your store.</p>
+      <h2 data-reveal="headline" class="text-h2 font-light text-stella-forest mb-4">Take the next step</h2>
+      <p data-reveal="subhead" class="text-lg text-stella-forest/80 mb-10 max-w-xl mx-auto">See how Stella can increase conversions and provide 24/7 sales support for your store.</p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <div data-reveal="cta" class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="#" class="bg-white text-stella-forest font-semibold rounded-xl px-8 py-3 hover:shadow-md transition-shadow">
-          Schedule Demo →
+          {{ site.cta.primary }} →
         </a>
         <a href="#" class="border border-stella-forest/30 text-stella-forest font-semibold rounded-xl px-8 py-3 hover:bg-white/20 transition-colors">
-          Contact Sales
+          {{ site.cta.secondary }}
         </a>
       </div>
 

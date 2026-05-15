@@ -1,184 +1,244 @@
-<section id="stella-universe-section" class="relative overflow-hidden" style="height: 100vh;">
+<div class="hidden md:block">
+<section id="stella-universe-section" class="relative overflow-hidden" style="height: 100vh; background: #ffffff;">
 
   <!-- Ambient layer (fades out as clip expands) -->
-  <div id="stella-outside" class="absolute inset-0 flex flex-col pointer-events-none" style="background: var(--color-stella-bg, #FAFAF7); z-index: 1;">
-    <div class="pt-20 pb-8 text-center">
-      <p class="text-xs tracking-widest uppercase text-stella-muted mb-4">Live Demo</p>
-      <h2 class="text-3xl font-bold text-stella-text tracking-tight">Enter the Stella Universe</h2>
+  <div id="stella-outside" class="absolute inset-0 flex flex-col pointer-events-none" style="background: #ffffff; z-index: 1;">
+    <div class="pt-10 pb-4 text-center">
+      <p class="text-xs tracking-widest uppercase text-stella-forest font-medium mb-4">Live Demo</p>
+      <h2 class="text-h2 font-light text-stella-text">Experience your shopping with Stella</h2>
       <p class="mt-3 text-lg text-stella-muted">Scroll to step inside</p>
     </div>
     <div class="mt-auto pb-12 text-center">
       <p class="text-sm text-stella-muted">
         Want this on your storefront?
-        <a href="#" class="text-stella-forest font-semibold hover:underline ml-1">Schedule Demo →</a>
+        <a href="#" class="text-stella-forest font-semibold hover:underline ml-1">{{ site.cta.primary }} →</a>
       </p>
     </div>
   </div>
 
-  <!-- Green ring indicator (sits above frame, fades out on expand) -->
+  <!-- Green ring indicator (sits above frame, blooms out on expand) -->
+  <style>
+    @property --ring-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes ring-arc-spin {
+      to { --ring-angle: 360deg; }
+    }
+    @keyframes ring-pulse {
+      0%, 100% { box-shadow: 0 20px 48px rgba(0,0,0,0.13), 0 0 0 0 rgba(74,222,128,0); }
+      50%       { box-shadow: 0 20px 48px rgba(0,0,0,0.18), 0 0 22px 6px rgba(74,222,128,0.22); }
+    }
+  </style>
   <div id="universe-ring" class="absolute pointer-events-none rounded-[22px]"
-       style="z-index: 3; border: 1.5px solid #4ade80; box-shadow: 0 20px 48px rgba(0,0,0,0.13); width: 640px; height: 460px; left: 50%; top: 50%; transform: translate(-50%,-50%);"></div>
+       style="z-index: 3; box-shadow: 0 20px 48px rgba(0,0,0,0.13); width: 640px; height: 460px; left: 50%; top: 50%; transform: translate(-50%,-50%); animation: ring-pulse 2.4s ease-in-out infinite;">
+    <span style="position:absolute;inset:0;border-radius:22px;padding:3px;background:conic-gradient(from var(--ring-angle) at 50% 50%, transparent 0%, rgba(134,239,172,0.5) 8%, rgba(134,239,172,1) 15%, #10B981 18%, rgba(134,239,172,1) 21%, rgba(134,239,172,0.5) 28%, transparent 36%, transparent 100%) border-box;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ring-arc-spin 2.8s linear infinite;pointer-events:none;"></span>
+  </div>
 
   <!-- Window frame: full-size, clip-path reveals it as small centered window initially -->
-  <div id="stella-window-frame" class="absolute inset-0 bg-white overflow-hidden" style="z-index: 2;">
+  <div id="stella-window-frame" class="absolute inset-0 overflow-hidden" style="z-index: 2; background: #f7ffe4;">
+
+    <!-- Cinematic vignette — blooms in during aperture transition, clears when fully open -->
+    <div id="universe-vignette" class="absolute inset-0 pointer-events-none" style="z-index: 10; opacity: 0; background: radial-gradient(ellipse 70% 65% at 50% 50%, transparent, rgba(0,0,0,0.18));"></div>
 
     <!-- ── COMPACT PREVIEW — centered card matching the clip window ── -->
     <div id="window-preview" class="absolute inset-0 flex items-center justify-center">
-      <div id="window-preview-card" class="flex flex-col overflow-hidden bg-white" style="width:640px;height:460px;border-radius:20px;">
+      <div id="window-preview-card" class="relative flex flex-col overflow-hidden" style="width:640px;height:460px;border-radius:20px;background:#f7ffe4;">
 
-        <div class="bg-stella-gradient px-5 py-4 flex items-center gap-2 shrink-0">
-          <span class="w-2.5 h-2.5 rounded-full bg-stella-forest"></span>
-          <span class="font-bold text-stella-forest">Stella</span>
-          <span class="ml-auto text-xs text-stella-forest/70 font-medium">online</span>
+
+        <!-- Splash content -->
+        <div class="relative flex-1 flex flex-col items-center justify-center text-center px-8" style="z-index:1;">
+          <h2 class="font-drawn text-[5.5rem] leading-none text-stella-forest">Stella</h2>
+          <p class="mt-3 text-base text-stella-muted">AI that sells for you. Around the clock.</p>
         </div>
 
-        <div class="flex-1 p-5 flex flex-col gap-4 overflow-hidden" style="background:var(--color-stella-bg,#FAFAF7);">
-
-          <div class="flex justify-start">
-            <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%] bg-white">
-              <p class="text-sm text-stella-text">Hi! What are you looking for today?</p>
-            </div>
-          </div>
-
-          <div class="flex justify-end">
-            <div class="bg-stella-lime/40 rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[75%]">
-              <p class="text-sm text-stella-text">Running shoes under ₹5,000</p>
-            </div>
-          </div>
-
-          <div class="flex justify-start">
-            <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 w-full bg-white">
-              <p class="text-sm text-stella-text mb-3">Found 3 great options in your budget:</p>
-              <div class="grid grid-cols-3 gap-2">
-                <div class="bg-white rounded-xl border border-stella-border p-2 text-center">
-                  <div class="bg-stella-border/40 rounded-lg aspect-square mb-2"></div>
-                  <p class="text-xs font-semibold text-stella-text leading-tight">Trail Runner X</p>
-                  <p class="text-xs text-stella-muted mt-0.5">Rs 3,200</p>
-                </div>
-                <div class="bg-white rounded-xl border border-stella-border p-2 text-center">
-                  <div class="bg-stella-border/40 rounded-lg aspect-square mb-2"></div>
-                  <p class="text-xs font-semibold text-stella-text leading-tight">Street Pace Pro</p>
-                  <p class="text-xs text-stella-muted mt-0.5">Rs 4,500</p>
-                </div>
-                <div class="bg-white rounded-xl border border-stella-border p-2 text-center">
-                  <div class="bg-stella-border/40 rounded-lg aspect-square mb-2"></div>
-                  <p class="text-xs font-semibold text-stella-text leading-tight">CloudWalk Lite</p>
-                  <p class="text-xs text-stella-muted mt-0.5">Rs 2,800</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="shrink-0 border-t border-stella-border px-5 py-3 text-center bg-white">
-          <p class="text-xs text-stella-muted">↓ Scroll to enter Stella Universe</p>
+        <!-- Scroll cue -->
+        <style>
+          @keyframes cue-float {
+            0%        { transform: translateY(0px);  animation-timing-function: ease-in; }
+            45%       { transform: translateY(12px); animation-timing-function: ease-out; }
+            100%      { transform: translateY(0px); }
+          }
+          #window-scroll-cue { animation: cue-float 2.4s ease-in-out infinite; }
+        </style>
+        <div id="window-scroll-cue" class="relative shrink-0 pb-7 flex flex-col items-center gap-1" style="z-index:1;">
+          <p class="text-xs text-stella-muted tracking-widest uppercase">scroll to enter</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stella-forest/50">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </div>
 
       </div>
     </div>
     <!-- END compact preview -->
 
-    <!-- ── STELLA UNIVERSE (full layout, fades in after clip expands) ── -->
-    <div id="window-universe" class="absolute inset-0 flex flex-col" style="opacity: 0;">
+    <!-- ── STELLA UNIVERSE (Alpine interactive demo) ── -->
+    <div id="window-universe" class="absolute inset-0 flex flex-col" style="opacity: 0; background: #f7ffe4;" x-data="stellaDemo()"
+         @mousemove="cursorX = $event.clientX; cursorY = $event.clientY"
+         @mouseenter="cursorVisible = true"
+         @mouseleave="cursorVisible = false">
 
       <!-- Universe header -->
-      <div class="bg-stella-gradient px-6 py-3 flex items-center gap-2 shrink-0">
+      <div class="universe-stagger bg-stella-lime px-6 py-3 flex items-center gap-2 shrink-0">
         <span class="w-2.5 h-2.5 rounded-full bg-stella-forest"></span>
         <span class="font-bold text-stella-forest">Stella</span>
         <span class="text-stella-forest/40 mx-1">·</span>
         <span class="text-sm font-medium text-stella-forest/70">Stella Universe</span>
-        <span class="ml-auto flex items-center gap-1.5">
+        <span class="ml-auto flex items-center gap-3">
+          <!-- Cart icon with badge -->
+          <span class="relative flex items-center cursor-pointer" @click="cartCount > 0 && (view = 'checkout')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stella-forest">
+              <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span x-show="cartCount > 0"
+                  x-text="cartCount"
+                  class="absolute -top-2 -right-2 bg-stella-forest text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center"></span>
+          </span>
           <span class="w-1.5 h-1.5 rounded-full bg-stella-forest animate-pulse"></span>
           <span class="text-xs text-stella-forest/70 font-medium">online</span>
         </span>
       </div>
 
       <!-- Two-panel body -->
-      <div class="flex flex-1 overflow-hidden min-h-0">
+      <div class="universe-stagger flex flex-1 overflow-hidden min-h-0">
 
         <!-- LEFT: Chat -->
-        <div class="w-[380px] shrink-0 border-r border-stella-border flex flex-col" style="background: var(--color-stella-bg, #FAFAF7);">
+        <div class="w-[380px] shrink-0 border-r border-stella-border flex flex-col" style="background: #f7ffe4;">
 
-          <div class="flex-1 overflow-y-auto p-5 flex flex-col gap-4">
-
-            <div class="flex justify-start">
-              <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] bg-white">
-                <p class="text-sm text-stella-text">Hi! I'm Stella. What are you looking for today?</p>
+          <div class="flex-1 overflow-y-auto py-5 px-4 flex flex-col gap-4" data-chat-scroll>
+            <template x-for="(msg, i) in messages" :key="i">
+              <div :class="msg.role === 'bot' ? 'flex justify-start' : 'flex justify-end'">
+                <div :class="msg.role === 'bot'
+                  ? 'border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] bg-white'
+                  : 'bg-stella-lime/40 rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[80%]'">
+                  <p class="text-sm text-stella-text" x-text="msg.text"></p>
+                </div>
               </div>
-            </div>
-
-            <div class="flex justify-end">
-              <div class="bg-stella-lime/40 rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[80%]">
-                <p class="text-sm text-stella-text">Running shoes under ₹5,000</p>
-              </div>
-            </div>
-
-            <div class="flex justify-start">
-              <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] bg-white">
-                <p class="text-sm text-stella-text">Found 3 great options! Pulled them up on the right →</p>
-              </div>
-            </div>
-
+            </template>
           </div>
 
           <div class="shrink-0 border-t border-stella-border p-3 bg-white flex gap-2">
-            <input type="text" placeholder="Ask Stella anything..."
+            <input type="text"
+              placeholder="Ask Stella anything..."
+              x-model="userInput"
+              @keydown.enter="send()"
               class="flex-1 rounded-xl border border-stella-border px-3 py-2 text-sm text-stella-text placeholder:text-stella-muted focus:outline-none focus:border-stella-green bg-white">
-            <button class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-4 py-2 text-sm shrink-0">Send</button>
+            <button @click="send()" class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-4 py-2 text-sm shrink-0">Send</button>
           </div>
 
         </div>
 
-        <!-- RIGHT: Products + Cart -->
-        <div class="flex-1 flex flex-col overflow-hidden bg-white min-w-0">
+        <!-- RIGHT: Products + Cart — 3 swappable views -->
+        <div class="flex-1 flex flex-col overflow-hidden min-w-0 relative" style="background:#f7ffe4;">
 
-          <div class="flex-1 overflow-y-auto p-5">
-            <p class="text-xs tracking-widest uppercase text-stella-muted mb-4">Suggestions</p>
-            <div class="grid grid-cols-3 gap-4">
+          <!-- Toast -->
+          <div x-show="toast"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 -translate-y-1"
+               x-transition:enter-end="opacity-100 translate-y-0"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               class="absolute top-3 right-3 z-20 bg-stella-forest text-white text-xs font-semibold px-3 py-2 rounded-xl shadow-lg flex items-center gap-1.5"
+               x-text="toast"></div>
 
-              <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
-                <div class="bg-stella-border/30 aspect-square"></div>
-                <div class="p-3">
-                  <p class="text-sm font-semibold text-stella-text leading-tight">Trail Runner X</p>
-                  <p class="text-sm text-stella-muted mt-1">Rs 3,200</p>
-                  <button class="mt-3 w-full bg-stella-gradient text-stella-forest text-xs font-semibold rounded-xl py-2">Add to cart</button>
-                </div>
+          <!-- SHOP VIEW -->
+          <div x-show="view === 'shop'" class="absolute inset-0 flex flex-col" x-transition>
+            <div class="flex-1 overflow-y-auto px-5 py-5">
+              <p class="text-xs tracking-widest uppercase text-stella-muted mb-3">Suggestions</p>
+              <div class="grid grid-cols-3 gap-3 w-3/4">
+                <template x-for="product in visibleProducts" :key="product.id">
+                  <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer bg-white flex flex-col">
+                    <div class="relative flex items-center justify-center" style="height:140px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+                      <span class="text-5xl select-none" x-text="product.emoji"></span>
+                      <span x-show="product.tag"
+                            x-text="product.tag"
+                            class="absolute top-2.5 left-2.5 bg-stella-forest text-white text-[10px] font-bold px-2 py-0.5 rounded-full"></span>
+                    </div>
+                    <div class="p-3 flex flex-col flex-1">
+                      <p class="text-sm font-semibold text-stella-text leading-tight" x-text="product.name"></p>
+                      <p class="text-xs text-stella-muted mt-1" x-text="formatPrice(product.price)"></p>
+                      <button @click="addToCart(product.id)" class="mt-auto pt-3 w-full bg-stella-gradient text-stella-forest text-xs font-semibold rounded-xl py-2">Add to cart</button>
+                    </div>
+                  </div>
+                </template>
               </div>
-
-              <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
-                <div class="bg-stella-border/30 aspect-square"></div>
-                <div class="p-3">
-                  <p class="text-sm font-semibold text-stella-text leading-tight">Street Pace Pro</p>
-                  <p class="text-sm text-stella-muted mt-1">Rs 4,500</p>
-                  <button class="mt-3 w-full bg-stella-gradient text-stella-forest text-xs font-semibold rounded-xl py-2">Add to cart</button>
-                </div>
-              </div>
-
-              <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
-                <div class="bg-stella-border/30 aspect-square"></div>
-                <div class="p-3">
-                  <p class="text-sm font-semibold text-stella-text leading-tight">CloudWalk Lite</p>
-                  <p class="text-sm text-stella-muted mt-1">Rs 2,800</p>
-                  <button class="mt-3 w-full bg-stella-gradient text-stella-forest text-xs font-semibold rounded-xl py-2">Add to cart</button>
-                </div>
-              </div>
-
+            </div>
+            <div class="shrink-0 border-t border-stella-border px-5 py-3 flex items-center gap-4" style="background:#f7ffe4;">
+              <div class="flex-1"></div>
+              <button @click="cartCount > 0 && (view = 'checkout')"
+                      class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-6 py-2.5 text-sm cta-pulse">
+                Checkout →
+              </button>
             </div>
           </div>
 
-          <div class="shrink-0 border-t border-stella-border px-5 py-4 flex items-center gap-4 bg-white">
-            <div class="flex-1">
-              <p class="text-xs text-stella-muted">Cart</p>
-              <p class="text-sm font-semibold text-stella-text mt-0.5">0 items · Rs 0</p>
+          <!-- CHECKOUT VIEW -->
+          <div x-show="view === 'checkout'" class="absolute inset-0 flex flex-col" x-transition>
+            <div class="flex-1 overflow-y-auto px-4 py-5">
+              <p class="text-xs tracking-widest uppercase text-stella-muted mb-4">Your Cart</p>
+              <div class="flex flex-col gap-3">
+                <template x-for="item in cartItems" :key="item.id">
+                  <div class="flex items-center justify-between rounded-xl border border-stella-border bg-white px-4 py-3 gap-3">
+                    <div class="min-w-0 flex-1">
+                      <p class="text-sm font-semibold text-stella-text truncate" x-text="item.name"></p>
+                      <p class="text-xs text-stella-muted mt-0.5" x-text="'Qty: ' + item.qty + '  ·  ' + formatPrice(item.price) + ' each'"></p>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                      <p class="text-sm font-semibold text-stella-forest" x-text="formatPrice(item.subtotal)"></p>
+                      <button @click="removeFromCart(item.id)" class="text-stella-muted hover:text-red-400 text-lg leading-none transition-colors">×</button>
+                    </div>
+                  </div>
+                </template>
+              </div>
+              <div class="mt-4 border-t border-stella-border pt-4 flex justify-between items-center pr-1">
+                <p class="text-sm text-stella-muted">Total</p>
+                <p class="text-base font-bold text-stella-text" x-text="formatPrice(cartTotal)"></p>
+              </div>
+              <div class="mt-4 flex items-center gap-3">
+                <button @click="view = 'shop'" class="text-sm text-stella-muted hover:text-stella-forest transition-colors">← Back</button>
+                <button @click="placeOrder()" class="ml-auto bg-stella-gradient text-stella-forest font-semibold rounded-xl px-6 py-2.5 text-sm cta-pulse">
+                  Place order →
+                </button>
+              </div>
             </div>
-            <button class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-6 py-2.5 text-sm cta-pulse">
-              Checkout →
+          </div>
+
+          <!-- SUCCESS VIEW -->
+          <div x-show="view === 'success'" class="absolute inset-0 flex flex-col items-center justify-center px-6 py-10 text-center" x-transition>
+            <p class="text-4xl mb-4">🎉</p>
+            <p class="text-lg font-bold text-stella-text">Order placed!</p>
+            <p class="text-sm text-stella-muted mt-2 max-w-[220px]">Thanks for trying Stella. Imagine this live on your storefront.</p>
+            <button @click="shopAgain()" class="mt-6 bg-stella-gradient text-stella-forest font-semibold rounded-xl px-6 py-2.5 text-sm">
+              Shop again →
             </button>
           </div>
 
         </div>
 
+      </div>
+
+      <!-- Scroll-to-exit cue -->
+      <div id="universe-exit-cue"
+           class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-stella-forest/70 pointer-events-none select-none"
+           style="opacity:0; background: rgba(134,239,172,0.3); backdrop-filter: blur(4px);">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        scroll to continue
+      </div>
+
+      <!-- Cursor interaction hint -->
+      <div x-show="cursorVisible && messageCount === 0"
+           x-transition:enter="transition duration-150 ease-out"
+           x-transition:enter-start="opacity-0 scale-90"
+           x-transition:enter-end="opacity-100 scale-100"
+           x-transition:leave="transition duration-100 ease-in"
+           x-transition:leave-start="opacity-100"
+           x-transition:leave-end="opacity-0"
+           :style="`position:fixed; left:${cursorX+16}px; top:${cursorY+16}px; z-index:50`"
+           class="pointer-events-none bg-stella-forest text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-lg whitespace-nowrap">
+        💬 Try typing
       </div>
 
     </div>
@@ -188,3 +248,42 @@
   <!-- END window frame -->
 
 </section>
+</div>
+
+<!-- Mobile: static demo teaser -->
+<div class="md:hidden py-20 px-6 text-center bg-white">
+  <p class="text-xs tracking-widest uppercase text-stella-forest font-medium mb-4">Live Demo</p>
+  <h2 class="text-3xl font-light text-stella-text mb-3">Experience shopping<br>with Stella</h2>
+  <p class="mt-2 text-base text-stella-muted mb-8">From product discovery to checkout — Stella handles the full buying journey inside the conversation.</p>
+
+  <div class="max-w-sm mx-auto rounded-2xl border border-stella-border overflow-hidden shadow-lg bg-stella-bg text-left">
+    <div class="bg-stella-lime px-4 py-2.5 flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-stella-forest"></span>
+      <span class="font-bold text-stella-forest text-sm">Stella</span>
+      <span class="ml-auto text-xs text-stella-forest/70 font-medium">● online</span>
+    </div>
+    <div class="px-4 py-4 flex flex-col gap-3">
+      <div class="flex justify-start">
+        <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] bg-white">
+          <p class="text-sm text-stella-text">Hi! I'm Stella. I can help you find products, answer questions, and checkout. What are you looking for?</p>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <div class="bg-stella-lime/40 rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[80%]">
+          <p class="text-sm text-stella-text">Show me your best sellers</p>
+        </div>
+      </div>
+      <div class="flex justify-start">
+        <div class="border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] bg-white">
+          <p class="text-sm text-stella-text">Here are your top picks — tap any to add to cart and I'll handle checkout! 🛍</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <a href="#" class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-8 py-3.5 text-sm inline-flex items-center justify-center">
+      {{ site.cta.primary }} →
+    </a>
+  </div>
+</div>
