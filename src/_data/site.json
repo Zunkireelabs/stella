@@ -6,5 +6,12 @@
   "cta": {
     "primary": "Schedule Demo",
     "secondary": "Contact Sales"
+  },
+  "sections": {
+    "fiveMoments": {
+      "label": "What agents actually do",
+      "heading": "Every moment of the sale, handled.",
+      "subtitle": "From product discovery to checkout — Stella's AI agents work every step so your store never misses a sale."
+    }
   }
 }

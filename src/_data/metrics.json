@@ -1,0 +1,32 @@
+[
+  {
+    "value": "35%",
+    "count": true,
+    "target": "35",
+    "suffix": "%",
+    "label": "Higher conversion",
+    "desc": "Higher conversion rate vs. stores without Stella. Real orders, real revenue — not demo traffic."
+  },
+  {
+    "value": "60%",
+    "count": true,
+    "target": "60",
+    "suffix": "%",
+    "label": "Fewer support tickets",
+    "desc": "Support tickets handled autonomously. No scripts, no human intervention required."
+  },
+  {
+    "value": "24/7",
+    "count": false,
+    "label": "Always available",
+    "desc": "Stella never goes offline, never misses a sale. Your store keeps selling while you sleep."
+  },
+  {
+    "value": "3×",
+    "count": true,
+    "target": "3",
+    "suffix": "×",
+    "label": "Faster response",
+    "desc": "Faster response than any human support team, at any hour of the day."
+  }
+]
