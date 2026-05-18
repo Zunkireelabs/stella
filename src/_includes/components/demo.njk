@@ -1,4 +1,4 @@
-<div class="hidden md:block">
+<div class="hidden lg:block">
 <section id="stella-universe-section" class="relative overflow-hidden" style="height: 100vh; background: #ffffff;">
 
   <!-- Ambient layer (fades out as clip expands) -->
@@ -148,7 +148,7 @@
           <div x-show="view === 'shop'" class="absolute inset-0 flex flex-col" x-transition>
             <div class="flex-1 overflow-y-auto px-5 py-5">
               <p class="text-xs tracking-widest uppercase text-stella-muted mb-3">Suggestions</p>
-              <div class="grid grid-cols-3 gap-3 w-3/4">
+              <div class="grid grid-cols-3 gap-3">
                 <template x-for="product in visibleProducts" :key="product.id">
                   <div class="rounded-2xl border border-stella-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer bg-white flex flex-col">
                     <div class="relative flex items-center justify-center" style="height:140px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
@@ -250,8 +250,8 @@
 </section>
 </div>
 
-<!-- Mobile: static demo teaser -->
-<div class="md:hidden py-20 px-6 text-center bg-white">
+<!-- Mobile/tablet: static demo teaser -->
+<div class="lg:hidden py-20 px-6 text-center bg-white">
   <p class="text-xs tracking-widest uppercase text-stella-forest font-medium mb-4">Live Demo</p>
   <h2 class="text-3xl font-light text-stella-text mb-3">Experience shopping<br>with Stella</h2>
   <p class="mt-2 text-base text-stella-muted mb-8">From product discovery to checkout — Stella handles the full buying journey inside the conversation.</p>

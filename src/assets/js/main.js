@@ -4,13 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   // Lenis smooth scroll (skip for reduced-motion)
+  let lenisInstance = null;
   if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const lenis = new Lenis({
+    lenisInstance = new Lenis({
       duration: 1.0,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      autoRaf: false, // we drive raf via GSAP ticker — avoid double-update jitter
     });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(time => lenis.raf(time * 1000));
+    lenisInstance.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(time => lenisInstance.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
   }
 
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (hasLoader) {
     document.documentElement.style.overflow = 'hidden';
+    if (lenisInstance) lenisInstance.stop();
     gsap.set(siteNav, { autoAlpha: 0 });
 
     // Wait for Pacifico to load so getBoundingClientRect is accurate
@@ -65,6 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // ── Phase 4 helper: dot expands into navbar ───────────────────────────
       function revealNav() {
         document.documentElement.style.overflow = '';
+        if (lenisInstance) lenisInstance.start();
+        // Pin spacers + section offsets were measured behind overflow:hidden — recompute now
+        requestAnimationFrame(() => ScrollTrigger.refresh());
 
         const navLinks   = document.getElementById('nav-links');
         const navActions = document.getElementById('nav-actions');
@@ -485,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: '#hiw-section',
           pin: true, pinSpacing: true,
           start: 'top top+=64', end: '+=300%',
-          scrub: 1.5,
+          scrub: 0.6,
           animation: hiwTl,
         });
       }
@@ -533,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
           end: `+=${(fmCards.length - 1) * 400}`,
           pin: true,
           pinSpacing: true,
-          scrub: 1.5,
+          scrub: 0.6,
           animation: tl
         });
 
@@ -599,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger: '#testimonials-section',
         start: 'top 80%',
         end: 'bottom 20%',
-        scrub: 1.5,
+        scrub: 0.6,
         onUpdate: self => {
           gsap.set(track, { x: getSlide() * self.progress });
         }
@@ -678,7 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pin: true, pinSpacing: true,
         start: 'top top',
         end: '+=2400',
-        scrub: 1.5,
+        scrub: 0.6,
         animation: universeTl,
         onEnter:     () => gsap.set(siteNav, { opacity: 0, pointerEvents: 'none' }),
         onLeave:     () => { gsap.set(siteNav, { y: -4 }); gsap.to(siteNav, { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.4, ease: 'power2.out' }); },
