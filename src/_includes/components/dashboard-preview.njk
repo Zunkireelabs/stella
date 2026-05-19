@@ -3,7 +3,7 @@
 
     <!-- Heading -->
     <div class="text-center mb-10">
-      <p class="text-xs tracking-widest uppercase text-stella-muted mb-4">Stella Dashboard</p>
+      <p class="text-xs tracking-widest uppercase text-stella-forest font-medium mb-4">Stella Dashboard</p>
       <h2 data-reveal="headline" class="mt-4 text-h2 font-light text-stella-text">Your store, always performing.</h2>
       <p data-reveal="subhead" class="mt-3 text-body text-stella-muted max-w-xl mx-auto">Every sale, every conversation, every order — tracked and run by Stella while you focus on growing.</p>
     </div>
@@ -356,7 +356,7 @@
       <div x-data="stellaCart()" class="bento-cell lg:col-span-3 bg-white rounded-2xl border border-stella-border shadow-stella transition-all duration-200 hover:shadow-stella-lg hover:border-stella-green/40 overflow-hidden">
 
         <div class="px-8 pt-7 pb-4">
-          <h3 class="text-base font-semibold text-stella-text mb-1">Stella catches the sale before it walks away.</h3>
+          <h3 class="text-base font-semibold text-stella-text mb-1">Recover carts before they walk away.</h3>
           <p class="text-xs text-stella-muted">Real-time upsells and cart recovery — right inside the customer's cart.</p>
         </div>
 
@@ -425,8 +425,11 @@
 
               <!-- Collapsed bubble -->
               <div x-show="!chatOpen" class="flex justify-end">
-                <button @click="chatOpen = true" class="w-12 h-12 bg-stella-gradient rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
-                  <span class="text-stella-forest font-bold text-sm">S</span>
+                <button @click="chatOpen = true" class="w-12 h-12 bg-stella-gradient rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform" aria-label="Open AI assistant">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+                    <path d="M18 14l.75 2.25L21 17l-2.25.75L18 20l-.75-2.25L15 17l2.25-.75L18 14z"/>
+                  </svg>
                 </button>
               </div>
 
@@ -439,9 +442,14 @@
                 class="bg-white rounded-2xl border border-stella-border shadow-lg overflow-hidden"
               >
                 <div class="bg-stella-lime px-4 py-3 flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-stella-forest"></span>
-                  <span class="text-sm font-bold text-stella-forest">Stella</span>
-                  <span class="ml-auto text-xs text-stella-forest/70">online</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+                    <path d="M18 14l.75 2.25L21 17l-2.25.75L18 20l-.75-2.25L15 17l2.25-.75L18 14z"/>
+                  </svg>
+                  <span class="ml-auto flex items-center gap-1.5 text-xs text-stella-forest/70">
+                    <span class="w-1.5 h-1.5 rounded-full bg-stella-forest animate-pulse"></span>
+                    online
+                  </span>
                 </div>
                 <div class="p-4">
                   <div class="bg-stella-bg border border-stella-border border-l-4 border-l-stella-green rounded-2xl rounded-tl-sm px-3.5 py-3">
@@ -463,6 +471,19 @@
                       <button class="border border-stella-border text-stella-muted text-xs rounded-xl py-2 hover:border-stella-text transition-colors">No thanks</button>
                     </div>
                   </div>
+                </div>
+                <div class="border-t border-stella-border px-3 py-2.5 flex items-center gap-2 bg-white">
+                  <input
+                    type="text"
+                    placeholder="Ask anything…"
+                    class="flex-1 text-xs bg-stella-bg rounded-full px-3 py-1.5 outline-none placeholder:text-stella-muted text-stella-text"
+                  >
+                  <button class="w-7 h-7 rounded-full bg-stella-gradient flex items-center justify-center shrink-0 hover:scale-105 transition-transform" aria-label="Send">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                  </button>
                 </div>
               </div>
 

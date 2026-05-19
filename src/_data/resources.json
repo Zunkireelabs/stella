@@ -1,0 +1,31 @@
+{
+  "navMenu": {
+    "sectionLabel": "Resources",
+    "items": [
+      {
+        "label": "Stella API Developer Docs",
+        "description": "Build with Stella's APIs and agent endpoints.",
+        "href": "#",
+        "icon": "api"
+      },
+      {
+        "label": "Blog",
+        "description": "Insights on commerce, agents, and the team.",
+        "href": "#",
+        "icon": "blog"
+      },
+      {
+        "label": "FAQs",
+        "description": "Answers to the most common questions.",
+        "href": "#",
+        "icon": "help"
+      },
+      {
+        "label": "Our Partners",
+        "description": "Agencies and integrators building on Stella.",
+        "href": "#",
+        "icon": "partners"
+      }
+    ]
+  }
+}

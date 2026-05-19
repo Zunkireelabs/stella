@@ -1,0 +1,245 @@
+{# ── Pillars: sticky-scroll, crossfade between 4 panels (desktop), vertical stack (mobile) #}
+
+{% macro pillarVisual(p) %}
+  {% set m = p.mock %}
+
+  {% if m.type == "inventory" %}
+    <div class="w-full h-full flex flex-col gap-5 p-7 bg-white rounded-3xl border border-stella-border shadow-[0_30px_80px_-20px_rgba(134,239,172,0.55)]">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-semibold tracking-[0.18em] uppercase text-stella-muted">Inventory</span>
+        <span class="inline-flex items-center gap-1.5 text-[11px] text-stella-forest">
+          <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald"></span>{{ m.syncedLabel }}
+        </span>
+      </div>
+
+      <div class="flex items-center justify-between p-4 rounded-2xl bg-stella-bg/60 border border-stella-border">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-stella-lime flex items-center justify-center text-stella-forest text-base">👟</div>
+          <div>
+            <div class="text-sm font-semibold text-stella-text">{{ m.product }}</div>
+            <div class="text-[11px] text-stella-muted font-mono">{{ m.sku }}</div>
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="text-2xl font-semibold text-stella-text leading-none">{{ m.stock }}</div>
+          <div class="text-[11px] text-stella-muted">in stock</div>
+        </div>
+      </div>
+
+      <div class="space-y-2.5">
+        {% for ch in m.channels %}
+          <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-stella-border">
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald"></span>
+              <span class="text-sm text-stella-text">{{ ch.name }}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-mono text-stella-text">{{ ch.count }}</span>
+              <span class="text-[10px] uppercase tracking-wider text-stella-forest bg-stella-lime/60 px-2 py-0.5 rounded-full">{{ ch.status }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  {% elif m.type == "account" %}
+    <div class="w-full h-full flex flex-col gap-4 p-7 bg-white rounded-3xl border border-stella-border shadow-[0_30px_80px_-20px_rgba(134,239,172,0.55)]">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-semibold tracking-[0.18em] uppercase text-stella-muted">Account</span>
+        <span class="text-[11px] text-stella-muted">{{ m.subline }}</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-stella-forest text-white flex items-center justify-center text-sm font-semibold">AK</div>
+        <div>
+          <div class="text-base font-semibold text-stella-text">{{ m.greeting }}</div>
+          <div class="text-[11px] text-stella-muted">{{ m.payment }}</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-[11px] font-semibold tracking-wider uppercase text-stella-muted mb-2">Saved addresses</div>
+        <div class="flex flex-wrap gap-1.5">
+          {% for a in m.addresses %}
+            <span class="text-[11px] px-2.5 py-1 rounded-full bg-stella-bg border border-stella-border text-stella-text">{{ a }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div>
+        <div class="text-[11px] font-semibold tracking-wider uppercase text-stella-muted mb-2">Recent orders</div>
+        <div class="space-y-1.5">
+          {% for o in m.orders %}
+            <div class="flex items-center justify-between p-2.5 rounded-lg bg-stella-bg/50 border border-stella-border">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="text-[10px] font-mono text-stella-muted">#{{ o.id }}</span>
+                <span class="text-sm text-stella-text truncate">{{ o.item }}</span>
+              </div>
+              <span class="text-[11px] text-stella-muted whitespace-nowrap ml-3">{{ o.date }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  {% elif m.type == "checkout" %}
+    <div class="w-full h-full flex flex-col gap-4 p-7 bg-white rounded-3xl border border-stella-border shadow-[0_30px_80px_-20px_rgba(134,239,172,0.55)] relative">
+      <div class="flex items-center justify-between">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-stella-muted">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          {{ m.host }}
+        </span>
+        <span class="text-[10px] uppercase tracking-wider text-stella-forest bg-stella-lime/60 px-2 py-0.5 rounded-full">{{ m.badge }}</span>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-stella-bg/60 border-2 border-dashed border-stella-emerald/40 relative">
+        <span class="absolute -top-2.5 left-3 px-2 text-[9px] font-semibold tracking-wider uppercase text-stella-forest bg-white rounded">Stella vault</span>
+
+        <div class="space-y-3 mt-1">
+          <div>
+            <div class="text-[10px] uppercase tracking-wider text-stella-muted mb-1">Card number</div>
+            <div class="text-base font-mono text-stella-text tracking-wider">{{ m.cardMask }}</div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-stella-muted mb-1">Expiry</div>
+              <div class="text-sm font-mono text-stella-text">{{ m.expiry }}</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-stella-muted mb-1">CVV</div>
+              <div class="text-sm font-mono text-stella-text">{{ m.cvv }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-1">
+        <span class="text-[11px] text-stella-muted">Order total</span>
+        <span class="text-base font-semibold text-stella-text">{{ m.total }}</span>
+      </div>
+
+      <div class="text-[11px] text-stella-muted italic flex items-start gap-1.5 pt-1 border-t border-stella-border">
+        <svg class="w-3 h-3 mt-0.5 flex-shrink-0 text-stella-forest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        {{ m.annotation }}
+      </div>
+    </div>
+
+  {% elif m.type == "console" %}
+    <div class="w-full h-full flex flex-col gap-3 p-5 bg-[#0d130c] rounded-3xl border border-stella-border shadow-[0_30px_80px_-20px_rgba(134,239,172,0.55)] font-mono text-[12px] leading-relaxed">
+      <div class="flex items-center gap-1.5 pb-2 border-b border-white/10">
+        <span class="w-2.5 h-2.5 rounded-full bg-white/15"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-white/15"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-white/15"></span>
+        <span class="ml-2 text-[10px] uppercase tracking-wider text-white/40">agent request</span>
+      </div>
+
+      <div class="space-y-0.5">
+        {% for line in m.request %}
+          <div class="flex">
+            <span class="text-stella-lime/60 w-20 flex-shrink-0">{{ line.k }}</span>
+            <span class="text-white/90">{{ line.v }}</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="text-white/70 pl-0">{{ m.body }}</div>
+
+      <div class="text-[10px] uppercase tracking-wider text-white/40 pt-1 border-t border-white/10">response</div>
+
+      <div class="space-y-0.5">
+        {% for line in m.response %}
+          <div class="flex">
+            <span class="text-stella-lime/60 w-20 flex-shrink-0">{{ line.k }}</span>
+            <span class="text-stella-lime">{{ line.v }}</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="mt-auto pt-2 border-t border-white/10 flex items-center gap-2 text-[10px] text-white/50">
+        <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald animate-pulse"></span>
+        consent · budget · audit trail enforced
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+
+<section id="sf-pillars" class="relative px-4 sm:px-6 md:px-16 lg:px-28 section-reveal bg-white">
+  <div class="max-w-7xl mx-auto pt-20 md:pt-28">
+
+    {# ── Heading row (always visible above the pinned area) #}
+    <div class="max-w-3xl mx-auto text-left sm:text-center">
+      <p data-reveal="eyebrow" class="text-xs font-semibold tracking-[0.18em] uppercase text-stella-muted mb-4">
+        {{ storefront.pillars.eyebrow }}
+      </p>
+      <h2 data-reveal="headline" class="text-[28px] sm:text-4xl lg:text-5xl font-light text-black tracking-[-0.015em] leading-[1.15]">
+        {{ storefront.pillars.heading }}
+      </h2>
+      <p data-reveal="subhead" class="mt-4 sm:mt-5 text-base sm:text-body-lg text-stella-muted leading-relaxed">
+        {{ storefront.pillars.sub }}
+      </p>
+    </div>
+  </div>
+
+  {# ── Desktop: left text pillared (sticky-top per pillar), right visual fixed at viewport vertical center.
+       Padding-top on the first pillar AND right column matches each sticky offset, so both engage exactly
+       when the pin area's top reaches viewport top — i.e., the moment the section heading has scrolled out. #}
+  <div id="pillars-pin" class="hidden md:block relative pb-32">
+    {# No items-start: let both columns stretch to grid-row height so the right column has scroll room for sticky #}
+    <div class="max-w-7xl mx-auto grid grid-cols-2 gap-10 lg:gap-16">
+
+      {# Left column: stacked pillar blocks; inner sticky pins each title at top-28 (just below nav) #}
+      <div>
+        {% for pillar in pillars %}
+          <div id="{{ pillar.id }}"
+               class="pillar-text min-h-screen relative {% if loop.first %}pt-28{% endif %}"
+               data-pillar-index="{{ loop.index0 }}">
+            <div class="sticky top-28">
+              <span class="text-xs font-mono tracking-wider text-stella-forest mb-4 block">
+                0{{ loop.index }} / 0{{ pillars.length }}
+              </span>
+              <h3 class="text-3xl lg:text-4xl font-semibold text-stella-text tracking-[-0.015em] leading-[1.15] mb-4">
+                {{ pillar.label }}
+              </h3>
+              <p class="text-stella-forest/80 text-body-lg mb-3">{{ pillar.tagline }}</p>
+              <p class="text-stella-muted leading-relaxed">{{ pillar.description }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {# Right column: padding-top + sticky-top both = calc(50vh - 280px) → 560px visual sits in vertical centre
+         and stays fixed throughout the pillar scroll. Visuals stacked for crossfade. #}
+      <div class="pt-[calc(50vh-280px)]">
+        <div class="sticky top-[calc(50vh-280px)] h-[560px] relative">
+          {% for pillar in pillars %}
+            <div class="pillar-visual absolute inset-0" data-pillar-index="{{ loop.index0 }}">
+              {{ pillarVisual(pillar) }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  {# ── Mobile: vertical stack #}
+  <div class="md:hidden mt-12 space-y-8 pb-20">
+    <div class="max-w-7xl mx-auto">
+      {% for pillar in pillars %}
+        <article id="{{ pillar.id }}" class="card-reveal mb-8">
+          <div class="mb-5">
+            <span class="text-xs font-mono tracking-wider text-stella-forest">0{{ loop.index }} / 0{{ pillars.length }}</span>
+            <h3 class="text-2xl font-semibold text-stella-text tracking-[-0.015em] mt-2 mb-2">{{ pillar.label }}</h3>
+            <p class="text-sm text-stella-forest/80 mb-2">{{ pillar.tagline }}</p>
+            <p class="text-sm text-stella-muted leading-relaxed">{{ pillar.description }}</p>
+          </div>
+          <div class="min-h-[420px]">
+            {{ pillarVisual(pillar) }}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>

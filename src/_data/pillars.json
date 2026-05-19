@@ -1,0 +1,79 @@
+[
+  {
+    "id": "catalog-cart",
+    "label": "Catalog & cart",
+    "tagline": "Products, stock, and pricing — accurate everywhere.",
+    "description": "Manage products, variants, stock, and pricing from one dashboard. Stella keeps inventory accurate across every channel automatically — no double-selling, no stale listings.",
+    "href": "/storefront/#catalog-cart",
+    "mock": {
+      "type": "inventory",
+      "product": "Trail Runner 2.0",
+      "sku": "TR2-BLK-42",
+      "stock": 24,
+      "channels": [
+        { "name": "Storefront",  "count": 24, "status": "synced" },
+        { "name": "Marketplace", "count": 24, "status": "synced" },
+        { "name": "Agent API",   "count": 24, "status": "synced" }
+      ],
+      "syncedLabel": "Synced just now"
+    }
+  },
+  {
+    "id": "customer-accounts",
+    "label": "Customer accounts",
+    "tagline": "One login, the full shopper picture.",
+    "description": "Shoppers log in once and you get a full picture: addresses, past orders, preferences. Built-in login, password recovery, and account security so you don't have to think about it.",
+    "href": "/storefront/#customer-accounts",
+    "mock": {
+      "type": "account",
+      "greeting": "Welcome back, Aarya",
+      "subline": "Last sign-in · just now",
+      "addresses": ["Kathmandu — Home", "Pokhara — Office"],
+      "orders": [
+        { "id": "1042", "item": "CloudWalk Lite",  "date": "2 days ago" },
+        { "id": "1031", "item": "Dry-Fit Tee ×2",  "date": "1 week ago" },
+        { "id": "1018", "item": "Trail Runner 2.0","date": "3 weeks ago" }
+      ],
+      "payment": "Visa •••• 4242"
+    }
+  },
+  {
+    "id": "hosted-checkout",
+    "label": "Hosted checkout",
+    "tagline": "PCI-compliant checkout. You never touch card data.",
+    "description": "A secure, PCI-compliant checkout page that handles payment, shipping, and order confirmation. You never touch card data, you never fail an audit.",
+    "href": "/storefront/#hosted-checkout",
+    "mock": {
+      "type": "checkout",
+      "host": "checkout.stella-commerce.com",
+      "cardMask": "•••• •••• •••• 4242",
+      "expiry": "12 / 27",
+      "cvv": "•••",
+      "total": "Rs 4,800",
+      "badge": "PCI-DSS Level 1",
+      "annotation": "Your servers never see this data"
+    }
+  },
+  {
+    "id": "agent-apis",
+    "label": "Agent-ready APIs",
+    "tagline": "Take orders from AI agents — with consent and limits.",
+    "description": "Your store is ready to take orders from the AI agents shoppers are starting to use — with full consent, budget limits, and audit trails. Most platforms aren't. Stella is.",
+    "href": "/storefront/#agent-apis",
+    "mock": {
+      "type": "console",
+      "request": [
+        { "k": "method", "v": "POST /v1/orders" },
+        { "k": "auth",   "v": "Bearer agent_tok_…" },
+        { "k": "header", "v": "X-Consent: granted" },
+        { "k": "header", "v": "X-Budget-Cap: NPR 5,000" }
+      ],
+      "body": "{ \"sku\": \"TR2-BLK-42\", \"qty\": 1 }",
+      "response": [
+        { "k": "status",    "v": "201 Created" },
+        { "k": "order_id",  "v": "A-4821" },
+        { "k": "audit_log", "v": "alog_77b3" }
+      ]
+    }
+  }
+]

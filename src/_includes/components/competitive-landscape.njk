@@ -10,36 +10,36 @@
           Most commerce tools answer questions. Stella closes sales. No other platform combines full buying-journey autonomy with plug-in-simple setup for growing stores.
         </p>
 
-<a href="#" class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-8 py-3.5 text-sm hover:opacity-90 transition-opacity shadow-sm inline-flex items-center justify-center">
+<a href="/schedule-demo/" class="bg-stella-gradient text-stella-forest font-semibold rounded-xl px-8 py-3.5 text-sm hover:opacity-90 transition-opacity shadow-sm inline-flex items-center justify-center">
           {{ site.cta.primary }} →
         </a>
       </div>
 
       <!-- Right: quadrant chart -->
-      <div id="landscape-chart" class="relative w-full" style="height: clamp(240px, 50vw, 380px);">
-        <div class="absolute inset-0 bg-white rounded-3xl shadow-stella overflow-hidden p-6">
+      <div id="landscape-chart" class="relative w-full" style="height: clamp(320px, 50vw, 380px);">
+        <div class="absolute inset-0 bg-white rounded-3xl shadow-stella overflow-hidden p-8 sm:p-6">
 
           <!-- LEADERS tinted bg (top-right quadrant) -->
           <div class="absolute top-[10%] left-[50%] right-[4%] bottom-[50%] bg-stella-green/10 rounded-xl pointer-events-none"></div>
 
           <!-- Axis lines (start hidden, fade in via JS) -->
-          <div id="landscape-axes" class="absolute inset-6 opacity-0">
+          <div id="landscape-axes" class="absolute inset-8 sm:inset-6 opacity-0">
             <!-- Vertical axis line -->
             <div id="landscape-vline" class="absolute left-1/2 top-0 bottom-0 w-px bg-stella-border"></div>
             <!-- Horizontal axis line -->
             <div id="landscape-hline" class="absolute top-1/2 left-0 right-0 h-px bg-stella-border"></div>
 
-            <!-- Quadrant labels -->
-            <span class="absolute top-1 left-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Enterprise</span>
-            <span class="absolute top-1 right-2 text-[10px] tracking-widest uppercase text-stella-forest font-semibold">Leaders</span>
-            <span class="absolute bottom-1 left-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Legacy</span>
-            <span class="absolute bottom-1 right-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Chatbots</span>
+            <!-- Quadrant labels (hidden on mobile to avoid overlap with dots) -->
+            <span class="hidden sm:inline absolute top-1 left-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Enterprise</span>
+            <span class="hidden sm:inline absolute top-1 right-2 text-[10px] tracking-widest uppercase text-stella-forest font-semibold">Leaders</span>
+            <span class="hidden sm:inline absolute bottom-1 left-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Legacy</span>
+            <span class="hidden sm:inline absolute bottom-1 right-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Chatbots</span>
 
-            <!-- Y-axis label -->
-            <span class="absolute left-[-18px] top-1/2 -translate-y-1/2 -rotate-90 text-[9px] tracking-widest uppercase text-stella-muted whitespace-nowrap origin-center">Full Autonomy ↑</span>
+            <!-- Y-axis label (anchored to bottom-left corner on mobile, mid-left on desktop) -->
+            <span class="absolute left-1 bottom-1 origin-bottom-left sm:left-[-18px] sm:top-1/4 sm:bottom-auto sm:-translate-y-1/2 sm:origin-center -rotate-90 text-[9px] tracking-widest uppercase text-stella-muted whitespace-nowrap">Full Autonomy ↑</span>
 
-            <!-- X-axis label -->
-            <span class="absolute bottom-[-18px] right-0 text-[9px] tracking-widest uppercase text-stella-muted whitespace-nowrap">SMB-Ready →</span>
+            <!-- X-axis label (pulled inside chart on mobile) -->
+            <span class="absolute bottom-1 sm:bottom-[-18px] right-0 text-[9px] tracking-widest uppercase text-stella-muted whitespace-nowrap">SMB-Ready →</span>
           </div>
 
           <!-- Dots (positioned absolutely within the card) -->

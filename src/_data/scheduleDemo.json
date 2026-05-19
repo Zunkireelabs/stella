@@ -1,0 +1,89 @@
+{
+  "seo": {
+    "title": "Schedule a demo — see Stella running your store | Stella",
+    "description": "Book a 15-minute walkthrough. We'll connect your products live and show you what your store looks like to a customer, to an AI agent, and to you on the dashboard. No slides."
+  },
+  "hero": {
+    "eyebrow": "Schedule a demo",
+    "headline": "See Stella<br>running <em class=\"not-italic text-stella-forest\">your</em> store.",
+    "sub": "A 15-minute walkthrough, with your products. We'll get back within one business day.",
+    "bullets": [
+      "Your real catalog, live",
+      "eSewa, Khalti, and card checkout",
+      "An AI agent placing a real test order"
+    ]
+  },
+  "form": {
+    "heading": "Tell us about your store",
+    "sub": "We'll be in touch within one business day.",
+    "fields": {
+      "nameLabel": "Full name",
+      "namePlaceholder": "Asha Karki",
+      "emailLabel": "Work email",
+      "emailPlaceholder": "you@yourstore.com",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Himalayan Threads Pvt. Ltd.",
+      "websiteLabel": "Current website",
+      "websitePlaceholder": "yourstore.com  (optional)",
+      "countryLabel": "Country",
+      "countryDefault": "Nepal",
+      "countries": ["Nepal", "India", "Bangladesh", "Bhutan", "Sri Lanka", "Other"],
+      "volumeLabel": "Monthly online orders",
+      "volumeOptions": [
+        "Just getting started",
+        "Under 100",
+        "100 – 1,000",
+        "1,000 – 10,000",
+        "More than 10,000"
+      ],
+      "channelsLabel": "Where do you sell today?",
+      "channelsHint": "Pick all that apply",
+      "channels": [
+        "Own website",
+        "WhatsApp",
+        "Facebook Messenger",
+        "Instagram DMs",
+        "Viber",
+        "Physical store",
+        "Not selling online yet"
+      ],
+      "messageLabel": "Anything specific you'd like to see?",
+      "messagePlaceholder": "e.g. our checkout abandons a lot — can you show how Stella handles returning shoppers?",
+      "consent": "I agree to be contacted about Stella and understand my details are handled per the privacy policy.",
+      "submitLabel": "Request my demo",
+      "submitDisabled": true,
+      "submitDisabledNote": "Bookings open soon — meanwhile, write to hello@stella-commerce.com."
+    },
+    "errors": {
+      "name": "Please enter your full name.",
+      "email": "Enter a valid work email (e.g. you@yourstore.com).",
+      "company": "Tell us your company name.",
+      "website": "That doesn't look like a valid URL.",
+      "consent": "Please agree before we can reach out.",
+      "summary": "Please fix the highlighted fields and try again."
+    },
+    "thanks": {
+      "heading": "Thanks — we've got it.",
+      "body": "A specialist from the Kathmandu team will reach out within one business day to confirm a time. Keep an eye on your inbox.",
+      "secondary": "In the meantime, take a look at how merchants like yours are running today.",
+      "secondaryCta": { "label": "Read customer stories", "href": "/customer-stories/" }
+    }
+  },
+  "expect": {
+    "eyebrow": "What happens next",
+    "heading": "From form to live walkthrough in two days.",
+    "body": "Tell us about your store. A specialist from Kathmandu replies within one business day and walks you through Stella running with your real products.",
+    "timeline": {
+      "caption": "Your booking timeline",
+      "days": [
+        { "weekday": "Mon", "date": "12", "label": "Form sent" },
+        { "weekday": "Tue", "date": "13", "label": "Reply from us" },
+        { "weekday": "Wed", "date": "14", "label": "Demo, live" }
+      ],
+      "footnote": "Form to live demo · about 2 business days"
+    }
+  },
+  "proofHeading": {
+    "headline": "Merchants across Nepal already run on Stella."
+  }
+}

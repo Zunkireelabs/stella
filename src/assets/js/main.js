@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     headlineSplit.lines.forEach(line => {
       const mask = document.createElement('div');
-      mask.style.cssText = 'overflow:hidden;display:block';
+      mask.style.cssText = 'overflow:hidden;display:block;padding-bottom:0.15em;margin-bottom:-0.15em';
       line.parentNode.insertBefore(mask, line);
       mask.appendChild(line);
     });
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const split = new SplitText(headline, { type: 'lines' });
         split.lines.forEach(line => {
           const mask = document.createElement('div');
-          mask.style.cssText = 'overflow:hidden;display:block';
+          mask.style.cssText = 'overflow:hidden;display:block;padding-bottom:0.15em;margin-bottom:-0.15em';
           line.parentNode.insertBefore(mask, line);
           mask.appendChild(line);
         });
@@ -508,6 +508,48 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cursor) gsap.to(cursor, { opacity: 0, repeat: -1, yoyo: true, duration: 0.5, ease: 'none' });
     }
 
+    // Storefront pillars — each text sticks at top while next scrolls up dimmed; swap when next hits center
+    if (document.getElementById('pillars-pin')) {
+      const pillarsMm = gsap.matchMedia();
+
+      pillarsMm.add('(min-width: 768px)', () => {
+        const texts   = gsap.utils.toArray('#pillars-pin .pillar-text');
+        const visuals = gsap.utils.toArray('#pillars-pin .pillar-visual');
+        if (!texts.length) return;
+
+        const DIM = 0.3;
+
+        // Initial: pillar 0 clear and visible, rest dimmed/hidden
+        gsap.set(texts,            { opacity: DIM });
+        gsap.set(texts[0],         { opacity: 1 });
+        gsap.set(visuals.slice(1), { opacity: 0 });
+        gsap.set(visuals[0],       { opacity: 1 });
+
+        const activate = (i) => {
+          texts.forEach((t, k) =>
+            gsap.to(t, { opacity: k === i ? 1 : DIM, duration: 0.45, ease: 'power2.out', overwrite: true })
+          );
+          visuals.forEach((v, k) =>
+            gsap.to(v, { opacity: k === i ? 1 : 0, duration: 0.55, ease: 'power2.out', overwrite: true })
+          );
+        };
+
+        // For each pillar after the first: activate it when its title reaches viewport center;
+        // when scrolling back up past that point, restore the previous pillar.
+        const triggers = [];
+        for (let i = 1; i < texts.length; i++) {
+          triggers.push(ScrollTrigger.create({
+            trigger: texts[i],
+            start: 'top center',
+            onEnter:     () => activate(i),
+            onLeaveBack: () => activate(i - 1),
+          }));
+        }
+
+        return () => triggers.forEach(t => t.kill());
+      });
+    }
+
     // Five moments — visible staircase; scrub-driven scroll pulls each card into row
     const fmSection = document.getElementById('five-moments');
     const fmCards = gsap.utils.toArray('#five-moments .fm-card-row');
@@ -563,8 +605,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      // Read-more cursor — fine pointer (mouse) only
-      if (window.matchMedia('(pointer: fine)').matches) {
+      // Read-more cursor — fine pointer (mouse) only AND desktop width (no hover on mobile)
+      if (window.matchMedia('(pointer: fine) and (min-width: 640px)').matches) {
         const cur = document.createElement('div');
         cur.id = 'fm-read-cursor';
         cur.textContent = 'Read more →';
@@ -636,7 +678,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (univ)        gsap.set(univ,         { scale: 0.97 });
 
       // Iris fully retracts at full expansion — the "aperture" detail
-      const clipSmall = `inset(${cy}px ${cx}px round 20px)`;
+      const clipSmall = `inset(${cy + 40}px ${cx}px ${cy - 40}px ${cx}px round 20px)`;
       const clipFull  = 'inset(0px 0px round 0px)';
 
       gsap.set(frame, { clipPath: clipSmall });
@@ -739,107 +781,92 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initHeroButtonEffects() {
-  // Schedule Demo — cursor-tracking white glow
-  const demoBtn = document.getElementById('hero-btn-demo');
-  if (demoBtn) {
-    const glow = demoBtn.querySelector('.btn-glow-layer');
-    demoBtn.addEventListener('mousemove', e => {
-      const rect = demoBtn.getBoundingClientRect();
+  // Schedule Demo — cursor-tracking white glow (hero + nav CTAs)
+  document.querySelectorAll('#hero-btn-demo, #nav-cta').forEach(btn => {
+    const glow = btn.querySelector('.btn-glow-layer');
+    if (!glow) return;
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
       glow.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
       glow.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
       gsap.to(glow, { opacity: 1, duration: 0.1, ease: 'none', overwrite: 'auto' });
     });
-    demoBtn.addEventListener('mouseleave', () => {
+    btn.addEventListener('mouseleave', () => {
       gsap.to(glow, { opacity: 0, duration: 0.4, ease: 'power2.out' });
     });
-  }
-
-  // Contact Sales — direction-aware drag fill
-  const salesBtn = document.getElementById('hero-btn-sales');
-  if (salesBtn) {
-    const fill = salesBtn.querySelector('.btn-fill-layer');
-    let fromRight = false;
-
-    salesBtn.addEventListener('mouseenter', e => {
-      const rect = salesBtn.getBoundingClientRect();
-      fromRight = (e.clientX - rect.left) > rect.width / 2;
-      fill.style.transformOrigin = fromRight ? 'right center' : 'left center';
-      gsap.fromTo(fill, { scaleX: 0 }, { scaleX: 0.9, duration: 0.45, ease: 'expo.out', overwrite: 'auto' });
-    });
-
-    salesBtn.addEventListener('mousemove', e => {
-      const rect = salesBtn.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const rawProgress = fromRight
-        ? (rect.width - mouseX) / rect.width
-        : mouseX / rect.width;
-      const target = 0.9 + (rawProgress * 0.1);
-      gsap.to(fill, { scaleX: Math.min(1, target), duration: 0.4, ease: 'power2.out', overwrite: false });
-    });
-
-    salesBtn.addEventListener('mouseleave', e => {
-      const rect = salesBtn.getBoundingClientRect();
-      const exitRight = (e.clientX - rect.left) > rect.width / 2;
-      fill.style.transformOrigin = exitRight ? 'right center' : 'left center';
-      gsap.to(fill, { scaleX: 0, duration: 0.4, ease: 'expo.in', overwrite: 'auto' });
-    });
-  }
+  });
 }
 
 // ── Stella Demo — Alpine component ──────────────────────────────────────────
 function stellaDemo() {
+  const dataEl = document.getElementById('stella-demo-data');
+  let products = [];
+  let chat = { opening: '', suggestedPrompts: [], scriptedReplies: [], shopperHandle: '@guest', storeHandle: 'store' };
+  try {
+    const parsed = JSON.parse(dataEl.textContent);
+    products = parsed.products || products;
+    chat = parsed.chat || chat;
+  } catch (e) {
+    console.error('[stellaDemo] failed to parse demo data', e);
+  }
+  const initialStock = {};
+  products.forEach(p => { initialStock[p.id] = p.initialStock; });
+
   return {
-    products: [
-      { id: 1, name: 'Trail Runner X',  price: 3200, category: 'shoes',   emoji: '👟', tag: 'Bestseller' },
-      { id: 2, name: 'Street Pace Pro', price: 4500, category: 'shoes',   emoji: '👠', tag: 'New' },
-      { id: 3, name: 'CloudWalk Lite',  price: 2800, category: 'shoes',   emoji: '🥿', tag: 'Sale' },
-      { id: 4, name: 'Dry-Fit Tee',     price: 1200, category: 'apparel', emoji: '👕', tag: null },
-      { id: 5, name: 'Track Shorts',    price: 1800, category: 'apparel', emoji: '🩳', tag: null },
-      { id: 6, name: 'Sports Cap',      price:  800, category: 'apparel', emoji: '🧢', tag: null },
-    ],
+    products,
+    chat,
+
+    get suggestedPrompts() {
+      if (this.pendingOrder && this.pendingOrder.stage === 'confirm') {
+        if (this.pendingOrder.ids.length === 1) {
+          return ['Yes, place order', 'Show me more', 'Maybe later'];
+        }
+        return ['The first one', 'The second one', 'Show me more'];
+      }
+      if (this.pendingOrder && this.pendingOrder.stage === 'choose') {
+        return this.pendingOrder.ids.slice(0, 3).map((_, i) => String(i + 1));
+      }
+      return this.chat.suggestedPrompts;
+    },
 
     messages: [
-      { role: 'bot', text: "Hi! I'm Stella. What are you looking for today?" }
+      { role: 'bot', text: chat.opening, productIds: [] }
     ],
     userInput: '',
     messageCount: 0,
+    typing: false,
 
-    visibleProductIds: [1, 2, 3],
+    stock: initialStock,
+    orderNotice: null,
+    _orderNoticeTimer: null,
 
-    cart: [],
+    recentConvos: [
+      { handle: '@aarya_kc',     snippet: 'do you ship to Pokhara?',   at: '4m ago' },
+      { handle: '@biraj.shr',    snippet: 'thank you 🙏',              at: '12m ago' },
+    ],
+    recentOrders: [
+      { orderId: 1041, productName: 'Dry-Fit Tee',     price: 1200, at: '6m ago' },
+      { orderId: 1040, productName: 'CloudWalk Lite',  price: 2800, at: '14m ago' },
+    ],
+    nextOrderId: 1042,
 
-    view: 'shop',
-    toast: null,
-    _toastTimer: null,
+    flashingIds: [],
+    activeNav: 'products',
+
+    pendingOrder: null,
+    lastSuggestedIds: [],
+
     cursorX: 0,
     cursorY: 0,
     cursorVisible: false,
 
-    _openingScript: [
-      { reply: "Found 3 great options! Pulled them up on the right →", ids: [1, 2, 3] },
-      { reply: "You can click 'Add to cart' or just ask me to. What else can I help with?", ids: [1, 2, 3] },
-    ],
-
-    get visibleProducts() {
-      return this.products.filter(p => this.visibleProductIds.includes(p.id));
+    productById(id) {
+      return this.products.find(p => p.id === id);
     },
 
-    get cartCount() {
-      return this.cart.reduce((sum, item) => sum + item.qty, 0);
-    },
-
-    get cartTotal() {
-      return this.cart.reduce((sum, item) => {
-        const p = this.products.find(p => p.id === item.id);
-        return sum + (p ? p.price * item.qty : 0);
-      }, 0);
-    },
-
-    get cartItems() {
-      return this.cart.map(item => {
-        const p = this.products.find(p => p.id === item.id);
-        return { id: item.id, qty: item.qty, name: p.name, price: p.price, subtotal: p.price * item.qty };
-      });
+    sendPrompt(text) {
+      this.userInput = text;
+      this.send();
     },
 
     send() {
@@ -847,86 +874,195 @@ function stellaDemo() {
       if (!text) return;
       this.messages.push({ role: 'user', text });
       this.userInput = '';
+      this.recentConvos.unshift({ handle: this.chat.shopperHandle, snippet: text, at: 'just now' });
+      this._scrollChat();
 
+      this.typing = true;
       setTimeout(() => {
-        if (this.messageCount < this._openingScript.length) {
-          const script = this._openingScript[this.messageCount];
-          this.visibleProductIds = script.ids;
-          this.messages.push({ role: 'bot', text: script.reply });
-        } else {
-          const lower = text.toLowerCase();
-          if (/shoe|run|sneak|trail|pace|cloud/.test(lower)) {
-            this.visibleProductIds = [1, 2, 3];
-            this.messages.push({ role: 'bot', text: "Here are some great running picks →" });
-          } else if (/shirt|tee|apparel|top|wear/.test(lower)) {
-            this.visibleProductIds = [4, 5, 6];
-            this.messages.push({ role: 'bot', text: "Here's our apparel collection →" });
-          } else if (/cap|hat/.test(lower)) {
-            this.visibleProductIds = [6];
-            this.messages.push({ role: 'bot', text: "Found this for you →" });
-          } else if (/cheap|budget|under|low|afford/.test(lower)) {
-            const sorted = [...this.visibleProductIds].sort((a, b) => {
-              return this.products.find(p => p.id === a).price - this.products.find(p => p.id === b).price;
-            });
-            this.visibleProductIds = sorted;
-            this.messages.push({ role: 'bot', text: "Sorted by price — lowest first →" });
-          } else if (/add|want|take|get/.test(lower)) {
-            const first = this.visibleProducts[0];
-            if (first) {
-              this.addToCart(first.id);
-              this.messages.push({ role: 'bot', text: "Added " + first.name + " to your cart ✓" });
-            } else {
-              this.messages.push({ role: 'bot', text: "Nothing selected yet — try asking for shoes or apparel first!" });
+        this.typing = false;
+        this._reply(text);
+        this.messageCount++;
+        this._scrollChat();
+      }, 700);
+    },
+
+    _reply(text) {
+      const lower = text.toLowerCase();
+
+      // Pending-order resolution: bot just asked "which one?" or "place order?"
+      if (this.pendingOrder) {
+        const stage = this.pendingOrder.stage;
+        const ids = this.pendingOrder.ids;
+
+        if (stage === 'confirm') {
+          if (/no|nope|not now|later|cancel/.test(lower)) {
+            this.pendingOrder = null;
+            this.messages.push({ role: 'bot', text: "No worries — let me know if anything else catches your eye 👀", productIds: [] });
+            return;
+          }
+          if (/yes|yeah|sure|ok|okay|place|order|confirm|go|do it/.test(lower)) {
+            const picked = this._pickProductFromText(lower, ids);
+            if (picked) {
+              this.pendingOrder = null;
+              this._confirmAndPlace(picked);
+              return;
             }
-          } else if (/checkout|pay|order|purchase|done/.test(lower)) {
-            if (this.cartCount > 0) {
-              this.view = 'checkout';
-              this.messages.push({ role: 'bot', text: "Taking you to checkout →" });
-            } else {
-              this.messages.push({ role: 'bot', text: "Your cart is empty — add something first!" });
+            if (ids.length === 1) {
+              this.pendingOrder = null;
+              this._confirmAndPlace(ids[0]);
+              return;
             }
-          } else {
-            this.visibleProductIds = [1, 2, 3];
-            this.messages.push({ role: 'bot', text: "Let me pull up some options for you →" });
+            this.pendingOrder = { stage: 'choose', ids };
+            this.messages.push({ role: 'bot', text: "Great! Which one — say the name or the number (1, 2, 3)?", productIds: [] });
+            return;
           }
         }
 
-        this.messageCount++;
-        setTimeout(() => {
-          const chat = document.querySelector('[data-chat-scroll]');
-          if (chat) chat.scrollTop = chat.scrollHeight;
-        }, 0);
-      }, 500);
-    },
+        if (stage === 'choose') {
+          const picked = this._pickProductFromText(lower, ids);
+          if (picked) {
+            this.pendingOrder = null;
+            this._confirmAndPlace(picked);
+            return;
+          }
+          this.messages.push({ role: 'bot', text: "Hmm, I didn't catch that. Say the number (1, 2, 3) or the product name.", productIds: [] });
+          return;
+        }
+      }
 
-    addToCart(id) {
-      const existing = this.cart.find(item => item.id === id);
-      if (existing) {
-        existing.qty++;
+      // Topic-based product suggestions (each followed by the "place an order?" prompt)
+      let suggestedIds = null;
+      let intro = null;
+
+      if (/shoe|run|sneak|trail|pace|cloud/.test(lower)) {
+        suggestedIds = [1, 2, 3];
+        intro = "Here are our running picks 👟";
+      } else if (/shirt|tee|apparel|top|wear|short|cap|hat/.test(lower)) {
+        suggestedIds = [4, 5, 6];
+        intro = "Our apparel collection 👕";
+      } else if (/cheap|budget|under|low|afford|1500|1000/.test(lower)) {
+        suggestedIds = this.products.filter(p => p.price <= 1800).sort((a, b) => a.price - b.price).map(p => p.id);
+        intro = "Easy on the wallet 💸";
+      } else if (/order|buy|purchase|place/.test(lower)) {
+        const ids = this.lastSuggestedIds.length ? this.lastSuggestedIds : [1, 2, 3];
+        if (this.lastSuggestedIds.length === 0) {
+          this.messages.push({ role: 'bot', text: "Sure — here are a few popular picks first 👇", productIds: ids });
+          this.lastSuggestedIds = ids;
+        }
+        this.pendingOrder = { stage: 'choose', ids };
+        this.messages.push({ role: 'bot', text: "Which one would you like to order? Say the name or the number.", productIds: [] });
+        return;
+      } else if (/hi|hello|hey|namaste/.test(lower)) {
+        this.messages.push({ role: 'bot', text: "Hey! 👋 Anything I can help you find today?", productIds: [] });
+        return;
+      } else if (/thank/.test(lower)) {
+        this.messages.push({ role: 'bot', text: "Anytime 🙌", productIds: [] });
+        return;
       } else {
-        this.cart.push({ id, qty: 1 });
+        // Try matching directly to a product name
+        const named = this._pickProductFromText(lower, this.products.map(p => p.id));
+        if (named) {
+          this.pendingOrder = { stage: 'confirm', ids: [named] };
+          const p = this.productById(named);
+          this.messages.push({ role: 'bot', text: "Nice pick! " + p.name + " — " + this.formatPrice(p.price) + ". Would you like to place an order?", productIds: [named] });
+          this.lastSuggestedIds = [named];
+          return;
+        }
+        suggestedIds = [1, 4, 6];
+        intro = "Sure! Take a look at these 👇";
       }
-      const p = this.products.find(p => p.id === id);
-      if (p) {
-        this.toast = p.emoji + ' ' + p.name + ' added to cart';
-        clearTimeout(this._toastTimer);
-        this._toastTimer = setTimeout(() => { this.toast = null; }, 2000);
+
+      // Show products, then follow up with the order question
+      this.lastSuggestedIds = suggestedIds;
+      this.messages.push({ role: 'bot', text: intro, productIds: suggestedIds });
+      this.pendingOrder = { stage: 'confirm', ids: suggestedIds };
+      setTimeout(() => {
+        this.messages.push({
+          role: 'bot',
+          text: suggestedIds.length === 1
+            ? "Would you like to place an order?"
+            : "Would you like to place an order for one of these?",
+          productIds: []
+        });
+        this._scrollChat();
+      }, 600);
+    },
+
+    _pickProductFromText(lower, candidateIds) {
+      // Match by number ("1", "first", "second", "third", "1st", "2nd")
+      const numMatch = lower.match(/\b(first|1st|1|one|second|2nd|2|two|third|3rd|3|three|fourth|4th|4|four|fifth|5th|5|five|sixth|6th|6|six)\b/);
+      if (numMatch) {
+        const map = { first:0, '1st':0, '1':0, one:0, second:1, '2nd':1, '2':1, two:1, third:2, '3rd':2, '3':2, three:2, fourth:3, '4th':3, '4':3, four:3, fifth:4, '5th':4, '5':4, five:4, sixth:5, '6th':5, '6':5, six:5 };
+        const idx = map[numMatch[1]];
+        if (typeof idx === 'number' && idx < candidateIds.length) return candidateIds[idx];
       }
+      // Match by product name (longest match first)
+      const matches = candidateIds
+        .map(id => this.productById(id))
+        .filter(p => p && lower.includes(p.name.toLowerCase()));
+      if (matches.length) return matches.sort((a, b) => b.name.length - a.name.length)[0].id;
+      // Match by single keyword from each name
+      for (const id of candidateIds) {
+        const p = this.productById(id);
+        if (!p) continue;
+        const words = p.name.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+        if (words.some(w => lower.includes(w))) return id;
+      }
+      return null;
     },
 
-    removeFromCart(id) {
-      this.cart = this.cart.filter(item => item.id !== id);
+    _confirmAndPlace(id) {
+      const p = this.productById(id);
+      if (!p) return;
+      if (this.stock[id] <= 0) {
+        this.messages.push({ role: 'bot', text: "Sorry, " + p.name + " just sold out. Want me to suggest something similar?", productIds: [] });
+        return;
+      }
+      this.messages.push({ role: 'bot', text: "Placing your order for " + p.name + "...", productIds: [] });
+      setTimeout(() => this.placeOrder(id), 500);
     },
 
-    placeOrder() {
-      this.view = 'success';
-      this.messages.push({ role: 'bot', text: "Your order is confirmed! 🎉 Thanks for trying Stella." });
+    _scrollChat() {
+      setTimeout(() => {
+        const chat = (this.$refs && this.$refs.chatScroll) || document.querySelector('[data-chat-scroll]');
+        if (chat) chat.scrollTop = chat.scrollHeight;
+      }, 30);
     },
 
-    shopAgain() {
-      this.cart = [];
-      this.view = 'shop';
-      this.visibleProductIds = [1, 2, 3];
+    _flash(id) {
+      if (!this.flashingIds.includes(id)) this.flashingIds.push(id);
+      setTimeout(() => {
+        this.flashingIds = this.flashingIds.filter(x => x !== id);
+      }, 1200);
+    },
+
+    placeOrder(id) {
+      const p = this.productById(id);
+      if (!p || this.stock[id] <= 0) return;
+      const orderId = this.nextOrderId++;
+      this.stock[id]--;
+      this._flash(id);
+      this.recentOrders.unshift({
+        orderId,
+        productName: p.name,
+        price: p.price,
+        image: p.image,
+        at: 'just now',
+        fresh: true
+      });
+      setTimeout(() => {
+        const entry = this.recentOrders.find(o => o.orderId === orderId);
+        if (entry) entry.fresh = false;
+      }, 2500);
+      this.orderNotice = { orderId, name: p.name, price: p.price, image: p.image };
+      clearTimeout(this._orderNoticeTimer);
+      this._orderNoticeTimer = setTimeout(() => { this.orderNotice = null; }, 4000);
+      this.messages.push({
+        role: 'bot',
+        text: "Order #" + orderId + " confirmed 🎉 You'll get a tracking link shortly.",
+        productIds: []
+      });
+      this._scrollChat();
     },
 
     formatPrice(p) {

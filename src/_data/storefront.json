@@ -1,0 +1,70 @@
+{
+  "seo": {
+    "title": "Storefront — the commerce platform built for the agent era | Stella",
+    "description": "Stella is a complete commerce backend — catalog, cart, checkout, accounts, and local payments — built from day one for the world where AI agents shop on behalf of your customers. Run your store today. Win the agent era tomorrow."
+  },
+  "navMenu": {
+    "sectionLabel": "For your shoppers",
+    "label": "Storefront",
+    "description": "The full storefront, agent-ready.",
+    "image": "/assets/images/nav-storefront.png",
+    "imageAlt": "Stella storefront preview"
+  },
+  "hero": {
+    "headline": "Built for shoppers.<br>Ready for agents.",
+    "sub": "The only commerce backend in Nepal built from day one for the world where AI agents buy on behalf of your customers.",
+    "primaryCta":   { "label": "Schedule a demo", "href": "/schedule-demo/" },
+    "supportingLine": "Live in days, not months. eSewa and Khalti included."
+  },
+  "pillars": {
+    "eyebrow": "Platform",
+    "heading": "Everything your store needs in one platform.",
+    "sub": "No stitching together a cart from one vendor, a checkout from another, and a payment integration from a freelancer. Stella ships as one connected platform — built, hosted, and supported in Nepal."
+  },
+  "agentEra": {
+    "eyebrow": "The agent era",
+    "heading": "Your next customer might not be a person.",
+    "sub": "It might be the assistant they sent. If your store can't talk to it, the sale goes to one that can.",
+    "body": "The way people shop online is changing. ChatGPT, Gemini, Claude, and a wave of new shopping assistants are starting to buy on behalf of their users — comparing options, checking stock, completing the order. Most stores aren't ready for this. They have no way to authenticate an agent, no way to set a budget cap, no way to log what was actually purchased and why.",
+    "mock": {
+      "agentName": "ChatGPT",
+      "agentHandle": "via openai.com",
+      "intent": "wants to buy on your behalf",
+      "product": {
+        "name": "Trail Runner 2.0",
+        "sku": "TR2-BLK-42",
+        "price": "Rs 4,800"
+      },
+      "budgetLabel": "Your budget cap",
+      "budgetValue": "Rs 5,000",
+      "scopeLabel": "Allowed to spend until",
+      "scopeValue": "Today, 9:00 PM",
+      "approveLabel": "Approve purchase",
+      "declineLabel": "Decline"
+    },
+    "guarantees": [
+      { "icon": "shield",  "label": "Consent verified on shopper's device" },
+      { "icon": "gauge",   "label": "Hard budget cap, never exceeded" },
+      { "icon": "history", "label": "Every action logged and revocable" }
+    ],
+    "footnote": "You don't have to do anything special to turn this on. If you're on Stella, your store is already an agent-ready store."
+  },
+  "everySurface": {
+    "eyebrow": "Every channel",
+    "heading": "One store. Every surface.",
+    "sub": "Your catalog, your prices, your stock — everywhere your shoppers are, including the channels that don't exist yet.",
+    "surfaces": [
+      { "id": "web" },
+      { "id": "wa" },
+      { "id": "msgr" },
+      { "id": "ig" }
+    ],
+    "footnote": "One inventory, one customer record, one source of truth across every surface."
+  },
+  "closingCta": {
+    "heading": "See Stella running your store.",
+    "sub": "A 15-minute call. We'll connect your products live and walk you through what your store looks like to a customer, to an AI agent, and to you on the dashboard. No slides, just the real thing.",
+    "primaryCta": { "label": "Schedule a demo", "href": "/schedule-demo/" },
+    "footnote": "Live in days, not months. eSewa and Khalti included."
+  }
+}

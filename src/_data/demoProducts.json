@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Trail Runner X",
+    "price": 3200,
+    "category": "shoes",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop&q=80",
+    "tag": "Bestseller",
+    "initialStock": 12
+  },
+  {
+    "id": 2,
+    "name": "Street Pace Pro",
+    "price": 4500,
+    "category": "shoes",
+    "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop&q=80",
+    "tag": "New",
+    "initialStock": 8
+  },
+  {
+    "id": 3,
+    "name": "CloudWalk Lite",
+    "price": 2800,
+    "category": "shoes",
+    "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop&q=80",
+    "tag": "Sale",
+    "initialStock": 15
+  },
+  {
+    "id": 4,
+    "name": "Dry-Fit Tee",
+    "price": 1200,
+    "category": "apparel",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&q=80",
+    "tag": null,
+    "initialStock": 24
+  },
+  {
+    "id": 5,
+    "name": "Track Shorts",
+    "price": 1800,
+    "category": "apparel",
+    "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400&h=400&fit=crop&q=80",
+    "tag": null,
+    "initialStock": 18
+  },
+  {
+    "id": 6,
+    "name": "Sports Cap",
+    "price": 800,
+    "category": "apparel",
+    "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop&q=80",
+    "tag": null,
+    "initialStock": 30
+  }
+]

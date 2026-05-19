@@ -1,0 +1,52 @@
+<section id="cs-grid" class="relative pb-20 md:pb-28">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-28">
+    <div class="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+      <h2 class="text-3xl sm:text-4xl font-sans font-light text-black tracking-[-0.015em] leading-[1.15]">
+        More stores. More categories. Same backend.
+      </h2>
+      <p class="mt-4 text-stella-muted">
+        A snapshot of merchants running on Stella today, across fashion, electronics, F&amp;B, and more.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-28">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {% for s in customerStories.stories %}
+        <a href="{{ s.href }}"
+           class="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-stella-bg border border-stella-border transition-all duration-300">
+
+          <img src="{{ s.image }}"
+               alt="{{ s.imageAlt }}"
+               loading="lazy"
+               class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out" />
+
+          {# Icon + name pill — top right, resting state #}
+          <div class="absolute top-3 right-3 flex items-center gap-2 bg-white/90 backdrop-blur-sm pl-1.5 pr-3 py-1.5 rounded-full shadow-sm">
+            <div class="w-7 h-7 rounded-full bg-stella-forest text-white flex items-center justify-center text-[10px] font-semibold tracking-wide">
+              {{ s.logoInitials }}
+            </div>
+            <div class="text-[11px] font-semibold text-stella-text leading-tight pr-0.5">{{ s.customer }}</div>
+          </div>
+
+          {# Bottom gradient backing so the text always reads against the image — desktop only #}
+          <div class="hidden md:block absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-stella-text/90 via-stella-text/65 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
+
+          {# Hover description + arrow — slides up smoothly (desktop only) #}
+          <div class="hidden md:flex absolute inset-x-0 bottom-0 p-5 items-end justify-between gap-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+            <p class="text-sm text-white leading-snug flex-1 drop-shadow-sm">
+              {{ s.outcome }}
+            </p>
+            <span class="shrink-0 text-white text-lg leading-none">→</span>
+          </div>
+
+          {# Mobile-only tap affordance — minimal arrow chip, bottom-right #}
+          <div class="md:hidden absolute bottom-3 right-3 w-9 h-9 rounded-full bg-stella-text/80 backdrop-blur-sm flex items-center justify-center text-white text-base shadow-sm">
+            →
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

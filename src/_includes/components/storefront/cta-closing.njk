@@ -1,0 +1,28 @@
+{# ── Section 10: Closing CTA — adapted from landing-page cta-closing, single primary CTA. #}
+
+{% set c = storefront.closingCta %}
+
+<section class="pt-12 pb-8 section-reveal bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="bg-stella-lime rounded-3xl px-6 sm:px-10 md:px-16 py-12 sm:py-14 md:py-16 text-center">
+
+      <h2 data-reveal="headline" class="text-3xl sm:text-4xl md:text-h2 font-light text-stella-forest mb-4 tracking-[-0.015em] leading-[1.15]">
+        {{ c.heading }}
+      </h2>
+
+      <p data-reveal="subhead" class="text-base sm:text-lg text-stella-forest/80 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
+        {{ c.sub }}
+      </p>
+
+      <div data-reveal="cta" class="flex justify-center">
+        <a href="{{ c.primaryCta.href }}"
+           class="bg-white text-stella-forest font-semibold rounded-xl px-8 py-3 hover:shadow-md transition-shadow">
+          {{ c.primaryCta.label }} →
+        </a>
+      </div>
+
+      <p class="mt-8 text-sm text-stella-forest/60">{{ c.footnote }}</p>
+
+    </div>
+  </div>
+</section>

@@ -4,8 +4,7 @@
   "description": "Autonomous AI agents that sell for your store 24/7 — from product discovery to checkout, with Stripe-powered checkout and local payment support.",
   "url": "https://dev-web.stella-commerce.com",
   "cta": {
-    "primary": "Schedule Demo",
-    "secondary": "Contact Sales"
+    "primary": "Schedule Demo"
   },
   "sections": {
     "fiveMoments": {

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+[x-cloak] { display: none !important; }
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-8px); }
@@ -41,3 +43,18 @@
   30%            { transform: translateY(-3px); opacity: 1; }
 }
 .typing-dot { animation: typing-pulse 1.2s ease-in-out infinite; }
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 50s linear infinite;
+  will-change: transform;
+}
+.marquee-mask:hover .marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}

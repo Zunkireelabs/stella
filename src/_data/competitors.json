@@ -2,9 +2,9 @@
   { "name": "Gorgias",       "left": "20%", "top": "72%" },
   { "name": "Swap Commerce", "left": "26%", "top": "20%" },
   { "name": "Alhena AI",     "left": "36%", "top": "32%" },
-  { "name": "Tidio Lyro",    "left": "72%", "top": "80%" },
-  { "name": "Manifest AI",   "left": "62%", "top": "74%" },
-  { "name": "Rep AI",        "left": "62%", "top": "58%" },
-  { "name": "Zipchat AI",    "left": "76%", "top": "68%" },
+  { "name": "Tidio Lyro",    "left": "84%", "top": "84%" },
+  { "name": "Manifest AI",   "left": "58%", "top": "78%" },
+  { "name": "Rep AI",        "left": "56%", "top": "58%" },
+  { "name": "Zipchat AI",    "left": "86%", "top": "66%" },
   { "name": "Stella",        "left": "78%", "top": "16%", "stella": true }
 ]
