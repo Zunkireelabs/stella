@@ -1,3 +1,20 @@
+// iOS-safe scroll lock used by mobile nav (called from Alpine x-effect)
+window.lockScroll = function(lock) {
+  if (lock) {
+    window._scrollLockY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + window._scrollLockY + 'px';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, window._scrollLockY || 0);
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap === 'undefined') return;
 
@@ -335,54 +352,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }());
 
-    // Competitive landscape — cross draws in, then competitors two at a time (spread apart)
+    // Competitive landscape — axes draw in, all dots appear together, Stella pops in last
     if (document.getElementById('landscape-chart')) {
       const dots = gsap.utils.toArray('.landscape-dot');
-      // dots order: 0=Gorgias(BL) 1=SwapCommerce(TL) 2=AlhenaAI(TL) 3=TidioLyro(BR) 4=ManifestAI(BR) 5=RepAI(MR) 6=ZipchatAI(BR) 7=Stella
-      const competitors = dots.slice(0, 7);
-      const stella = dots[7];
+      const competitors = dots.slice(0, 4);
+      const stella = dots[4];
 
       gsap.set([...competitors, stella], { scale: 0, opacity: 0, transformOrigin: 'center center' });
       gsap.set('#landscape-vline', { scaleY: 0, transformOrigin: 'center center' });
       gsap.set('#landscape-hline', { scaleX: 0, transformOrigin: 'center center' });
 
-      // Each pair is spatially spread: TL+BR, BL+right, TL+BR
-      const pairs = [
-        [1, 3],  // Swap Commerce (top-left) + Tidio Lyro (bottom-right)
-        [0, 6],  // Gorgias (bottom-left) + Zipchat AI (right)
-        [2, 4],  // Alhena AI (top-left) + Manifest AI (bottom-right)
-      ];
-
       ScrollTrigger.create({
         trigger: '#landscape-chart', start: 'top 75%', once: true,
         onEnter: () => {
           const tl = gsap.timeline();
-
-          // 1. Axes wrapper fades in (labels appear), then lines draw themselves
           tl.to('#landscape-axes', { opacity: 1, duration: 0.4, ease: 'power2.out' });
           tl.to('#landscape-vline', { scaleY: 1, duration: 1.0, ease: 'power2.inOut' }, '+=0.1');
           tl.to('#landscape-hline', { scaleX: 1, duration: 1.0, ease: 'power2.inOut' }, '<+0.2');
-
-          // 2. Cycle pairs — only 2 visible at a time, each pair spread across the chart
-          let activeDots = [];
-          pairs.forEach((pair) => {
-            const incoming = pair.map(idx => competitors[idx]);
-            if (activeDots.length) {
-              tl.to(activeDots, { opacity: 0, scale: 0.5, duration: 0.35, ease: 'power2.in' }, '+=0.35');
-            }
-            tl.to(incoming, {
-              scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(2.5)', stagger: 0.2,
-            }, activeDots.length ? '-=0.1' : '+=0.45');
-            tl.to({}, { duration: 1.6 });
-            activeDots = incoming;
-          });
-
-          // 3. Fade out last pair, reveal all competitors together
-          tl.to(activeDots, { opacity: 0, scale: 0.5, duration: 0.3, ease: 'power2.in' }, '+=0.35');
-          tl.to(competitors, { scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(1.5)', stagger: 0.07 }, '+=0.15');
-
-          // 4. Stella pops in last
-          tl.to(stella, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(3)' }, '+=0.25');
+          tl.to(competitors, { scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(1.5)', stagger: 0.08 }, '+=0.2');
+          tl.to(stella, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(3)' }, '+=0.15');
         }
       });
     }
@@ -405,25 +393,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function measureTabs() {
         tabPos = tabEls.map(t => ({ x: t.offsetLeft, w: t.offsetWidth }));
-        if (indicator && tabPos[0]) gsap.set(indicator, { x: tabPos[0].x, width: tabPos[0].w });
+      }
+      // Indicator is a 1px bar scaled on the X axis — scaleX + x are pure
+      // transforms (GPU compositing, no per-frame reflow) so the scrub stays smooth.
+      function placeIndicator() {
+        measureTabs();
+        if (indicator && tabPos[0]) {
+          gsap.set(indicator, {
+            width: 1, transformOrigin: 'left center',
+            x: tabPos[0].x, scaleX: tabPos[0].w,
+          });
+        }
       }
 
-      requestAnimationFrame(measureTabs);
+      requestAnimationFrame(placeIndicator);
 
       // Entrance
       ScrollTrigger.create({
         trigger: '#hiw-header', start: 'top 82%', once: true,
         onEnter: () => {
-          gsap.from('#hiw-header',     { y: 28, opacity: 0, duration: 0.7, ease: 'power3.out' });
-          gsap.from('#hiw-tabs',       { y: 20, opacity: 0, duration: 0.6, delay: 0.15, ease: 'power3.out' });
-          gsap.from('#hiw-panel-wrap', { y: 24, opacity: 0, duration: 0.7, delay: 0.25, ease: 'power3.out',
-            onComplete: measureTabs });
+          // Fade only — no y-translate. A fast scroll can pin the section while the
+          // entrance is still running; translating here would slide the pinned card
+          // and read as the section being "pushed". Opacity-only avoids any layout shift.
+          gsap.from('#hiw-header',     { opacity: 0, duration: 0.7, ease: 'power3.out' });
+          gsap.from('#hiw-tabs',       { opacity: 0, duration: 0.6, delay: 0.15, ease: 'power3.out' });
+          gsap.from('#hiw-panel-wrap', { opacity: 0, duration: 0.7, delay: 0.25, ease: 'power3.out',
+            onComplete: placeIndicator });
         }
       });
 
       // Desktop — pure scrub timeline, no threshold callbacks
       if (window.innerWidth >= 1024) {
-        measureTabs(); // sync measure so tabPos is ready for timeline init
+        placeIndicator(); // sync measure + place so tabPos is ready for timeline init
 
         const panelsInner = document.getElementById('hiw-panels-inner');
         const panelWrap   = document.getElementById('hiw-panel-wrap');
@@ -441,7 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // t=0 ── anchor indicator to tab 0
         hiwTl.set(indicator, {
           x: () => tabPos[0]?.x ?? 0,
-          width: () => tabPos[0]?.w ?? 0,
+          scaleX: () => tabPos[0]?.w ?? 0,
         }, 0);
 
         // t 0→1.0 ── hold on step 0 (Connect)
@@ -450,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // t 0.6→1.5 ── indicator glides to tab 1 (leads card by 0.4 units)
         hiwTl.to(indicator, {
           x: () => tabPos[1]?.x ?? 0,
-          width: () => tabPos[1]?.w ?? 0,
+          scaleX: () => tabPos[1]?.w ?? 0,
           ease: 'sine.inOut', duration: 0.9,
         }, 0.6);
 
@@ -470,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // t 2.4→3.3 ── indicator glides to tab 2
         hiwTl.to(indicator, {
           x: () => tabPos[2]?.x ?? 0,
-          width: () => tabPos[2]?.w ?? 0,
+          scaleX: () => tabPos[2]?.w ?? 0,
           ease: 'sine.inOut', duration: 0.9,
         }, 2.4);
 
@@ -490,8 +491,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ScrollTrigger.create({
           trigger: '#hiw-section',
           pin: true, pinSpacing: true,
-          start: 'top top+=64', end: '+=300%',
+          start: 'top top+=64', end: '+=220%',
           scrub: 0.6,
+          // No anticipatePin — with Lenis's momentum scrolling its velocity-based
+          // early-pin yanks the section to the top before the pin line is reached.
+          // Re-measure tab geometry and recompute slide distance on every refresh
+          // (after the loader's refresh, on resize) so panels stay aligned and the scrub doesn't fight to settle.
+          invalidateOnRefresh: true,
+          onRefreshInit: measureTabs,
           animation: hiwTl,
         });
       }
@@ -605,37 +612,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      // Read-more cursor — fine pointer (mouse) only AND desktop width (no hover on mobile)
-      if (window.matchMedia('(pointer: fine) and (min-width: 640px)').matches) {
-        const cur = document.createElement('div');
-        cur.id = 'fm-read-cursor';
-        cur.textContent = 'Read more →';
-        document.body.appendChild(cur);
-
-        gsap.set(cur, { xPercent: 0, yPercent: -50, opacity: 0, scale: 0.85, visibility: 'hidden' });
-        const setX = gsap.quickSetter(cur, 'x', 'px');
-        const setY = gsap.quickSetter(cur, 'y', 'px');
-
-        fmSection.addEventListener('mousemove', e => {
-          gsap.set(cur, { visibility: 'visible' });
-          setX(e.clientX + 18);
-          setY(e.clientY);
-        });
-
-        fmCards.forEach(card => {
-          card.addEventListener('mouseenter', () =>
-            gsap.to(cur, { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.4)', overwrite: true })
-          );
-          card.addEventListener('mouseleave', () =>
-            gsap.to(cur, { opacity: 0, scale: 0.8, duration: 0.25, ease: 'power2.in', overwrite: true })
-          );
-        });
-
-        fmSection.addEventListener('mouseleave', () => {
-          gsap.to(cur, { opacity: 0, scale: 0.85, duration: 0.15, overwrite: true });
-          gsap.set(cur, { visibility: 'hidden', delay: 0.15 });
-        });
-      }
     }
 
     // Testimonials — scroll-driven horizontal card marquee
@@ -728,9 +704,9 @@ document.addEventListener('DOMContentLoaded', () => {
         end: '+=2400',
         scrub: 0.6,
         animation: universeTl,
-        onEnter:     () => gsap.set(siteNav, { opacity: 0, pointerEvents: 'none' }),
+        onEnter:     () => { if (window.innerWidth >= 768) gsap.set(siteNav, { opacity: 0, pointerEvents: 'none' }); },
         onLeave:     () => { gsap.set(siteNav, { y: -4 }); gsap.to(siteNav, { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.4, ease: 'power2.out' }); },
-        onEnterBack: () => gsap.set(siteNav, { opacity: 0, pointerEvents: 'none' }),
+        onEnterBack: () => { if (window.innerWidth >= 768) gsap.set(siteNav, { opacity: 0, pointerEvents: 'none' }); },
         onLeaveBack: () => { gsap.set(siteNav, { y: -4 }); gsap.to(siteNav, { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.4, ease: 'power2.out' }); },
       });
     }

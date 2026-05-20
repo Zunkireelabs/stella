@@ -1,10 +1,7 @@
 [
-  { "name": "Gorgias",       "left": "20%", "top": "72%" },
-  { "name": "Swap Commerce", "left": "26%", "top": "20%" },
-  { "name": "Alhena AI",     "left": "36%", "top": "32%" },
-  { "name": "Tidio Lyro",    "left": "84%", "top": "84%" },
-  { "name": "Manifest AI",   "left": "58%", "top": "78%" },
-  { "name": "Rep AI",        "left": "56%", "top": "58%" },
-  { "name": "Zipchat AI",    "left": "86%", "top": "66%" },
-  { "name": "Stella",        "left": "78%", "top": "16%", "stella": true }
+  { "name": "Legacy helpdesks",     "left": "22%", "top": "70%" },
+  { "name": "Enterprise platforms", "left": "30%", "top": "24%" },
+  { "name": "Basic chatbots",       "left": "78%", "top": "78%" },
+  { "name": "AI copilots",          "left": "62%", "top": "58%" },
+  { "name": "Stella", "left": "78%", "top": "16%", "stella": true }
 ]

@@ -29,6 +29,25 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addWatchTarget("src/assets/css/tailwind.css");
 
+  // Blog: human-readable date (e.g. "May 20, 2026")
+  eleventyConfig.addFilter("readableDate", (value) => {
+    const d = value ? new Date(value) : new Date();
+    return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  });
+
+  // Blog: ISO date for <time datetime="...">
+  eleventyConfig.addFilter("isoDate", (value) => {
+    const d = value ? new Date(value) : new Date();
+    return d.toISOString().split("T")[0];
+  });
+
+  // Blog: chronological post collection (newest first), excluding drafts
+  eleventyConfig.addCollection("posts", (collectionApi) => {
+    return collectionApi.getFilteredByGlob("src/blog/*.md")
+      .filter((post) => !post.data.draft)
+      .reverse();
+  });
+
   eleventyConfig.addGlobalData("env", process.env.ELEVENTY_ENV || "production");
 
   eleventyConfig.setServerOptions({

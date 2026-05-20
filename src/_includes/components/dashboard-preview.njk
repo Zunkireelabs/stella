@@ -473,11 +473,9 @@
                   </div>
                 </div>
                 <div class="border-t border-stella-border px-3 py-2.5 flex items-center gap-2 bg-white">
-                  <input
-                    type="text"
-                    placeholder="Ask anything…"
-                    class="flex-1 text-xs bg-stella-bg rounded-full px-3 py-1.5 outline-none placeholder:text-stella-muted text-stella-text"
-                  >
+                  <div class="flex-1 min-w-0 text-xs bg-stella-bg rounded-full px-3 py-1.5 text-stella-text whitespace-nowrap overflow-hidden" aria-hidden="true">
+                    <span x-show="inputText === ''" class="text-stella-muted">Ask anything…</span><span x-text="inputText"></span><span class="inline-block w-px h-3 bg-stella-forest/70 align-middle animate-pulse"></span>
+                  </div>
                   <button class="w-7 h-7 rounded-full bg-stella-gradient flex items-center justify-center shrink-0 hover:scale-105 transition-transform" aria-label="Send">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <line x1="22" y1="2" x2="11" y2="13"/>
@@ -500,14 +498,54 @@
 function stellaCart() {
   return {
     chatOpen: false,
+    inputText: '',
+    // Shopper questions that type+erase on a loop inside the chat input
+    questions: [
+      'Will the Trail Runner X fit a size 41?',
+      'Anything to go with these shoes?',
+      'Do you have these in black?'
+    ],
     init() {
       const observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setTimeout(() => { this.chatOpen = true; }, 1500);
+          setTimeout(() => { this.openChat(); }, 1500);
           observer.disconnect();
         }
       }, { threshold: 0.3 });
       observer.observe(this.$el);
+    },
+    openChat() {
+      this.chatOpen = true;
+      // Reduced-motion: show one question statically, no looping animation
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.inputText = this.questions[0];
+        return;
+      }
+      this.typeLoop(0);
+    },
+    typeLoop(qi) {
+      const q = this.questions[qi % this.questions.length];
+      this.typeQuestion(q, () => {
+        setTimeout(() => this.eraseQuestion(() => this.typeLoop(qi + 1)), 1900); // hold, then erase
+      });
+    },
+    typeQuestion(text, done) {
+      const chars = Array.from(text);
+      let i = 0;
+      const tick = () => {
+        if (i < chars.length) { this.inputText += chars[i++]; setTimeout(tick, 55); }
+        else done();
+      };
+      tick();
+    },
+    eraseQuestion(done) {
+      const tick = () => {
+        if (this.inputText.length) {
+          const arr = Array.from(this.inputText); arr.pop(); this.inputText = arr.join('');
+          setTimeout(tick, 25);
+        } else { setTimeout(done, 350); }
+      };
+      tick();
     }
   };
 }

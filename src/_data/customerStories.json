@@ -7,7 +7,6 @@
     "eyebrow": "Customer stories",
     "headline": "Real stores.<br>Real numbers.",
     "sub": "The merchants below run their catalog, checkout, and customer accounts on Stella. Here is what happened in the months after they switched.",
-    "primaryCta": { "label": "Talk to sales", "href": "#" },
     "supportingLine": "Want to be the next story? We onboard new merchants every week."
   },
   "featured": {
@@ -79,7 +78,7 @@
       "customer": "Sherpa Outdoor Co.",
       "industry": "Outdoor & gear · Thamel",
       "logoInitials": "SO",
-      "image": "https://images.unsplash.com/photo-1517036000093-89bdf6d96108?w=600&h=360&fit=crop&q=80",
+      "image": "https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=360&fit=crop&q=80",
       "imageAlt": "Hiking gear and backpack on a mountain trail",
       "outcome": "Opened a B2B portal for trekking agencies alongside their consumer storefront.",
       "metric": { "value": "Rs 4.2M", "label": "B2B revenue in first quarter" },
@@ -102,7 +101,6 @@
     "eyebrow": "Your turn",
     "headline": "Run your store on the same backend they did.",
     "sub": "A 15-minute walkthrough is enough to see whether Stella fits. No commitment, no slide deck.",
-    "primaryCta": { "label": "Schedule a demo", "href": "#" },
-    "secondaryCta": { "label": "Talk to sales", "href": "#" }
+    "primaryCta": { "label": "Schedule a demo", "href": "#" }
   }
 }

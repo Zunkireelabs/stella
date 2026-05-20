@@ -1,9 +1,9 @@
 <style>.pin-spacer:has(#hiw-section){background:#fff}</style>
-<section id="hiw-section" class="pt-10 pb-6 bg-white">
+<section id="hiw-section" class="pt-8 pb-6 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
     <!-- Header -->
-    <div id="hiw-header" class="text-center mb-8">
+    <div id="hiw-header" class="text-center mb-6">
       <p class="text-xs tracking-widest uppercase text-stella-forest font-medium mb-2">How it works</p>
       <h2 class="text-h2 font-light text-stella-text">Three steps to your first sale.</h2>
       <p class="mt-3 text-lg text-stella-muted">Your agentic storefront, live in three steps.</p>
@@ -36,9 +36,10 @@
       </div>
 
       <!-- Panel container — shadow wrapper outside clip so shadow isn't clipped -->
+      <div class="max-w-4xl mx-auto">
       <div class="-mx-1 px-1 pb-2">
       <div class="rounded-2xl shadow-stella">
-      <div id="hiw-panel-wrap" class="rounded-2xl overflow-hidden" style="height:clamp(300px,calc(100vh - 330px),420px)">
+      <div id="hiw-panel-wrap" class="rounded-2xl overflow-hidden" style="height:clamp(280px,calc(100vh - 380px),420px)">
       <div id="hiw-panels-inner" style="display:flex;gap:24px;height:100%;will-change:transform">
 
         <!-- Panel 1: Code editor -->
@@ -78,13 +79,13 @@
             <span class="text-sm font-semibold text-stella-text">Stella Dashboard</span>
             <span class="text-xs text-stella-muted ml-1">/ Settings</span>
           </div>
-          <div class="flex-1 p-5 overflow-hidden">
-            <p class="text-xs font-semibold text-stella-muted uppercase tracking-wider mb-4">Integrations</p>
-            <div class="space-y-2.5">
+          <div class="flex-1 p-4 sm:p-5 overflow-hidden flex flex-col min-h-0">
+            <p class="text-xs font-semibold text-stella-muted uppercase tracking-wider mb-3 shrink-0">Integrations</p>
+            <div class="flex-1 flex flex-col gap-2 min-h-0">
 
-              <div class="flex items-center justify-between p-3 rounded-xl border-2 border-stella-border">
+              <div class="flex-1 min-h-0 flex items-center justify-between px-3 rounded-xl border-2 border-stella-border">
                 <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-xl bg-stella-green/25 flex items-center justify-center text-base">📦</div>
+                  <div class="w-8 h-8 rounded-xl bg-stella-green/25 flex items-center justify-center text-base">📦</div>
                   <div>
                     <p class="text-sm font-medium text-stella-text">Product Catalog</p>
                     <p class="text-xs text-stella-muted">248 products synced</p>
@@ -96,11 +97,11 @@
                 </div>
               </div>
 
-              <div class="flex items-center justify-between p-3 rounded-xl border-2 border-stella-border">
+              <div class="flex-1 min-h-0 flex items-center justify-between px-3 rounded-xl border-2 border-stella-border">
                 <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-xl bg-green-100 flex items-center justify-center font-bold text-green-700 text-xs">eS</div>
+                  <div class="w-8 h-8 rounded-xl bg-indigo-100 flex items-center justify-center font-bold text-indigo-700 text-xs">St</div>
                   <div>
-                    <p class="text-sm font-medium text-stella-text">eSewa</p>
+                    <p class="text-sm font-medium text-stella-text">Stripe</p>
                     <p class="text-xs text-stella-muted">Payment gateway</p>
                   </div>
                 </div>
@@ -110,31 +111,31 @@
                 </div>
               </div>
 
-              <div class="flex items-center justify-between p-3 rounded-xl border-2 border-stella-border">
+              <div class="flex-1 min-h-0 flex items-center justify-between px-3 rounded-xl border-2 border-stella-border">
                 <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-xl bg-purple-100 flex items-center justify-center font-bold text-purple-700 text-xs">Kh</div>
+                  <div class="w-8 h-8 rounded-xl bg-stella-green/25 flex items-center justify-center text-base">💵</div>
                   <div>
-                    <p class="text-sm font-medium text-stella-text">Khalti</p>
-                    <p class="text-xs text-stella-muted">Payment gateway</p>
+                    <p class="text-sm font-medium text-stella-text">Cash on Delivery</p>
+                    <p class="text-xs text-stella-muted">Payment method</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-stella-emerald"></span>
+                  <span class="text-xs font-semibold text-stella-forest">Enabled</span>
+                </div>
+              </div>
+
+              <div class="flex-1 min-h-0 flex items-center justify-between px-3 rounded-xl border-2 border-stella-border">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-xl bg-blue-100 flex items-center justify-center text-base">🏦</div>
+                  <div>
+                    <p class="text-sm font-medium text-stella-text">Bank Transfer</p>
+                    <p class="text-xs text-stella-muted">Payment method</p>
                   </div>
                 </div>
                 <div class="flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-stella-emerald animate-pulse"></span>
                   <span class="text-xs font-semibold text-stella-forest">Connecting…</span>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-between p-3 rounded-xl border-2 border-stella-border">
-                <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center font-bold text-blue-700 text-xs">WA</div>
-                  <div>
-                    <p class="text-sm font-medium text-stella-text">WhatsApp</p>
-                    <p class="text-xs text-stella-muted">Messaging channel</p>
-                  </div>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-stella-emerald"></span>
-                  <span class="text-xs font-semibold text-stella-forest">Connected</span>
                 </div>
               </div>
 
@@ -154,37 +155,37 @@
               <span class="text-sm font-bold text-stella-forest">₨ 48,200</span>
             </div>
           </div>
-          <div class="flex-1 overflow-hidden">
+          <div class="flex-1 overflow-hidden flex flex-col min-h-0">
 
-            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 py-2.5">
+            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 flex-1 min-h-0">
               <span class="text-xs font-mono text-stella-muted">#4821</span>
               <span class="text-sm font-medium text-stella-text">Nike Air Max <span class="text-stella-muted font-normal">· 41</span></span>
               <span class="text-sm font-semibold text-stella-forest">₨ 2,400</span>
               <span class="justify-self-end text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-green-100 text-green-700">WhatsApp</span>
             </div>
 
-            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 py-2.5 border-t border-stella-border/60">
+            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 flex-1 min-h-0 border-t border-stella-border/60">
               <span class="text-xs font-mono text-stella-muted">#4820</span>
               <span class="text-sm font-medium text-stella-text">Puma RX <span class="text-stella-muted font-normal">· 42</span></span>
               <span class="text-sm font-semibold text-stella-forest">₨ 1,800</span>
               <span class="justify-self-end text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-stella-lime/40 text-stella-forest">Web</span>
             </div>
 
-            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 py-2.5 border-t border-stella-border/60">
+            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 flex-1 min-h-0 border-t border-stella-border/60">
               <span class="text-xs font-mono text-stella-muted">#4819</span>
               <span class="text-sm font-medium text-stella-text">CloudWalk Pro <span class="text-stella-muted font-normal">· 40</span></span>
               <span class="text-sm font-semibold text-stella-forest">₨ 2,100</span>
               <span class="justify-self-end text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-green-100 text-green-700">WhatsApp</span>
             </div>
 
-            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 py-2.5 border-t border-stella-border/60">
+            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 flex-1 min-h-0 border-t border-stella-border/60">
               <span class="text-xs font-mono text-stella-muted">#4818</span>
               <span class="text-sm font-medium text-stella-text">Adidas Lite <span class="text-stella-muted font-normal">· 41</span></span>
               <span class="text-sm font-semibold text-stella-forest">₨ 1,950</span>
               <span class="justify-self-end text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-stella-lime/40 text-stella-forest">Web</span>
             </div>
 
-            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 py-2.5 border-t border-stella-border/60">
+            <div class="grid grid-cols-[auto_1fr_auto_5.5rem] items-center gap-4 px-5 flex-1 min-h-0 border-t border-stella-border/60">
               <span class="text-xs font-mono text-stella-muted">#4817</span>
               <span class="text-sm font-medium text-stella-text">Bata Classic <span class="text-stella-muted font-normal">· 43</span></span>
               <span class="text-sm font-semibold text-stella-forest">₨ 1,650</span>
@@ -205,6 +206,7 @@
       </div><!-- /hiw-panel-wrap -->
       </div><!-- /shadow wrapper -->
       </div><!-- /outer wrapper -->
+      </div><!-- /max-width wrapper -->
 
 
     </div>
@@ -237,12 +239,12 @@
         {% elif loop.index0 == 1 %}
         <div class="rounded-xl border border-stella-border bg-white p-4 space-y-2.5">
           <div class="flex items-center justify-between text-sm">
-            <span class="font-medium text-stella-text">eSewa</span>
+            <span class="font-medium text-stella-text">Stripe</span>
             <span class="text-stella-forest font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-stella-emerald inline-block"></span> Connected</span>
           </div>
           <div class="flex items-center justify-between text-sm">
-            <span class="font-medium text-stella-text">Khalti</span>
-            <span class="text-stella-forest font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-stella-emerald inline-block"></span> Connected</span>
+            <span class="font-medium text-stella-text">Cash on Delivery</span>
+            <span class="text-stella-forest font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-stella-emerald inline-block"></span> Enabled</span>
           </div>
           <div class="flex items-center justify-between text-sm">
             <span class="font-medium text-stella-text">Product Catalog</span>
