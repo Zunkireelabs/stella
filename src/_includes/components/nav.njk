@@ -24,7 +24,7 @@
           x-transition:enter="transition ease-out duration-150"
           x-transition:enter-start="opacity-0 -translate-y-1"
           x-transition:enter-end="opacity-100 translate-y-0"
-          class="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[680px] z-50"
+          class="absolute top-full left-0 pt-3 w-[680px] z-50"
         >
           <div class="bg-white rounded-2xl border border-stella-border shadow-xl p-4">
             <div class="grid grid-cols-2 gap-4 items-stretch">
@@ -53,8 +53,8 @@
               <!-- Right: compact lead-gen card with background image -->
               <div class="relative h-full min-h-[300px] rounded-xl overflow-hidden flex flex-col items-center justify-center gap-3 p-5 text-center">
                 <img
-                  src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=600&fit=crop&q=80"
-                  alt=""
+                  src="{{ storefront.navMenu.image }}"
+                  alt="{{ storefront.navMenu.imageAlt }}"
                   class="absolute inset-0 w-full h-full object-cover"
                 />
                 <div class="absolute inset-0 bg-gradient-to-b from-stella-forest/85 via-stella-forest/75 to-stella-forest/90"></div>
