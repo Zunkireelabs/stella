@@ -11,11 +11,11 @@
       </div>
       <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0 py-8 transition-colors duration-300 group-hover:bg-stella-green/[0.03] px-1">
         <div class="sm:w-2/5 shrink-0">
-          <p class="text-[2.2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-bold leading-none tracking-tight text-stella-text transition-colors duration-300 bg-clip-text group-hover:bg-stella-lime group-hover:text-transparent"
+          <p class="text-[2.2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-bold leading-none tracking-tight transition-colors duration-300 bg-clip-text bg-stella-lime text-transparent sm:bg-none sm:text-stella-text sm:group-hover:bg-stella-lime sm:group-hover:text-transparent"
              {% if metric.count %}data-count data-target="{{ metric.target }}" data-suffix="{{ metric.suffix }}"{% endif %}>{{ metric.value }}</p>
         </div>
         <div class="sm:w-3/5">
-          <p class="text-base sm:text-lg font-semibold text-stella-text mb-1">{{ metric.label }}</p>
+          <p class="text-base sm:text-lg font-semibold text-stella-forest sm:text-stella-text mb-1">{{ metric.label }}</p>
           <p class="text-sm text-stella-muted leading-relaxed">{{ metric.desc }}</p>
         </div>
       </div>

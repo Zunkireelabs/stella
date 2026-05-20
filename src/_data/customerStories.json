@@ -1,0 +1,112 @@
+{
+  "seo": {
+    "title": "Customer stories — how Nepali stores grow with Stella",
+    "description": "From boutique fashion in Patan to electronics across Kathmandu, see how merchants run their stores on Stella's commerce backend — and what changed after they switched."
+  },
+  "hero": {
+    "eyebrow": "Customer stories",
+    "headline": "Real stores.<br>Real numbers.",
+    "sub": "The merchants below run their catalog, checkout, and customer accounts on Stella. Here is what happened in the months after they switched.",
+    "primaryCta": { "label": "Talk to sales", "href": "#" },
+    "supportingLine": "Want to be the next story? We onboard new merchants every week."
+  },
+  "featured": {
+    "eyebrow": "Featured story",
+    "customer": "Himalayan Threads",
+    "industry": "Fashion & apparel · Patan",
+    "logoInitials": "HT",
+    "headline": "Cut checkout abandonment by more than half — without changing a single product page.",
+    "body": "After moving from a stitched-together stack onto Stella in nine days, returning shoppers no longer had to re-enter address and payment details — and the cart stopped dropping orders.",
+    "image": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=900&h=540&fit=crop&q=80",
+    "imageAlt": "Handwoven textiles and apparel on display in a boutique",
+    "tag": "Fashion · Patan",
+    "quote": "We thought we needed more traffic. It turned out we needed a checkout that did not fall over. Stella replaced four tools, and the difference showed up in the first week.",
+    "quoteAuthor": "Asha Karki",
+    "quoteRole": "Founder, Himalayan Threads",
+    "metrics": [
+      { "value": "58%", "label": "drop in checkout abandonment" },
+      { "value": "9 days", "label": "from contract to live store" },
+      { "value": "2.4x", "label": "repeat-customer rate in 90 days" }
+    ],
+    "cta": { "label": "Read the full story", "href": "#" }
+  },
+  "grid": {
+    "heading": "More stores. More categories. Same backend.",
+    "subheading": "A snapshot of merchants running on Stella today, across fashion, electronics, F&B, and more."
+  },
+  "stories": [
+    {
+      "customer": "Annapurna Electronics",
+      "industry": "Electronics · Kathmandu",
+      "logoInitials": "AE",
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=360&fit=crop&q=80",
+      "imageAlt": "Electronics retail floor",
+      "outcome": "Consolidated three storefronts into one catalog with live stock across all of them.",
+      "metric": { "value": "3", "label": "channels, one inventory" },
+      "tag": "Multi-channel",
+      "href": "#"
+    },
+    {
+      "customer": "Kopan Coffee Roasters",
+      "industry": "Food & beverage · Boudha",
+      "logoInitials": "KC",
+      "image": "https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=600&h=360&fit=crop&q=80",
+      "imageAlt": "Coffee beans being roasted",
+      "outcome": "Launched a subscription program for monthly bean delivery in under two weeks.",
+      "metric": { "value": "420", "label": "active subscribers" },
+      "tag": "Subscriptions",
+      "href": "#"
+    },
+    {
+      "customer": "Pashupati Pharma",
+      "industry": "Health & wellness · Bagmati",
+      "logoInitials": "PP",
+      "image": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600&h=360&fit=crop&q=80",
+      "imageAlt": "Pharmacy shelves",
+      "outcome": "Migrated from a custom WordPress build with zero downtime and kept every SEO ranking.",
+      "metric": { "value": "0", "label": "rankings lost in migration" },
+      "tag": "Migration",
+      "href": "#"
+    },
+    {
+      "customer": "Lumbini Living",
+      "industry": "Home & furniture · Lalitpur",
+      "logoInitials": "LL",
+      "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=360&fit=crop&q=80",
+      "imageAlt": "Modern furniture in a styled living room",
+      "outcome": "Added WhatsApp ordering on top of the storefront — same catalog, same checkout.",
+      "metric": { "value": "31%", "label": "of orders now via WhatsApp" },
+      "tag": "Channels",
+      "href": "#"
+    },
+    {
+      "customer": "Sherpa Outdoor Co.",
+      "industry": "Outdoor & gear · Thamel",
+      "logoInitials": "SO",
+      "image": "https://images.unsplash.com/photo-1517036000093-89bdf6d96108?w=600&h=360&fit=crop&q=80",
+      "imageAlt": "Hiking gear and backpack on a mountain trail",
+      "outcome": "Opened a B2B portal for trekking agencies alongside their consumer storefront.",
+      "metric": { "value": "Rs 4.2M", "label": "B2B revenue in first quarter" },
+      "tag": "B2B",
+      "href": "#"
+    },
+    {
+      "customer": "Bhaktapur Ceramics",
+      "industry": "Crafts & home · Bhaktapur",
+      "logoInitials": "BC",
+      "image": "https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=600&h=360&fit=crop&q=80",
+      "imageAlt": "Handmade ceramic bowls and pottery",
+      "outcome": "Replaced a manual order book with real-time orders, eSewa, and Khalti on day one.",
+      "metric": { "value": "<24h", "label": "from signup to first paid order" },
+      "tag": "Local payments",
+      "href": "#"
+    }
+  ],
+  "closing": {
+    "eyebrow": "Your turn",
+    "headline": "Run your store on the same backend they did.",
+    "sub": "A 15-minute walkthrough is enough to see whether Stella fits. No commitment, no slide deck.",
+    "primaryCta": { "label": "Schedule a demo", "href": "#" },
+    "secondaryCta": { "label": "Talk to sales", "href": "#" }
+  }
+}

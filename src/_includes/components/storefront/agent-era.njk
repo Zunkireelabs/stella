@@ -1,0 +1,158 @@
+{# ── Section 4: Agent era differentiator
+     Centered heading + sub + body, then a centered phone-frame consent mock,
+     finished by 3 inline guarantees and a footnote. #}
+
+{% set a = storefront.agentEra %}
+
+<section id="sf-agent-era" class="relative px-4 sm:px-6 md:px-16 lg:px-28 section-reveal pt-10 md:pt-14 pb-12 md:pb-16">
+
+  {# Top-edge fade: smoothly blends previous section's white into the page's stella-bg #}
+  <div class="absolute top-0 left-0 right-0 h-32 md:h-40 pointer-events-none"
+       style="background: linear-gradient(to bottom, #ffffff 0%, rgba(247, 255, 228, 0) 100%);">
+  </div>
+
+  {# Bottom-edge fade: cuts the green page bg off around the upper part of the phone mock,
+     softly washing into pure white below so the mock sits on a clean canvas. #}
+  <div class="absolute left-0 right-0 top-[30%] bottom-0 pointer-events-none"
+       style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 35%);">
+  </div>
+
+  {# Soft green wash behind the heading area (kept above the bottom fade visually) #}
+  <div class="absolute top-0 left-0 right-0 h-[40%] pointer-events-none overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[380px] rounded-full bg-stella-green blur-[160px] opacity-[0.20]"></div>
+  </div>
+
+  <div class="relative z-10 max-w-3xl mx-auto text-center">
+
+    <p data-reveal="eyebrow" class="text-xs font-semibold tracking-[0.18em] uppercase text-stella-muted mb-4">
+      {{ a.eyebrow }}
+    </p>
+
+    <h2 data-reveal="headline" class="text-[28px] sm:text-4xl lg:text-5xl font-light text-black tracking-[-0.015em] leading-[1.15]">
+      {{ a.heading }}
+    </h2>
+
+    <p data-reveal="subhead" class="mt-4 sm:mt-5 text-base sm:text-body-lg text-stella-forest/80 leading-relaxed">
+      {{ a.sub }}
+    </p>
+
+    <p class="hidden sm:block mt-6 text-body text-stella-muted leading-relaxed max-w-2xl mx-auto">
+      {{ a.body }}
+    </p>
+
+  </div>
+
+  {# ── Centered phone-frame consent mock #}
+  <div class="relative z-10 mt-6 md:mt-8 flex justify-center">
+
+    <div class="card-reveal w-[320px] sm:w-[340px] rounded-[36px] border border-stella-border bg-white shadow-[0_30px_80px_-20px_rgba(134,239,172,0.55)] p-5 relative">
+
+      {# Notch + status row #}
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-[10px] font-mono text-stella-muted tracking-wider">9:41</span>
+        <span class="w-16 h-4 rounded-full bg-stella-text/90"></span>
+        <span class="flex items-center gap-1 text-[10px] text-stella-muted">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9z"/></svg>
+          100%
+        </span>
+      </div>
+
+      {# Agent header #}
+      <div class="flex items-center gap-3 pb-4 border-b border-stella-border">
+        <div class="w-10 h-10 rounded-2xl bg-stella-lime flex items-center justify-center text-stella-forest">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="14" rx="3"/>
+            <circle cx="8.5" cy="13" r="1.2" fill="currentColor"/>
+            <circle cx="15.5" cy="13" r="1.2" fill="currentColor"/>
+            <path d="M12 2v4"/>
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="text-sm font-semibold text-stella-text leading-tight">{{ a.mock.agentName }}</div>
+          <div class="text-[11px] text-stella-muted truncate">{{ a.mock.agentHandle }}</div>
+        </div>
+      </div>
+
+      {# Intent #}
+      <p class="mt-4 text-sm text-stella-text leading-snug">
+        <span class="font-semibold">{{ a.mock.agentName }}</span> {{ a.mock.intent }}:
+      </p>
+
+      {# Product card #}
+      <div class="mt-3 flex items-center gap-3 p-3 rounded-2xl bg-stella-bg/60 border border-stella-border">
+        <div class="w-10 h-10 rounded-xl bg-stella-lime flex items-center justify-center text-base">👟</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold text-stella-text truncate">{{ a.mock.product.name }}</div>
+          <div class="text-[11px] text-stella-muted font-mono">{{ a.mock.product.sku }}</div>
+        </div>
+        <div class="text-sm font-semibold text-stella-text">{{ a.mock.product.price }}</div>
+      </div>
+
+      {# Limits #}
+      <div class="mt-3 space-y-2">
+        <div class="flex items-center justify-between text-[12px]">
+          <span class="text-stella-muted">{{ a.mock.budgetLabel }}</span>
+          <span class="font-mono text-stella-text">{{ a.mock.budgetValue }}</span>
+        </div>
+        <div class="flex items-center justify-between text-[12px]">
+          <span class="text-stella-muted">{{ a.mock.scopeLabel }}</span>
+          <span class="font-mono text-stella-text">{{ a.mock.scopeValue }}</span>
+        </div>
+      </div>
+
+      {# Buttons #}
+      <div class="mt-5 space-y-2">
+        <button type="button" class="w-full rounded-xl bg-stella-forest text-white text-sm font-semibold py-3">
+          {{ a.mock.approveLabel }}
+        </button>
+        <button type="button" class="w-full rounded-xl border border-stella-border text-stella-muted text-sm py-3">
+          {{ a.mock.declineLabel }}
+        </button>
+      </div>
+
+      {# Footer dock indicator #}
+      <div class="mt-4 flex justify-center">
+        <span class="w-24 h-1 rounded-full bg-stella-text/15"></span>
+      </div>
+
+    </div>
+  </div>
+
+  {# ── Three guarantees: horizontal rows on mobile, centered 3-col grid on tablet+ #}
+  <div class="relative z-10 mt-8 md:mt-12 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-10">
+    {% for g in a.guarantees %}
+      <div class="flex flex-row sm:flex-col items-center sm:text-center gap-3">
+        <span class="inline-flex items-center justify-center w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-stella-lime text-stella-forest flex-shrink-0">
+          {% if g.icon == "shield" %}
+            {# Consent — shield with checkmark #}
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          {% elif g.icon == "gauge" %}
+            {# Budget cap — gauge / speedometer with needle at limit #}
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 1 18 0"/>
+              <path d="M12 12l5-4"/>
+              <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+            </svg>
+          {% elif g.icon == "history" %}
+            {# Audit log — clock with counter-clockwise arrow (history) #}
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/>
+              <polyline points="3 3 3 8 8 8"/>
+              <polyline points="12 7 12 12 15 14"/>
+            </svg>
+          {% endif %}
+        </span>
+        <p class="text-sm text-stella-forest leading-snug sm:leading-relaxed sm:max-w-[200px]">{{ g.label }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  {# ── Footnote #}
+  <p class="relative z-10 mt-10 md:mt-12 max-w-2xl mx-auto text-center text-sm text-stella-muted leading-relaxed">
+    {{ a.footnote }}
+  </p>
+
+</section>

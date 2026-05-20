@@ -1,0 +1,28 @@
+<section id="cs-closing" class="pt-8 pb-16 md:pb-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="bg-stella-lime rounded-3xl px-8 sm:px-16 py-16 text-center">
+
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-stella-forest/70 mb-4">
+        {{ customerStories.closing.eyebrow }}
+      </p>
+
+      <h2 class="text-h2 font-sans font-light text-stella-forest mb-4 tracking-[-0.015em]">
+        {{ customerStories.closing.headline }}
+      </h2>
+
+      <p class="text-lg text-stella-forest/80 mb-10 max-w-xl mx-auto">
+        {{ customerStories.closing.sub }}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="{{ customerStories.closing.primaryCta.href }}" class="bg-white text-stella-forest font-semibold rounded-xl px-8 py-3 hover:shadow-md transition-shadow">
+          {{ customerStories.closing.primaryCta.label }} →
+        </a>
+        <a href="{{ customerStories.closing.secondaryCta.href }}" class="border border-stella-forest/30 text-stella-forest font-semibold rounded-xl px-8 py-3 hover:bg-white/20 transition-colors">
+          {{ customerStories.closing.secondaryCta.label }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

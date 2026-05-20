@@ -13,17 +13,13 @@
     </h1>
 
     <p id="hero-subhead" class="mt-5 text-body-lg text-stella-muted max-w-md">
-      Not a chatbot — Stella's AI agents handle the full buying journey, from product discovery to checkout, right inside the conversation.
+      An agentic ecommerce platform — with a chat widget, social channels, and AI agents that take shoppers from product discovery to checkout, all in one conversation.
     </p>
 
     <div id="hero-ctas" class="mt-8 flex flex-col sm:flex-row gap-3">
-      <a id="hero-btn-demo" href="#" class="relative overflow-hidden bg-stella-gradient text-stella-forest font-semibold rounded-xl px-8 py-3.5 text-sm shadow-sm inline-flex items-center justify-center">
+      <a id="hero-btn-demo" href="/schedule-demo/" class="relative overflow-hidden bg-stella-gradient text-stella-forest font-semibold rounded-xl px-8 py-3.5 text-sm shadow-sm inline-flex items-center justify-center">
         <span class="btn-glow-layer absolute inset-0 rounded-xl pointer-events-none opacity-0" style="--mouse-x:50%;--mouse-y:50%;background: radial-gradient(circle 120px at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.65), transparent);"></span>
         <span class="relative z-10">{{ site.cta.primary }} →</span>
-      </a>
-      <a id="hero-btn-sales" href="#" class="group relative overflow-hidden border border-stella-border text-stella-text font-medium rounded-xl px-8 py-3.5 text-sm inline-flex items-center justify-center">
-        <span class="btn-fill-layer absolute inset-0 rounded-xl pointer-events-none origin-left" style="background: #e0e503; transform: scaleX(0);"></span>
-        <span class="relative z-10 transition-colors duration-300 group-hover:text-stella-forest">{{ site.cta.secondary }}</span>
       </a>
     </div>
     <p class="mt-4 text-xs text-stella-muted">15-minute demo — we'll show Stella selling live on your store.</p>
@@ -33,70 +29,70 @@
   <div class="flex md:w-1/2 items-center justify-center py-3 md:py-8">
 
     <!-- Canvas wrapper: positioning root for all 5 cards so they align with 3D line endpoints -->
-    <div class="relative w-full max-w-[240px] sm:max-w-[340px] md:max-w-[500px] aspect-square mx-auto">
+    <div class="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[500px] aspect-square mx-auto">
       <canvas id="stella-canvas" class="w-full h-full"></canvas>
 
       <!-- Positioning shell + inner .hero-float-card (GSAP animates only the inner div) -->
 
       <!-- Chat & Discover — inside top of globe -->
-      <div class="absolute top-[9%] left-1/2 -translate-x-1/2 pointer-events-none select-none">
-        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-2 py-1.5 md:px-3 md:py-2" style="animation-delay:0s;animation-duration:3.8s">
-          <div class="w-5 h-5 md:w-7 md:h-7 rounded-full bg-stella-lime flex-shrink-0 flex items-center justify-center">
+      <div class="absolute top-[6%] sm:top-[9%] left-1/2 -translate-x-1/2 pointer-events-none select-none">
+        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-1.5 py-1 md:px-3 md:py-2" style="animation-delay:0s;animation-duration:3.8s">
+          <div class="w-4 h-4 md:w-7 md:h-7 rounded-full bg-stella-lime flex-shrink-0 flex items-center justify-center">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           </div>
           <div>
             <p class="text-[9px] md:text-xs font-medium text-stella-text leading-none">Chat & Discover</p>
-            <p class="text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Find anything instantly</p>
+            <p class="hidden sm:block text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Find anything instantly</p>
           </div>
         </div>
       </div>
 
       <!-- Products — inside right of globe -->
-      <div class="absolute top-[28%] right-[6%] pointer-events-none select-none">
-        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-2 py-1.5 md:px-3 md:py-2" style="animation-delay:0.7s;animation-duration:4.5s">
-          <div class="w-5 h-5 md:w-7 md:h-7 rounded-full bg-stella-lime/50 flex-shrink-0 flex items-center justify-center">
+      <div class="absolute top-[30%] sm:top-[28%] right-[2%] sm:right-[6%] pointer-events-none select-none">
+        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-1.5 py-1 md:px-3 md:py-2" style="animation-delay:0.7s;animation-duration:4.5s">
+          <div class="w-4 h-4 md:w-7 md:h-7 rounded-full bg-stella-lime/50 flex-shrink-0 flex items-center justify-center">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           </div>
           <div>
             <p class="text-[9px] md:text-xs font-medium text-stella-text leading-none">Products</p>
-            <p class="text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Rs&thinsp;2,500 &middot; In stock</p>
+            <p class="hidden sm:block text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Rs&thinsp;2,500 &middot; In stock</p>
           </div>
         </div>
       </div>
 
       <!-- Order placed — inside lower-right of globe -->
-      <div class="absolute top-[62%] right-[6%] pointer-events-none select-none">
-        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-2 py-1.5 md:px-3 md:py-2" style="border-left-width:3px;border-left-color:#86EFAC;animation-delay:1.4s;animation-duration:5.1s">
+      <div class="absolute top-[70%] sm:top-[62%] right-[2%] sm:right-[6%] pointer-events-none select-none">
+        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-1.5 py-1 md:px-3 md:py-2" style="border-left-width:3px;border-left-color:#86EFAC;animation-delay:1.4s;animation-duration:5.1s">
           <span class="text-stella-forest font-bold text-xs md:text-sm leading-none">✓</span>
           <div>
             <p class="text-[9px] md:text-xs font-medium text-stella-text leading-none">Order placed</p>
-            <p class="text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Rs&thinsp;3,200 confirmed</p>
+            <p class="hidden sm:block text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Rs&thinsp;3,200 confirmed</p>
           </div>
         </div>
       </div>
 
       <!-- Always online — inside lower-left of globe -->
-      <div class="absolute top-[62%] left-[6%] pointer-events-none select-none">
-        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-2 py-1.5 md:px-3 md:py-2" style="animation-delay:0.4s;animation-duration:4.2s">
-          <div class="w-5 h-5 md:w-7 md:h-7 rounded-full bg-stella-yellow/50 flex-shrink-0 flex items-center justify-center">
+      <div class="absolute top-[70%] sm:top-[62%] left-[2%] sm:left-[6%] pointer-events-none select-none">
+        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-1.5 py-1 md:px-3 md:py-2" style="animation-delay:0.4s;animation-duration:4.2s">
+          <div class="w-4 h-4 md:w-7 md:h-7 rounded-full bg-stella-yellow/50 flex-shrink-0 flex items-center justify-center">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
           <div>
             <p class="text-[9px] md:text-xs font-medium text-stella-text leading-none">Always online</p>
-            <p class="text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">24 / 7 · Never misses</p>
+            <p class="hidden sm:block text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">24 / 7 · Never misses</p>
           </div>
         </div>
       </div>
 
       <!-- All Channels — inside upper-left of globe -->
-      <div class="absolute top-[28%] left-[6%] pointer-events-none select-none">
-        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-2 py-1.5 md:px-3 md:py-2" style="animation-delay:1.1s;animation-duration:5.6s">
-          <div class="w-5 h-5 md:w-7 md:h-7 rounded-full bg-stella-green/30 flex-shrink-0 flex items-center justify-center">
+      <div class="absolute top-[30%] sm:top-[28%] left-[2%] sm:left-[6%] pointer-events-none select-none">
+        <div class="hero-float-card flex items-center gap-1 md:gap-2 bg-white border border-stella-border rounded-xl shadow-sm px-1.5 py-1 md:px-3 md:py-2" style="animation-delay:1.1s;animation-duration:5.6s">
+          <div class="w-4 h-4 md:w-7 md:h-7 rounded-full bg-stella-green/30 flex-shrink-0 flex items-center justify-center">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
           </div>
           <div>
             <p class="text-[9px] md:text-xs font-medium text-stella-text leading-none">All Channels</p>
-            <p class="text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Web · WhatsApp · More</p>
+            <p class="hidden sm:block text-[8px] md:text-[10px] text-stella-muted mt-0.5 leading-none">Web · WhatsApp · More</p>
           </div>
         </div>
       </div>
