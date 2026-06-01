@@ -4,7 +4,7 @@
 {% set f = scheduleDemo.form %}
 {% set e = scheduleDemo.form.errors %}
 
-<section id="sd-hero" class="relative pt-28 md:pt-36 pb-20 md:pb-28 px-4 sm:px-6 md:px-10 lg:px-16 overflow-hidden">
+<section id="sd-hero" class="relative pt-28 md:pt-36 pb-20 md:pb-28 px-4 sm:px-6 md:px-10 lg:px-16 overflow-x-clip">
 
   <!-- Section sits on page stella-bg. White fade along the bottom edge blends into the white "what happens next" section below. -->
   <div class="absolute inset-x-0 bottom-0 h-32 sm:h-40 pointer-events-none"
@@ -14,7 +14,7 @@
   <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
     <!-- LEFT: pitch -->
-    <div class="lg:col-span-6 lg:pt-6">
+    <div class="lg:col-span-6 lg:pt-6 lg:sticky lg:top-28">
 
       <p class="text-xs font-semibold tracking-[0.18em] uppercase text-stella-muted mb-4">
         {{ h.eyebrow }}
