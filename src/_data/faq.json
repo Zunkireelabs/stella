@@ -1,0 +1,66 @@
+{
+  "seo": {
+    "title": "FAQ — answers about Stella commerce | Stella",
+    "description": "Answers to the most common questions about Stella — setup, agent-ready checkout, payments and channels, pricing, support, and security."
+  },
+  "navMenu": {
+    "sectionLabel": "Resources",
+    "label": "FAQs",
+    "description": "Answers to the most common questions."
+  },
+  "hero": {
+    "eyebrow": "Frequently asked questions",
+    "heading": "Questions, answered.",
+    "sub": "Everything you need to know about running your store on Stella. Can't find your answer? Book a demo and we'll walk you through it."
+  },
+  "categories": [
+    {
+      "id": "getting-started",
+      "name": "Getting started",
+      "items": [
+        { "question": "What is Stella?", "answer": "Stella is a complete commerce backend with agentic features — catalog, cart, checkout, customer accounts, and payments — that runs your online store and is built so AI agents can shop on behalf of your customers." },
+        { "question": "Is Stella a chatbot or a widget I add to my site?", "answer": "No. Stella is the commerce backend that powers your store, not a bolt-on chat widget. It manages your products, orders, payments, and customer records as one connected platform." },
+        { "question": "How long does it take to get my store live?", "answer": "Most stores are live in days, not months. We connect your catalog, configure payments and channels, and hand you a working store rather than a kit you have to assemble." },
+        { "question": "Can I migrate my existing store and product catalog to Stella?", "answer": "Yes. We help you import your existing products, pricing, and customer records so you don't start from scratch, and we walk you through the switch during onboarding." },
+        { "question": "Do I need a developer or technical team to use Stella?", "answer": "No. Day-to-day running of your store — products, orders, customers — is done through the dashboard. Developers can go further using our APIs, but they aren't required to launch and operate." }
+      ]
+    },
+    {
+      "id": "agent-era",
+      "name": "Agent-ready commerce",
+      "items": [
+        { "question": "What does \"built for the agent era\" actually mean?", "answer": "AI assistants are starting to shop on behalf of the people who use them — comparing options, checking stock, and completing orders. Stella gives your store a way to recognise an agent, accept its order, and complete the sale, so you don't lose the purchase to a store that can." },
+        { "question": "How does an AI agent buy from my store on a customer's behalf?", "answer": "The shopper authorises the agent on their own device with a defined budget and scope. The agent then places the order through Stella within those limits, and every action is recorded — so the purchase is verified, capped, and traceable." },
+        { "question": "How do you stop an agent from overspending or buying the wrong thing?", "answer": "Each authorisation carries a hard budget cap that can't be exceeded and a defined scope of what's allowed. Consent is verified on the shopper's device, and every action the agent takes is logged and can be revoked." },
+        { "question": "Do I have to set anything up to make my store agent-ready?", "answer": "No. If your store runs on Stella, it's already agent-ready — there's no separate product or integration to enable." },
+        { "question": "Will this change how regular human customers shop?", "answer": "Not at all. Human shoppers get a normal, fast storefront experience. Agent support runs alongside it for the customers who choose to use an assistant." }
+      ]
+    },
+    {
+      "id": "payments-channels",
+      "name": "Payments & channels",
+      "items": [
+        { "question": "Which payment methods does Stella support?", "answer": "Stella supports popular local payment methods and cards out of the box, so customers can pay the way they already prefer without you wiring up separate integrations." },
+        { "question": "Can I sell across messaging channels, not just my website?", "answer": "Yes. Your catalog, prices, and stock can appear across the channels your shoppers already use — your website and popular messaging apps — all from one store." },
+        { "question": "Do I have to manage separate inventory for each channel?", "answer": "No. Stella keeps one inventory, one customer record, and one source of truth across every surface, so stock and orders stay in sync everywhere automatically." },
+        { "question": "What happens to stock and orders when I sell in more than one place?", "answer": "Every sale draws from the same inventory and writes to the same order history, regardless of which channel it came from — so you never oversell or reconcile across systems by hand." }
+      ]
+    },
+    {
+      "id": "pricing-support-security",
+      "name": "Pricing, support & security",
+      "items": [
+        { "question": "How much does Stella cost?", "answer": "Pricing depends on the size and needs of your store. Book a demo and we'll walk you through a plan that fits — there's no obligation." },
+        { "question": "Is there a free trial or a demo?", "answer": "We offer a short, hands-on demo where we connect your products live and show what your store looks like to a customer, to an AI agent, and to you on the dashboard. No slides — the real thing." },
+        { "question": "Who hosts and maintains my store?", "answer": "Stella is built, hosted, and supported as one platform, so you don't stitch together a cart, a checkout, and a payment integration from different vendors. We handle the infrastructure." },
+        { "question": "What kind of support do I get?", "answer": "You get a supported platform, not just software — our team helps with onboarding, configuration, and questions as your store grows." },
+        { "question": "Is my data and my customers' data secure?", "answer": "Yes. Consent for agent purchases is verified on the shopper's device, every action is logged and revocable, and customer and order data is kept in one secure source of truth rather than scattered across tools." }
+      ]
+    }
+  ],
+  "cta": {
+    "heading": "Still have questions?",
+    "sub": "Book a 15-minute demo and we'll show you Stella running a real store — for customers, for AI agents, and for you on the dashboard.",
+    "primaryCta": { "label": "Schedule a demo", "href": "/schedule-demo/" }
+  }
+}

@@ -1,10 +1,11 @@
 {
   "nav": [
-    { "label": "Overview",      "icon": "grid",   "active": true  },
-    { "label": "Conversations", "icon": "chat",   "active": false },
-    { "label": "Orders",        "icon": "bag",    "active": false },
-    { "label": "Customers",     "icon": "people", "active": false },
-    { "label": "Catalog",       "icon": "box",    "active": false }
+    { "label": "Dashboard", "icon": "grid",      "active": true  },
+    { "label": "Orders",    "icon": "bag",       "active": false },
+    { "label": "Customers", "icon": "people",    "active": false },
+    { "label": "Products",  "icon": "box",       "active": false },
+    { "label": "Analytics", "icon": "chart",     "active": false },
+    { "label": "Settings",  "icon": "settings",  "active": false }
   ],
   "admin": {
     "initials": "MP",
@@ -12,8 +13,10 @@
     "role": "Pro Plan"
   },
   "channels": [
-    { "name": "WhatsApp",  "pct": 58, "icon": "whatsapp",  "barColor": "#25D366" },
-    { "name": "Facebook",  "pct": 27, "icon": "facebook",  "barColor": "#1877F2" },
-    { "name": "Instagram", "pct": 15, "icon": "instagram", "barColor": "#C13584" }
+    { "name": "Web",       "pct": 45, "icon": "web",       "barColor": "#166534" },
+    { "name": "Instagram", "pct": 28, "icon": "instagram", "barColor": "#C13584" },
+    { "name": "WhatsApp",  "pct": 18, "icon": "whatsapp",  "barColor": "#25D366" },
+    { "name": "Messenger", "pct": 8,  "icon": "messenger", "barColor": "#0084FF" },
+    { "name": "Manual",    "pct": 1,  "icon": "manual",    "barColor": "#9CA3AF" }
   ]
 }

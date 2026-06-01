@@ -15,7 +15,7 @@
       <div class="bento-cell lg:col-span-2 bg-stella-bg rounded-2xl border border-stella-border transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:border-stella-green/40 overflow-hidden overflow-x-auto flex">
 
         <!-- Sidebar -->
-        <div class="hidden lg:flex flex-col w-36 shrink-0 bg-stella-bg py-4 border-r border-stella-border">
+        <div class="hidden lg:flex flex-col w-36 shrink-0 bg-stella-bg py-4">
 
           <!-- Logo -->
           <div class="flex items-center gap-2 px-4 mb-5">
@@ -49,6 +49,15 @@
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
                   <path d="M8 0L0 4v8l8 4 8-4V4L8 0zm0 1.9l6 3-6 3-6-3 6-3zM1 5.4l6.5 3.25v5.95L1 11.35V5.4zm8.5 9.2V8.65L15 5.4v5.95L9.5 14.6z"/>
                 </svg>
+              {% elif item.icon == "chart" %}
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M0 14h16v1.5H0V14zm1-2h2V8H1v4zm4 0h2V4H5v8zm4 0h2V6H9v6zm4 0h2V2h-2v10z"/>
+                </svg>
+              {% elif item.icon == "settings" %}
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 4.754a3.246 3.246 0 100 6.492 3.246 3.246 0 000-6.492zM5.754 8a2.246 2.246 0 114.492 0 2.246 2.246 0 01-4.492 0z"/>
+                  <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 01-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 01-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 01.52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 011.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 011.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 01.52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 01-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 01-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 002.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 001.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 00-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 00-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 00-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 003.06 9.74l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 004.175 5.28l-.159-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 002.692-1.115l.094-.319z"/>
+                </svg>
               {% endif %}
               <span class="text-xs font-medium">{{ item.label }}</span>
             </div>
@@ -71,118 +80,144 @@
         </div>
 
         <!-- Main content -->
-        <div class="flex-1 flex flex-col min-w-0 bg-white">
+        <div class="flex-1 flex flex-col min-w-0 bg-white overflow-hidden m-2 rounded-xl border border-stella-border shadow-sm">
 
-          <!-- Gradient header bar -->
-          <div class="px-4 py-2.5 bg-stella-bg flex items-center justify-between shrink-0 border-b border-stella-border">
-            <span class="text-xs font-bold text-stella-forest">Overview</span>
-            <div class="flex items-center gap-3">
-              <div class="flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-stella-forest animate-pulse"></span>
-                <span class="text-[10px] font-semibold text-stella-forest">Live</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <div class="w-6 h-6 rounded-lg bg-stella-forest flex items-center justify-center shrink-0">
-                  <span class="text-[9px] font-bold text-stella-green">{{ dashboard.admin.initials }}</span>
-                </div>
-                <div class="leading-tight">
-                  <p class="text-[10px] font-semibold text-stella-forest leading-none">{{ dashboard.admin.name }}</p>
-                  <p class="text-[9px] text-stella-forest/60 leading-none mt-0.5">{{ dashboard.admin.role }}</p>
-                </div>
+          <!-- Header -->
+          <div class="px-4 py-2 bg-stella-bg flex items-center justify-between shrink-0 border-b border-stella-border">
+            <span class="text-[11px] font-bold text-stella-forest truncate">How's the shop today, <span class="text-stella-emerald">{{ dashboard.admin.name }}</span>?</span>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-[9px] text-stella-muted hidden sm:block border border-stella-border rounded px-1.5 py-0.5">May 2 – Jun 1</span>
+              <div class="w-5 h-5 rounded bg-stella-forest flex items-center justify-center">
+                <span class="text-[8px] font-bold text-stella-green">{{ dashboard.admin.initials }}</span>
               </div>
             </div>
           </div>
 
-          <!-- KPI row -->
-          <div class="grid grid-cols-3 divide-x divide-stella-border border-b border-stella-border shrink-0">
-            <div class="p-2 lg:p-3 border-t-2 border-t-stella-emerald">
-              <p class="text-[9px] lg:text-[10px] font-medium text-stella-muted uppercase tracking-wide">Revenue Today</p>
-              <p class="mt-1 text-base lg:text-lg font-bold text-stella-forest" data-count data-target="47200" data-prefix="₨ " data-suffix="">₨ 0</p>
-              <p class="mt-0.5 text-[9px] lg:text-[10px] text-stella-muted">↑ 18% vs yesterday</p>
+          <!-- 4 KPI tiles -->
+          <div class="grid grid-cols-4 divide-x divide-stella-border border-b border-stella-border shrink-0">
+            <div class="p-2 lg:p-2.5">
+              <p class="text-[8px] lg:text-[9px] font-medium text-stella-muted uppercase tracking-wide">Total customers</p>
+              <p class="mt-0.5 text-sm lg:text-base font-bold text-stella-text" data-count data-target="1240" data-suffix="">0</p>
+              <p class="mt-0.5 text-[8px] text-green-600">↑ 10.5% vs last period</p>
             </div>
-            <div class="p-2 lg:p-3 border-t-2 border-t-stella-forest">
-              <p class="text-[9px] lg:text-[10px] font-medium text-stella-muted uppercase tracking-wide">AI Convos</p>
-              <p class="mt-1 text-base lg:text-lg font-bold text-stella-forest" data-count data-target="138" data-suffix="">0</p>
-              <p class="mt-0.5 text-[9px] lg:text-[10px] text-stella-muted">Today</p>
+            <div class="p-2 lg:p-2.5">
+              <p class="text-[8px] lg:text-[9px] font-medium text-stella-muted uppercase tracking-wide">Total orders</p>
+              <p class="mt-0.5 text-sm lg:text-base font-bold text-stella-text" data-count data-target="342" data-suffix="">0</p>
+              <p class="mt-0.5 text-[8px] text-red-500">↓ 4.2% vs last period</p>
             </div>
-            <div class="p-2 lg:p-3 border-t-2" style="border-top-color:#D4F08A">
-              <p class="text-[9px] lg:text-[10px] font-medium text-stella-muted uppercase tracking-wide">Conversion</p>
-              <p class="mt-1 text-base lg:text-lg font-bold text-stella-forest" data-count data-target="34" data-suffix="%">0%</p>
-              <p class="mt-0.5 text-[9px] lg:text-[10px] text-stella-muted">+12% this week</p>
+            <div class="p-2 lg:p-2.5">
+              <p class="text-[8px] lg:text-[9px] font-medium text-stella-muted uppercase tracking-wide">Avg order value</p>
+              <p class="mt-0.5 text-sm lg:text-base font-bold text-stella-text" data-count data-target="2850" data-prefix="Rs " data-suffix="">Rs 0</p>
+              <p class="mt-0.5 text-[8px] text-green-600">↑ 6.7% vs last period</p>
+            </div>
+            <div class="p-2 lg:p-2.5">
+              <p class="text-[8px] lg:text-[9px] font-medium text-stella-muted uppercase tracking-wide">Total products</p>
+              <p class="mt-0.5 text-sm lg:text-base font-bold text-stella-text" data-count data-target="248" data-suffix="">0</p>
+              <p class="mt-0.5 text-[8px] text-green-600">↑ 1.3% vs last period</p>
             </div>
           </div>
 
-          <!-- Channels + Revenue chart -->
-          <div class="grid grid-cols-2 divide-x divide-stella-border flex-1">
+          <!-- Sales Revenue (left 60%) + Customer Channels donut (right 40%) -->
+          <div class="grid grid-cols-5 divide-x divide-stella-border border-b border-stella-border shrink-0">
 
-            <!-- Channels -->
-            <div class="p-4">
-              <p class="text-[10px] font-semibold text-stella-muted uppercase tracking-wider mb-3">Channels</p>
-              <div class="space-y-3">
-                {% for ch in dashboard.channels %}
-                <div>
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="flex items-center gap-1.5 text-xs font-medium text-stella-text">
-                      {% if ch.icon == "whatsapp" %}
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                      {% elif ch.icon == "facebook" %}
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                      {% elif ch.icon == "instagram" %}
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-                          <defs><linearGradient id="ig-bar" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#F77737"/><stop offset="50%" stop-color="#C13584"/><stop offset="100%" stop-color="#833AB4"/></linearGradient></defs>
-                          <path fill="url(#ig-bar)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                        </svg>
-                      {% endif %}
-                      {{ ch.name }}
-                    </span>
-                    <span class="text-[10px] text-stella-muted">{{ ch.pct }}%</span>
-                  </div>
-                  <div class="h-1.5 bg-stella-border rounded-full overflow-hidden">
-                    <div class="channel-bar h-1.5 rounded-full" data-width="{{ ch.pct }}%" style="width:0%; background-color:{{ ch.barColor }}"></div>
-                  </div>
-                </div>
-                {% endfor %}
+            <!-- Sales Revenue line chart -->
+            <div class="col-span-3 p-3">
+              <div class="flex items-center justify-between mb-1.5">
+                <p class="text-[9px] font-semibold text-stella-text">Sales Revenue</p>
+                <span class="text-[8px] text-stella-muted border border-stella-border rounded px-1.5 py-0.5">Canvas</span>
               </div>
-            </div>
-
-            <!-- Revenue chart -->
-            <div class="p-4">
-              <div class="flex items-center justify-between mb-2">
-                <p class="text-[10px] font-semibold text-stella-muted uppercase tracking-wider">Revenue</p>
-                <span class="text-[10px] text-stella-muted bg-stella-border/60 px-2 py-0.5 rounded-full">24h</span>
-              </div>
-              <svg viewBox="0 0 240 60" class="w-full h-14" preserveAspectRatio="none">
-                <rect x="0"   y="57" width="7" height="3"  rx="1.5" fill="#86EFAC" fill-opacity="0.45"/>
-                <rect x="10"  y="58" width="7" height="2"  rx="1.5" fill="#86EFAC" fill-opacity="0.45"/>
-                <rect x="20"  y="58" width="7" height="2"  rx="1.5" fill="#86EFAC" fill-opacity="0.45"/>
-                <rect x="30"  y="58" width="7" height="2"  rx="1.5" fill="#86EFAC" fill-opacity="0.45"/>
-                <rect x="40"  y="57" width="7" height="3"  rx="1.5" fill="#86EFAC" fill-opacity="0.45"/>
-                <rect x="50"  y="55" width="7" height="5"  rx="1.5" fill="#86EFAC" fill-opacity="0.55"/>
-                <rect x="60"  y="51" width="7" height="9"  rx="1.5" fill="#86EFAC" fill-opacity="0.60"/>
-                <rect x="70"  y="44" width="7" height="16" rx="1.5" fill="#86EFAC" fill-opacity="0.65"/>
-                <rect x="80"  y="34" width="7" height="26" rx="1.5" fill="#86EFAC" fill-opacity="0.70"/>
-                <rect x="90"  y="26" width="7" height="34" rx="1.5" fill="#86EFAC" fill-opacity="0.75"/>
-                <rect x="100" y="19" width="7" height="41" rx="1.5" fill="#4ADE80" fill-opacity="0.70"/>
-                <rect x="110" y="13" width="7" height="47" rx="1.5" fill="#4ADE80" fill-opacity="0.75"/>
-                <rect x="120" y="8"  width="7" height="52" rx="1.5" fill="#4ADE80" fill-opacity="0.80"/>
-                <rect x="130" y="15" width="7" height="45" rx="1.5" fill="#4ADE80" fill-opacity="0.80"/>
-                <rect x="140" y="21" width="7" height="39" rx="1.5" fill="#4ADE80" fill-opacity="0.85"/>
-                <rect x="150" y="17" width="7" height="43" rx="1.5" fill="#22C55E" fill-opacity="0.85"/>
-                <rect x="160" y="11" width="7" height="49" rx="1.5" fill="#22C55E" fill-opacity="0.90"/>
-                <rect x="170" y="7"  width="7" height="53" rx="1.5" fill="#10B981" fill-opacity="0.85"/>
-                <rect x="180" y="3"  width="7" height="57" rx="1.5" fill="#10B981" fill-opacity="0.90"/>
-                <rect x="190" y="1"  width="7" height="59" rx="1.5" fill="#10B981" fill-opacity="0.95"/>
-                <rect x="200" y="8"  width="7" height="52" rx="1.5" fill="#10B981"/>
-                <rect x="210" y="5"  width="7" height="55" rx="1.5" fill="#10B981"/>
-                <rect x="220" y="3"  width="7" height="57" rx="1.5" fill="#10B981"/>
-                <rect x="230" y="0"  width="7" height="60" rx="1.5" fill="#10B981"/>
+              <svg viewBox="0 0 200 52" class="w-full h-11" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="rev-fill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#86EFAC" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#86EFAC" stop-opacity="0.02"/>
+                  </linearGradient>
+                </defs>
+                <line x1="0" y1="10" x2="200" y2="10" stroke="#e5e7eb" stroke-width="0.5"/>
+                <line x1="0" y1="26" x2="200" y2="26" stroke="#e5e7eb" stroke-width="0.5"/>
+                <line x1="0" y1="42" x2="200" y2="42" stroke="#e5e7eb" stroke-width="0.5"/>
+                <path d="M0,40 C10,38 15,43 25,35 S40,31 50,27 S65,33 75,23 S90,27 100,19 S115,23 125,15 S140,21 150,11 S165,17 175,9 S190,14 200,7 L200,52 L0,52 Z" fill="url(#rev-fill)"/>
+                <path d="M0,40 C10,38 15,43 25,35 S40,31 50,27 S65,33 75,23 S90,27 100,19 S115,23 125,15 S140,21 150,11 S165,17 175,9 S190,14 200,7" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+                <circle cx="200" cy="7" r="2.5" fill="#16a34a"/>
               </svg>
-              <div class="flex items-center justify-between mt-2">
-                <div class="flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-stella-emerald animate-pulse"></span>
-                  <span class="text-[10px] text-stella-muted">Live</span>
+              <div class="flex justify-between mt-1">
+                <span class="text-[7px] text-stella-muted">May 2</span>
+                <span class="text-[7px] text-stella-muted">May 15</span>
+                <span class="text-[7px] text-stella-muted">Jun 1</span>
+              </div>
+            </div>
+
+            <!-- Customer Channels donut -->
+            <div class="col-span-2 p-3">
+              <p class="text-[9px] font-semibold text-stella-text mb-2">Customer Channels</p>
+              <div class="flex items-center gap-2.5">
+                <svg width="52" height="52" viewBox="0 0 52 52" class="shrink-0">
+                  <circle cx="26" cy="26" r="18" fill="none" stroke="#166534" stroke-width="9" stroke-dasharray="50.9 113.1" stroke-dashoffset="0" transform="rotate(-90 26 26)"/>
+                  <circle cx="26" cy="26" r="18" fill="none" stroke="#C13584" stroke-width="9" stroke-dasharray="31.7 113.1" stroke-dashoffset="-50.9" transform="rotate(-90 26 26)"/>
+                  <circle cx="26" cy="26" r="18" fill="none" stroke="#25D366" stroke-width="9" stroke-dasharray="20.4 113.1" stroke-dashoffset="-82.6" transform="rotate(-90 26 26)"/>
+                  <circle cx="26" cy="26" r="18" fill="none" stroke="#0084FF" stroke-width="9" stroke-dasharray="9.0 113.1" stroke-dashoffset="-103.0" transform="rotate(-90 26 26)"/>
+                  <circle cx="26" cy="26" r="18" fill="none" stroke="#9CA3AF" stroke-width="9" stroke-dasharray="1.1 113.1" stroke-dashoffset="-112.0" transform="rotate(-90 26 26)"/>
+                  <circle cx="26" cy="26" r="11" fill="white"/>
+                </svg>
+                <div class="space-y-0.5 flex-1 min-w-0">
+                  <div class="flex items-center justify-between"><span class="flex items-center gap-1 text-[8px] text-stella-muted"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#166534"></span>Web</span><span class="text-[8px] font-semibold text-stella-text">45%</span></div>
+                  <div class="flex items-center justify-between"><span class="flex items-center gap-1 text-[8px] text-stella-muted"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#C13584"></span>Instagram</span><span class="text-[8px] font-semibold text-stella-text">28%</span></div>
+                  <div class="flex items-center justify-between"><span class="flex items-center gap-1 text-[8px] text-stella-muted"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#25D366"></span>Whatsapp</span><span class="text-[8px] font-semibold text-stella-text">18%</span></div>
+                  <div class="flex items-center justify-between"><span class="flex items-center gap-1 text-[8px] text-stella-muted"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#0084FF"></span>Messenger</span><span class="text-[8px] font-semibold text-stella-text">8%</span></div>
+                  <div class="flex items-center justify-between"><span class="flex items-center gap-1 text-[8px] text-stella-muted"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#9CA3AF"></span>Manual</span><span class="text-[8px] font-semibold text-stella-text">1%</span></div>
                 </div>
-                <span class="text-[10px] font-semibold text-stella-forest">₨ 47,200 today</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Recent Orders (left 60%) + Inventory Health (right 40%) -->
+          <div class="grid grid-cols-5 divide-x divide-stella-border flex-1 min-h-0">
+
+            <!-- Recent Orders -->
+            <div class="col-span-3 p-3 overflow-hidden">
+              <div class="flex items-center justify-between mb-2">
+                <p class="text-[9px] font-semibold text-stella-text">Recent Orders</p>
+                <span class="text-[8px] text-stella-forest font-medium cursor-default">View All →</span>
+              </div>
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-stella-border">
+                    <th class="text-left text-[8px] font-medium text-stella-muted pb-1 pr-2">ORDER</th>
+                    <th class="text-left text-[8px] font-medium text-stella-muted pb-1 pr-2">CUSTOMER</th>
+                    <th class="text-left text-[8px] font-medium text-stella-muted pb-1">STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-stella-border/40">
+                    <td class="py-1.5 text-[8px] text-stella-muted pr-2">#1042</td>
+                    <td class="py-1.5 text-[8px] text-stella-text pr-2">Priya Sharma</td>
+                    <td class="py-1.5"><span class="text-[7px] font-semibold text-green-700 bg-green-100 px-1.5 py-0.5 rounded-full">Delivered</span></td>
+                  </tr>
+                  <tr class="border-b border-stella-border/40">
+                    <td class="py-1.5 text-[8px] text-stella-muted pr-2">#1041</td>
+                    <td class="py-1.5 text-[8px] text-stella-text pr-2">Rohan KC</td>
+                    <td class="py-1.5"><span class="text-[7px] font-semibold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded-full">Shipped</span></td>
+                  </tr>
+                  <tr>
+                    <td class="py-1.5 text-[8px] text-stella-muted pr-2">#1040</td>
+                    <td class="py-1.5 text-[8px] text-stella-text pr-2">Sita Rai</td>
+                    <td class="py-1.5"><span class="text-[7px] font-semibold text-blue-700 bg-blue-100 px-1.5 py-0.5 rounded-full">Processing</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Inventory Health -->
+            <div class="col-span-2 p-3 flex flex-col justify-between">
+              <p class="text-[9px] font-semibold text-stella-text">Inventory Health</p>
+              <div>
+                <div class="flex items-center gap-1.5 mb-1">
+                  <span class="w-2 h-2 rounded-full bg-red-500 shrink-0 animate-pulse"></span>
+                  <span class="text-[9px] font-bold text-red-600">83 out of stock</span>
+                </div>
+                <p class="text-[8px] text-stella-muted mb-2">Across 12 product variants</p>
+                <span class="text-[8px] font-semibold text-stella-forest border border-stella-green/40 rounded px-2 py-1 cursor-default">Manage Inventory →</span>
               </div>
             </div>
 
@@ -473,11 +508,9 @@
                   </div>
                 </div>
                 <div class="border-t border-stella-border px-3 py-2.5 flex items-center gap-2 bg-white">
-                  <input
-                    type="text"
-                    placeholder="Ask anything…"
-                    class="flex-1 text-xs bg-stella-bg rounded-full px-3 py-1.5 outline-none placeholder:text-stella-muted text-stella-text"
-                  >
+                  <div class="flex-1 min-w-0 text-xs bg-stella-bg rounded-full px-3 py-1.5 text-stella-text whitespace-nowrap overflow-hidden" aria-hidden="true">
+                    <span x-show="inputText === ''" class="text-stella-muted">Ask anything…</span><span x-text="inputText"></span><span class="inline-block w-px h-3 bg-stella-forest/70 align-middle animate-pulse"></span>
+                  </div>
                   <button class="w-7 h-7 rounded-full bg-stella-gradient flex items-center justify-center shrink-0 hover:scale-105 transition-transform" aria-label="Send">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <line x1="22" y1="2" x2="11" y2="13"/>
@@ -500,14 +533,54 @@
 function stellaCart() {
   return {
     chatOpen: false,
+    inputText: '',
+    // Shopper questions that type+erase on a loop inside the chat input
+    questions: [
+      'Will the Trail Runner X fit a size 41?',
+      'Anything to go with these shoes?',
+      'Do you have these in black?'
+    ],
     init() {
       const observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setTimeout(() => { this.chatOpen = true; }, 1500);
+          setTimeout(() => { this.openChat(); }, 1500);
           observer.disconnect();
         }
       }, { threshold: 0.3 });
       observer.observe(this.$el);
+    },
+    openChat() {
+      this.chatOpen = true;
+      // Reduced-motion: show one question statically, no looping animation
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.inputText = this.questions[0];
+        return;
+      }
+      this.typeLoop(0);
+    },
+    typeLoop(qi) {
+      const q = this.questions[qi % this.questions.length];
+      this.typeQuestion(q, () => {
+        setTimeout(() => this.eraseQuestion(() => this.typeLoop(qi + 1)), 1900); // hold, then erase
+      });
+    },
+    typeQuestion(text, done) {
+      const chars = Array.from(text);
+      let i = 0;
+      const tick = () => {
+        if (i < chars.length) { this.inputText += chars[i++]; setTimeout(tick, 55); }
+        else done();
+      };
+      tick();
+    },
+    eraseQuestion(done) {
+      const tick = () => {
+        if (this.inputText.length) {
+          const arr = Array.from(this.inputText); arr.pop(); this.inputText = arr.join('');
+          setTimeout(tick, 25);
+        } else { setTimeout(done, 350); }
+      };
+      tick();
     }
   };
 }

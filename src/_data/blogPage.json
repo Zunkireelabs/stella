@@ -1,0 +1,16 @@
+{
+  "hero": {
+    "eyebrow": "The Stella Blog",
+    "headline": "Notes on running a modern commerce backend",
+    "sub": "Plain-spoken thinking on agentic commerce, merchant operations, and the engineering behind Stella — written for the people who actually run online stores."
+  },
+  "categories": [
+    "All",
+    "Agentic Commerce",
+    "Merchant Playbooks",
+    "Product & Engineering",
+    "Customer Stories",
+    "Industry & Trends"
+  ],
+  "empty": "No posts in this category yet — check back soon."
+}

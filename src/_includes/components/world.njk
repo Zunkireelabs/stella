@@ -19,15 +19,15 @@
       <!-- Sky gradient -->
       <defs>
         <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#f0fdf4" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#FAFAF7" stop-opacity="0"/>
+          <stop offset="0%" stop-color="#d9f99d" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#f7ffe4" stop-opacity="0"/>
         </linearGradient>
       </defs>
       <rect x="0" y="0" width="1400" height="260" fill="url(#sky-grad)"/>
 
       <!-- Ground -->
       <line x1="0" y1="260" x2="1400" y2="260" stroke="#E5E5E0" stroke-width="2"/>
-      <rect x="0" y="260" width="1400" height="60" fill="#FAFAF7"/>
+      <rect x="0" y="260" width="1400" height="60" fill="#f7ffe4"/>
 
       <!-- Clouds (CSS animated, drift slowly) -->
       <g style="animation: cloud-drift 45s linear infinite; will-change: transform;" transform="translate(-300, 0)">

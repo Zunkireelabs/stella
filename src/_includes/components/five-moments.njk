@@ -14,16 +14,6 @@
   @keyframes fm-wave { 0%,100%{opacity:var(--base,.25)} 50%{opacity:1} }
   @keyframes fm-blink { 0%,100%{opacity:1} 50%{opacity:0} }
   .fm-cursor { animation: fm-blink 0.9s step-end infinite; }
-
-  .fm-card-row { cursor: default; }
-  #fm-read-cursor {
-    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-    visibility: hidden;
-    display: flex; align-items: center;
-    background: #ffffff; color: #000000; border-radius: 999px;
-    padding: 8px 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; font-family: inherit;
-    white-space: nowrap; box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-  }
 </style>
 
 <section id="five-moments" class="pt-16 pb-12 bg-white">
@@ -40,11 +30,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
       <!-- Card 1 · Discovery · mint green -->
-      <a href="/features/{{ moments[0].slug }}/"
-         class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#86EFAC] h-[430px] cursor-pointer">
-        <span class="sm:hidden absolute top-4 right-4 w-8 h-8 rounded-full bg-black/10 flex items-center justify-center text-black" aria-label="Read more">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </span>
+      <div class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#86EFAC] h-[430px]">
         <!-- Tags -->
         <div class="flex gap-2 p-5 pb-0 flex-wrap">
           {% for tag in moments[0].cardTags %}
@@ -78,14 +64,10 @@
             <span class="text-[11px] font-semibold text-black bg-white/60 rounded-lg px-2 py-1.5 shrink-0">5</span>
           </div>
         </div>
-      </a>
+      </div>
 
       <!-- Card 2 · Checkout · forest dark -->
-      <a href="/features/{{ moments[2].slug }}/"
-         class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#166534] h-[430px] cursor-pointer">
-        <span class="sm:hidden absolute top-4 right-4 w-8 h-8 rounded-full bg-white/15 flex items-center justify-center text-white" aria-label="Read more">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </span>
+      <div class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#166534] h-[430px]">
         <!-- Tags -->
         <div class="flex gap-2 p-5 pb-0 flex-wrap">
           {% for tag in moments[2].cardTags %}
@@ -122,14 +104,10 @@
             </div>
           </div>
         </div>
-      </a>
+      </div>
 
       <!-- Card 3 · Trust · lime -->
-      <a href="/features/{{ moments[3].slug }}/"
-         class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#D4F08A] h-[430px] cursor-pointer">
-        <span class="sm:hidden absolute top-4 right-4 w-8 h-8 rounded-full bg-black/10 flex items-center justify-center text-black" aria-label="Read more">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </span>
+      <div class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#D4F08A] h-[430px]">
         <!-- Tags -->
         <div class="flex gap-2 p-5 pb-0 flex-wrap">
           {% for tag in moments[3].cardTags %}
@@ -163,14 +141,10 @@
             <span class="text-[9px] font-mono text-black/50">3 actions · 0 flagged</span>
           </div>
         </div>
-      </a>
+      </div>
 
       <!-- Card 4 · Scale · yellow -->
-      <a href="/features/{{ moments[4].slug }}/"
-         class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#FEF08A] h-[430px] cursor-pointer">
-        <span class="sm:hidden absolute top-4 right-4 w-8 h-8 rounded-full bg-black/10 flex items-center justify-center text-black" aria-label="Read more">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </span>
+      <div class="fm-card-row relative flex flex-col rounded-2xl overflow-hidden bg-[#FEF08A] h-[430px]">
         <!-- Tags -->
         <div class="flex gap-2 p-5 pb-0 flex-wrap">
           {% for tag in moments[4].cardTags %}
@@ -208,7 +182,7 @@
             <span class="text-[9px] font-mono text-black/50">24/7 · 0 downtime</span>
           </div>
         </div>
-      </a>
+      </div>
 
     </div>
   </div>

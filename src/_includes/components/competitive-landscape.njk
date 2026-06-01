@@ -36,7 +36,7 @@
             <span class="hidden sm:inline absolute bottom-1 right-2 text-[10px] tracking-widest uppercase text-stella-muted font-medium">Chatbots</span>
 
             <!-- Y-axis label (anchored to bottom-left corner on mobile, mid-left on desktop) -->
-            <span class="absolute left-1 bottom-1 origin-bottom-left sm:left-[-18px] sm:top-1/4 sm:bottom-auto sm:-translate-y-1/2 sm:origin-center -rotate-90 text-[9px] tracking-widest uppercase text-stella-muted whitespace-nowrap">Full Autonomy ↑</span>
+            <span class="absolute left-1 bottom-1 origin-bottom-left sm:left-[-32px] sm:top-1/4 sm:bottom-auto sm:-translate-y-1/2 sm:origin-center -rotate-90 text-[9px] tracking-widest uppercase text-stella-muted whitespace-nowrap">Full Autonomy ↑</span>
 
             <!-- X-axis label (pulled inside chart on mobile) -->
             <span class="absolute bottom-1 sm:bottom-[-18px] right-0 text-[9px] tracking-widest uppercase text-stella-muted whitespace-nowrap">SMB-Ready →</span>
@@ -52,8 +52,8 @@
           </div>
           {% else %}
           <div class="landscape-dot absolute" style="left:{{ comp.left }};top:{{ comp.top }};transform:translate(-50%,-50%)">
-            <div class="w-2.5 h-2.5 rounded-full bg-stella-muted/40 border border-stella-muted/30"></div>
-            <span class="absolute top-3.5 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap font-medium">{{ comp.name }}</span>
+            <div class="w-3.5 h-3.5 rounded-full bg-stella-muted/50 border border-stella-muted/40"></div>
+            <span class="absolute top-4 left-1/2 -translate-x-1/2 text-[9px] text-stella-muted whitespace-nowrap italic">{{ comp.name }}</span>
           </div>
           {% endif %}
           {% endfor %}

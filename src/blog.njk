@@ -1,0 +1,90 @@
+---
+layout: layouts/base.njk
+permalink: /blog/index.html
+title: "The Stella Blog — agentic commerce, merchant playbooks & product notes"
+description: "Plain-spoken thinking on agentic commerce, merchant operations, and the engineering behind Stella's commerce backend."
+---
+
+<div class="overflow-x-clip relative z-10 bg-stella-bg" x-data="{ cat: 'All' }">
+  {% include "components/nav.njk" %}
+
+  {# Hero #}
+  <section class="relative pt-32 md:pt-40 pb-8 md:pb-10 px-4 sm:px-6 md:px-16 lg:px-28 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none -z-0">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,240,138,0.55)_0%,_rgba(212,240,138,0.28)_45%,_rgba(247,255,228,0)_85%)]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-stella-bg"></div>
+    </div>
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-stella-muted mb-4">{{ blogPage.hero.eyebrow }}</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-sans font-light text-black tracking-[-0.015em] leading-[1.12]">{{ blogPage.hero.headline }}</h1>
+      <p class="mt-5 text-body-lg text-stella-muted max-w-2xl mx-auto">{{ blogPage.hero.sub }}</p>
+    </div>
+  </section>
+
+  {# Category filter #}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-28 mb-10 md:mb-12">
+    <!-- Mobile: native select dropdown -->
+    <div class="sm:hidden flex justify-center">
+      <div class="relative inline-block">
+        <select
+          @change="cat = $event.target.value"
+          class="text-sm font-medium rounded-full border border-stella-border bg-white text-stella-text pl-4 pr-9 py-2 appearance-none focus:outline-none focus:border-stella-forest">
+          {% for c in blogPage.categories %}
+          <option value="{{ c }}">{{ c }}</option>
+          {% endfor %}
+        </select>
+        <span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stella-muted">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Desktop: pill buttons -->
+    <div class="hidden sm:flex flex-wrap justify-center gap-2">
+      {% for c in blogPage.categories %}
+      <button
+        @click="cat = '{{ c }}'"
+        :class="cat === '{{ c }}' ? 'bg-stella-forest text-white border-stella-forest' : 'bg-white text-stella-muted border-stella-border hover:text-stella-text'"
+        class="text-sm font-medium rounded-full border px-4 py-1.5 transition-colors">
+        {{ c }}
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+
+  {# Post grid #}
+  <section class="relative pb-20 md:pb-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-28">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for post in collections.posts %}
+        <a href="{{ post.url }}"
+           x-show="cat === 'All' || cat === '{{ post.data.category }}'"
+           class="group flex flex-col bg-white rounded-2xl border border-stella-border overflow-hidden transition-all duration-300 hover:shadow-stella-lg">
+
+          {% if post.data.cover %}
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="{{ post.data.cover }}" alt="{{ post.data.coverAlt | default(post.data.title) }}" loading="lazy"
+                 class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out" />
+          </div>
+          {% endif %}
+
+          <div class="flex flex-col flex-1 p-5">
+            <p class="text-[11px] font-semibold tracking-[0.16em] uppercase text-stella-forest mb-2">{{ post.data.category }}</p>
+            <h2 class="text-lg font-sans font-semibold text-stella-text leading-snug tracking-[-0.01em] group-hover:text-stella-forest transition-colors">{{ post.data.title }}</h2>
+            <p class="mt-2 text-sm text-stella-muted leading-relaxed line-clamp-3">{{ post.data.description }}</p>
+            <div class="mt-auto pt-4 border-t border-stella-border flex items-center gap-2 text-caption text-stella-muted">
+              <time datetime="{{ post.data.date | isoDate }}">{{ post.data.date | readableDate }}</time>
+              {% if post.data.readTime %}<span aria-hidden="true">·</span><span>{{ post.data.readTime }}</span>{% endif %}
+              <span class="ml-auto text-stella-forest text-base leading-none group-hover:translate-x-0.5 transition-transform">→</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include "components/footer.njk" %}
+</div>

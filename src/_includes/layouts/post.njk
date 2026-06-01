@@ -1,0 +1,102 @@
+---
+layout: layouts/base.njk
+---
+
+<div class="overflow-x-clip relative z-10 bg-stella-bg">
+  {% include "components/nav.njk" %}
+
+  <article class="relative">
+    <div class="lg:flex lg:items-start">
+
+      {# Left: sticky intro + cover — fixed while the article scrolls #}
+      <aside class="lg:w-1/2 lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center gap-8 px-6 sm:px-10 lg:px-14 pt-28 lg:pt-24 pb-8 lg:pb-10">
+        <div>
+          {% if category %}
+          <a href="/blog/" class="inline-block text-xs font-semibold tracking-[0.18em] uppercase text-stella-forest mb-4">
+            {{ category }}
+          </a>
+          {% endif %}
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-sans font-light text-black tracking-[-0.015em] leading-[1.12]">
+            {{ title }}
+          </h1>
+
+          {% if description %}
+          <p class="mt-5 text-body-lg text-stella-muted max-w-xl">{{ description }}</p>
+          {% endif %}
+        </div>
+
+        {% if cover %}
+        <img src="{{ cover }}" alt="{{ coverAlt | default(title) }}"
+             class="w-full max-h-[42vh] object-cover rounded-2xl border border-stella-border" />
+        {% endif %}
+      </aside>
+
+      {# Right: scrolling article body #}
+      <div class="lg:w-1/2 px-6 sm:px-10 lg:px-14 pt-6 lg:pt-32 pb-16 lg:pb-28">
+        <div class="prose-stella max-w-xl">
+          <h2 class="!mt-0">Overview</h2>
+          {{ content | safe }}
+        </div>
+
+        <div class="max-w-xl mt-14 pt-8 border-t border-stella-border">
+          <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-semibold text-stella-forest hover:gap-3 transition-all">
+            ← Back to all posts
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  {# More articles #}
+  {% set count = 0 %}
+  <section class="relative border-t border-stella-border py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+      <h2 class="text-2xl sm:text-3xl font-sans font-light text-black tracking-[-0.015em] mb-8 md:mb-10">More articles</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for post in collections.posts %}
+        {% if post.url != page.url and count < 3 %}
+        {% set count = count + 1 %}
+        <a href="{{ post.url }}"
+           class="group flex flex-col bg-white rounded-2xl border border-stella-border overflow-hidden transition-all duration-300 hover:shadow-stella-lg">
+          {% if post.data.cover %}
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="{{ post.data.cover }}" alt="{{ post.data.coverAlt | default(post.data.title) }}" loading="lazy"
+                 class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out" />
+          </div>
+          {% endif %}
+          <div class="flex flex-col flex-1 p-5">
+            <p class="text-[11px] font-semibold tracking-[0.16em] uppercase text-stella-forest mb-2">{{ post.data.category }}</p>
+            <h3 class="text-lg font-sans font-semibold text-stella-text leading-snug tracking-[-0.01em] group-hover:text-stella-forest transition-colors">{{ post.data.title }}</h3>
+            <p class="mt-2 text-sm text-stella-muted leading-relaxed line-clamp-3">{{ post.data.description }}</p>
+            <span class="mt-auto pt-4 text-stella-forest text-base leading-none group-hover:translate-x-0.5 transition-transform">→</span>
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include "components/footer.njk" %}
+</div>
+
+<style>
+  .prose-stella { color: #000; font-size: 1.0625rem; line-height: 1.8; }
+  .prose-stella > * + * { margin-top: 1.4em; }
+  .prose-stella h2 { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; margin-top: 2.2em; }
+  .prose-stella h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.01em; margin-top: 1.8em; }
+  .prose-stella p, .prose-stella li { color: #1a1f1c; }
+  .prose-stella a { color: #166534; text-decoration: underline; text-underline-offset: 2px; }
+  .prose-stella ul, .prose-stella ol { padding-left: 1.4em; }
+  .prose-stella ul { list-style: disc; }
+  .prose-stella ol { list-style: decimal; }
+  .prose-stella li + li { margin-top: 0.5em; }
+  .prose-stella strong { font-weight: 600; }
+  .prose-stella blockquote { border-left: 3px solid #166534; padding-left: 1.1em; color: #52645A; font-style: italic; }
+  .prose-stella code { background: #fff; border: 1px solid #E5E5E0; border-radius: 6px; padding: 0.1em 0.4em; font-size: 0.9em; }
+  .prose-stella pre { background: #0F1216; color: #f7ffe4; border-radius: 12px; padding: 1.1em 1.3em; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; }
+  .prose-stella pre code { background: transparent; border: 0; padding: 0; color: inherit; }
+  .prose-stella img { border-radius: 12px; border: 1px solid #E5E5E0; }
+</style>
