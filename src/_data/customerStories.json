@@ -29,6 +29,10 @@
     ],
     "cta": { "label": "Read the full story", "href": "#" }
   },
+  "grid": {
+    "heading": "More stores. More categories. Same backend.",
+    "subheading": "A snapshot of merchants running on Stella today, across fashion, electronics, F&B, and more."
+  },
   "stories": [
     {
       "customer": "Annapurna Electronics",

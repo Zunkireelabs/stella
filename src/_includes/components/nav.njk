@@ -1,11 +1,5 @@
-<nav id="site-nav"
-  x-data="{ mobileOpen: false }"
-  x-effect="lockScroll(mobileOpen); window.dispatchEvent(new CustomEvent('navmobile', {detail: mobileOpen}))"
-  @navclose.window="mobileOpen = false"
-  :class="mobileOpen ? 'bg-white' : 'bg-white/90 backdrop-blur-md'"
-  class="fixed top-0 w-full z-50 border-b border-stella-border transition-colors duration-200">
-
-  <div class="relative max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+<nav id="site-nav" x-data="{ mobileOpen: false }" class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-stella-border">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
 
     <!-- Logo -->
     <a id="nav-logo" href="/" class="font-pacifico text-3xl text-stella-text">Stella</a>
@@ -14,10 +8,10 @@
     <div id="nav-links" class="hidden md:flex items-center gap-8">
 
       <!-- Product mega menu -->
-      <div x-data="{ open: false, t: null }" @mouseenter="clearTimeout(t); open = true" @mouseleave="t = setTimeout(() => open = false, 120)" @click.away="open = false">
+      <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @click.away="open = false" class="relative">
         <button
           @click="open = !open"
-          class="flex items-center gap-1 text-sm text-stella-muted hover:text-stella-forest hover:bg-stella-gradient transition-colors py-2 px-3 rounded-lg"
+          class="flex items-center gap-1 text-sm text-stella-muted hover:text-stella-text transition-colors py-2"
         >
           Product
           <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,12 +24,15 @@
           x-transition:enter="transition ease-out duration-150"
           x-transition:enter-start="opacity-0 -translate-y-1"
           x-transition:enter-end="opacity-100 translate-y-0"
-          class="absolute top-full pt-2 left-1/2 -translate-x-1/2 w-[680px] z-50"
+          class="absolute top-full left-0 pt-3 w-[680px] z-50"
         >
           <div class="bg-white rounded-2xl border border-stella-border shadow-xl p-4">
             <div class="grid grid-cols-2 gap-4 items-stretch">
+
+              <!-- Left: section label, hoverable Storefront row, underline, description below -->
               <div class="flex flex-col p-4">
                 <span class="text-sm font-semibold text-stella-text">{{ storefront.navMenu.sectionLabel }}</span>
+
                 <a href="/storefront/" class="group mt-3 -mx-3 flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-stella-bg transition-colors">
                   <span class="text-stella-forest flex-shrink-0">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -48,13 +45,16 @@
                   <span class="text-base font-semibold text-stella-text group-hover:text-stella-forest transition-colors">{{ storefront.navMenu.label }}</span>
                   <span class="ml-auto text-stella-forest group-hover:translate-x-0.5 transition-transform">→</span>
                 </a>
+
                 <span class="mt-2 px-1 text-xs text-stella-muted leading-snug">{{ storefront.navMenu.description }}</span>
                 <hr class="mt-3 border-stella-border" />
               </div>
+
+              <!-- Right: compact lead-gen card with background image -->
               <div class="relative h-full min-h-[300px] rounded-xl overflow-hidden flex flex-col items-center justify-center gap-3 p-5 text-center">
                 <img
-                  src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=600&fit=crop&q=80"
-                  alt=""
+                  src="{{ storefront.navMenu.image }}"
+                  alt="{{ storefront.navMenu.imageAlt }}"
                   class="absolute inset-0 w-full h-full object-cover"
                 />
                 <div class="absolute inset-0 bg-gradient-to-b from-stella-forest/85 via-stella-forest/75 to-stella-forest/90"></div>
@@ -63,16 +63,17 @@
                   {{ ctaClosing.button }} →
                 </a>
               </div>
+
             </div>
           </div>
         </div>
       </div>
 
       <!-- Resources mega menu -->
-      <div x-data="{ open: false, t: null }" @mouseenter="clearTimeout(t); open = true" @mouseleave="t = setTimeout(() => open = false, 120)" @click.away="open = false">
+      <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @click.away="open = false" class="relative">
         <button
           @click="open = !open"
-          class="flex items-center gap-1 text-sm text-stella-muted hover:text-stella-forest hover:bg-stella-gradient transition-colors py-2 px-3 rounded-lg"
+          class="flex items-center gap-1 text-sm text-stella-muted hover:text-stella-text transition-colors py-2"
         >
           Resources
           <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,25 +86,43 @@
           x-transition:enter="transition ease-out duration-150"
           x-transition:enter-start="opacity-0 -translate-y-1"
           x-transition:enter-end="opacity-100 translate-y-0"
-          class="absolute top-full pt-2 left-1/2 -translate-x-1/2 w-[360px] z-50"
+          class="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[360px] z-50"
         >
           <div class="bg-white rounded-2xl border border-stella-border shadow-xl p-4">
             <div class="flex flex-col">
               <span class="px-3 text-sm font-semibold text-stella-text">{{ resources.navMenu.sectionLabel }}</span>
+
               <div class="mt-3 flex flex-col gap-1">
                 {% for item in resources.navMenu.items %}
                 <a href="{{ item.href }}" class="group flex items-start gap-3 px-3 py-2 rounded-lg hover:bg-stella-bg transition-colors">
                   <span class="text-stella-forest flex-shrink-0 mt-0.5">
                     {% if item.icon == "api" %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6"/>
+                      <polyline points="8 6 2 12 8 18"/>
+                    </svg>
                     {% elif item.icon == "stories" %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
                     {% elif item.icon == "blog" %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                    </svg>
                     {% elif item.icon == "help" %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+                      <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
                     {% elif item.icon == "partners" %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
                     {% endif %}
                   </span>
                   <span class="flex flex-col">
@@ -118,12 +137,12 @@
         </div>
       </div>
 
-      <a href="/customer-stories/" class="inline-flex items-center text-sm text-stella-muted hover:text-stella-forest hover:bg-stella-gradient transition-colors py-2 px-3 rounded-lg">Customer Stories</a>
+      <a href="/customer-stories/" class="text-sm text-stella-muted hover:text-stella-text transition-colors">Customer Stories</a>
     </div>
 
     <!-- Desktop right actions -->
     <div id="nav-actions" class="hidden md:flex items-center gap-5">
-      <a href="https://app.stella-commerce.com/login" class="inline-flex items-center text-sm text-stella-muted hover:text-stella-forest hover:bg-stella-gradient transition-colors py-2 px-3 rounded-lg">Sign In</a>
+      <a href="https://app.stella-commerce.com/login" class="text-sm text-stella-muted hover:text-stella-text transition-colors">Sign In</a>
       <a id="nav-cta" href="/schedule-demo/" class="relative overflow-hidden bg-stella-gradient text-stella-forest font-semibold text-sm rounded-xl px-5 py-2.5 inline-flex items-center justify-center">
         <span class="btn-glow-layer absolute inset-0 rounded-xl pointer-events-none opacity-0" style="--mouse-x:50%;--mouse-y:50%;background: radial-gradient(circle 100px at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.65), transparent);"></span>
         <span class="relative z-10">{{ site.cta.primary }} →</span>
@@ -144,5 +163,79 @@
       </svg>
     </button>
 
+  </div>
+
+  <!-- Mobile drawer -->
+  <div
+    x-show="mobileOpen"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    class="md:hidden border-t border-stella-border bg-white px-6 py-3 flex flex-col"
+  >
+
+    {# Product accordion #}
+    <div x-data="{ open: false }" class="border-b border-stella-border">
+      <button
+        @click="open = !open"
+        class="w-full flex items-center justify-between py-4 text-left"
+      >
+        <span class="text-sm font-medium text-stella-text">Product</span>
+        <svg class="w-4 h-4 text-stella-muted transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div
+        x-show="open"
+        x-cloak
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="pb-3"
+      >
+        <a href="/storefront/" class="flex flex-col py-2.5 pl-2">
+          <span class="text-sm text-stella-text font-medium">{{ storefront.navMenu.label }}</span>
+          <span class="text-xs text-stella-muted mt-0.5">{{ storefront.navMenu.description }}</span>
+        </a>
+      </div>
+    </div>
+
+    {# Resources accordion #}
+    <div x-data="{ open: false }" class="border-b border-stella-border">
+      <button
+        @click="open = !open"
+        class="w-full flex items-center justify-between py-4 text-left"
+      >
+        <span class="text-sm font-medium text-stella-text">Resources</span>
+        <svg class="w-4 h-4 text-stella-muted transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div
+        x-show="open"
+        x-cloak
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="pb-3"
+      >
+        {% for item in resources.navMenu.items %}
+        <a href="{{ item.href }}" class="flex flex-col py-2.5 pl-2">
+          <span class="text-sm text-stella-text font-medium">{{ item.label }}</span>
+          <span class="text-xs text-stella-muted mt-0.5">{{ item.description }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    {# Customer Stories — single flat link #}
+    <a href="/customer-stories/" class="py-4 text-sm font-medium text-stella-text border-b border-stella-border">Customer Stories</a>
+
+    <div class="mt-4 pt-2 flex flex-col gap-3">
+      <a href="https://app.stella-commerce.com/login" class="text-sm text-stella-muted text-center">Sign In</a>
+      <a href="/schedule-demo/" class="bg-stella-gradient text-stella-forest font-semibold text-sm rounded-xl px-5 py-3 text-center hover:opacity-90 transition-opacity">
+        {{ site.cta.primary }} →
+      </a>
+    </div>
   </div>
 </nav>

@@ -7,7 +7,7 @@
     "sectionLabel": "For your shoppers",
     "label": "Storefront",
     "description": "The full storefront, agent-ready.",
-    "image": "/assets/images/nav-storefront.png",
+    "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=600&fit=crop&q=80",
     "imageAlt": "Stella storefront preview"
   },
   "hero": {
