@@ -40,12 +40,12 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             REPO="${{ github.event.repository.name }}"
-            DIR="/home/zunkireelabs/devprojects/websiteprojects/${REPO}-web-stage"
+            DIR="/home/zunkireelabs/devprojects/websiteprojects/stage-${REPO}-web"
 
             if [ ! -d "$DIR" ]; then
               echo "First deployment — bootstrapping $DIR"
               mkdir -p "$DIR"
-              git clone -b stage git@github.com:${{ github.repository }}.git "$DIR"
+              git clone -b stage https://github.com/${{ github.repository }}.git "$DIR"
             fi
 
             cd "$DIR"
