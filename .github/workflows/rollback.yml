@@ -36,11 +36,11 @@ jobs:
             REPO="stella"
 
             if [ "${{ inputs.environment }}" = "production" ]; then
-              DIR="/home/zunkireelabs/devprojects/websiteprojects/${REPO}-web-prod"
+              DIR="/home/zunkireelabs/devprojects/websiteprojects/${REPO}-web"
               COMPOSE_FILE="docker-compose.yml"
               CONTAINER="${REPO}-web-prod"
             else
-              DIR="/home/zunkireelabs/devprojects/websiteprojects/${REPO}-web-stage"
+              DIR="/home/zunkireelabs/devprojects/websiteprojects/stage-${REPO}-web"
               COMPOSE_FILE="docker-compose.dev.yml"
               CONTAINER="${REPO}-web-stage"
             fi
